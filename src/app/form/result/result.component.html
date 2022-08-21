@@ -1,0 +1,8 @@
+<div class="result-input">
+	<label class="result-placeholder">{{element.label}}</label>
+	<label class="result-value">{{preFix ? preFix + ' ' : ''}}{{value | number:'1.0-3'}}{{postFix ? ' '+ postFix : ''}}</label>
+</div>
+<div *ngIf="element.error && element.error!=''"
+	 class="error-msg" style="clear: both;">
+	{{element.error}}
+</div>

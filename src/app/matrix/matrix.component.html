@@ -1,0 +1,81 @@
+<div class="matrix-padding">
+    <div class="title-back-div header-back">
+        <div class="back-image back-icon-title"
+             (click)="backStateFunction()"></div>
+        <div class="title-div">{{attributesObject.formTitle}}</div>
+        <div *ngIf="showTableMatrix && showUpdateButtons" class="reset-matrix">
+            <button class="btn btn-cancel buttonForm1" style="margin: 0 !important;" (click)="clearMatrix()">Clear
+            </button>
+            <button class="btn btn-save buttonForm1" style="margin: 0 !important;margin-left: 10px !important;"
+                    (click)="saveMatrix()">Save
+            </button>
+        </div>
+    </div>
+    <div *ngIf="!showTableMatrix" class="appForm">
+        <div class="col-12 simple-form single-col-form table-padding" style="display: inline-grid;">
+            <app-form #myappfrm [FormFields]="fields" [FormFieldValues]="clickedRow" [FormFieldsOrder]="orderObj"
+                      [validation]="Validation" class="app-form" (notifyParent)="checkRowsColumns($event)">
+            </app-form>
+        </div>
+        <div *ngIf="showNextButton" class="matrix-button">
+            <button class="btn btn-save buttonForm1" style="margin: 0 !important;"
+                    (click)="openMatrix()">Next
+            </button>
+        </div>
+    </div>
+    <div *ngIf="showTableMatrix" class="appForm">
+        <div class="col-12 simple-form single-col-form table-padding">
+            <div class="app-form zone-select">
+                <div class="field-width">
+                    <div class="field-label">Choose Zone*</div>
+                    <mat-form-field>
+                        <mat-select [required]="true" [(ngModel)]="pickedZone">
+                            <mat-option *ngFor="let zone of zones; let i = index;"
+                                        [value]="zone"
+                                        [ngClass]="is!=zones.length-1 ? 'options-border-bottom':''">
+                                <div class="display-flex">
+                                    <div [style.background-color]="zone.color" class="color-picker-table"></div>
+                                    <span *ngIf="zone.price && zone.price>0">{{zone.name}} ({{zone.price}} KWD)</span>
+                                    <span *ngIf="!zone.price || zone.price ===0">{{zone.name}}</span>
+                                </div>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!--<div class="field-width">-->
+                <!--<div class="field-label">Choose Direction*</div>-->
+                <!--<mat-form-field>-->
+                <!--<mat-select [required]="true" [(ngModel)]="pickedDirection">-->
+                <!--<mat-option *ngFor="let direction of directions; let i = index;"-->
+                <!--[value]="direction.value"-->
+                <!--[ngClass]="is!=directions.length-1 ? 'options-border-bottom':''">-->
+                <!--{{direction.text}}-->
+                <!--</mat-option>-->
+                <!--</mat-select>-->
+                <!--</mat-form-field>-->
+
+                <!--</div>-->
+            </div>
+            <div class="matrix-table-parent" [dir]="pickedDirection==='left'?'ltr':'rtl'">
+                <div>
+                    <div *ngFor="let alpha of rowsAlpha"
+                         class="matrix-row-text margin-letter-{{pickedDirection}}">
+                        {{alpha}}
+                    </div>
+                </div>
+                <div class="matrix-table">
+                    <div *ngFor="let row of matrixArray" class="row-matrix">
+                        <div class="display-flex">
+                            <div *ngFor="let seat of row;let j=index" class="column-matrix"
+                                 [style.background-color]="seat.color"
+                                 [style.width.%]="(100/(row.length))"
+                                 (click)="selectSeat(seat)">
+                                {{seat.zone!=='empty'?seat.seatLabel:''}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

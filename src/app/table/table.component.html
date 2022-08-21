@@ -1,0 +1,549 @@
+<div [ngStyle]="{'display': showTableDiv ? 'block' : 'none' }"
+     class="table-container table-padding is-table-view-true table-height-{{tableRowHeight}}">
+    <div *ngIf="tableHeaders && tableHeaders.data.length>0" class="header-container">
+        <div class="title-back-div header-back">
+            <div *ngIf="showBackIcon || backSection" class="back-image back-icon-title"
+                 (click)="backStateFunction()"></div>
+            <div class="title-div">{{tableHeaders.title}}</div>
+        </div>
+        <div class="header-parent">
+            <div *ngFor="let header of tableHeaders.data" class="header-div">
+                <div class="header-item">
+                    <div class="bullet"></div>
+                    <span class="header-text">{{header.text}}</span>
+                    <span class="header-value">{{header.type==='number'?(header.value|number:'1.0-2')+ ' ' + (header.fieldToConcat?header.fieldToConcat:''):header.value + ' ' + (header.fieldToConcat?header.fieldToConcat:'')}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-container">
+        <div class="title-back-div">
+            <div *ngIf="(showBackIcon || backSection) && (!tableHeaders)" class="back-image back-icon-title"
+                 (click)="backStateFunction()"></div>
+            <div [ngClass]="tableHeaders && tableHeaders.data.length>0?'title-div padding-title':'title-div'">
+                {{tableTitle}}
+                <span class="count-label" *ngIf="!showNotification">
+                ({{(usePagination ?totalCount:data.length) | number}})
+            </span>
+            </div>
+            <div *ngIf="permissions.canAdd" class="add-wrapper" (click)="showDialogToAdd()">
+                <div class="colored-add"></div>
+                <span class="add-span">Add new</span>
+            </div>
+            <div class='add-wrapper' *ngIf="showDeleteBtn" (click)="deleteRows()">
+                <div class="colored-action deactivate"></div>
+                <span class="span-action span-deactivate">Delete</span>
+            </div>
+            <ng-container *ngIf="actions">
+                <ng-container *ngFor="let action of actions">
+                    <div *ngIf="permissions['customActions'] && (selectedRecords.length > 0 || action.allowNoneSelection) && permissions['customActions'][action.permission]"
+                         (click)="customAction(action)"
+                         class="add-wrapper">
+                        <div class="colored-action {{action.id}}"></div>
+                        <span class="span-action span-{{action.id}}">{{action.name}}</span>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div [ngClass]="(!useSearch) || (groupingFields)?'no-display-search':'search-div'">
+            <ng-container *ngIf="allowCustomFilter">
+                <ng-container *ngFor="let filter of filterSearch">
+                    <div class="filter-table-field">
+                        <app-dropdown *ngIf="filter.type==='dropdown'" [element]="filter"
+                                      [allowSearch]="false" [allowClear]="false"
+                                      (eventEmitter)="filterSearchEvent()"></app-dropdown>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="allowDateSearch">
+                <div>
+                    <span>
+                    <p-calendar [readonlyInput]="true" (onSelect)="selectSearchDate($event)"
+                                (onClearClick)="selectSearchDate($event)" [maxDate]="removeDateMax?null:currentDateFrom"
+                                placeholder="Select From Date" [(ngModel)]="dateValueFrom"
+                                yearRange="2000:2030" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                                dateFormat="dd/mm/yy" [showButtonBar]="true"></p-calendar>
+                </span>
+                    <span class="filter-space">
+                    <p-calendar [readonlyInput]="true" (onSelect)="selectSearchDate($event)" [minDate]="dateValueFrom"
+                                (onClearClick)="selectSearchDate($event)" [maxDate]="removeDateMax?null:currentDate"
+                                placeholder="Select To Date" [(ngModel)]="dateValueTo"
+                                yearRange="2000:2030" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                                dateFormat="dd/mm/yy" [showButtonBar]="true"></p-calendar>
+                </span>
+                </div>
+            </ng-container>
+            <div class="filter-space search-input-parent">
+                <i class="fa fa-search search-img2"></i>
+                <input #gb type="text" pInputText size="50" placeholder="Search Table..." class="search-input">
+            </div>
+        </div>
+    </div>
+    <div class="table-div">
+        <p-dataTable *ngIf="!groupingFields && !showNotification" styleClass="ui-corner-all"
+                     [value]="data"
+                     [rows]="maxPageLimit"
+                     [paginator]="true"
+                     [lazy]="usePagination"
+                     [pageLinks]="3"
+                     [first]="firstTablePage"
+                     [totalRecords]="usePagination?totalRecords:data.length"
+                     (onLazyLoad)="loadMore($event)"
+                     [rowsPerPageOptions]="[20,40,60]"
+                     [editable]="false"
+                     [responsive]="true"
+                     sortMode="multiple"
+                     (onHeaderCheckboxToggle)="onAllRowSelect($event)"
+                     (onRowSelect)="onRowSelect($event)"
+                     (onRowUnselect)="onRowUnselect($event)"
+                     [selectionMode]="permissions.canDelete || permissionsAllowed ?'multiple':'single'"
+                     [(selection)]="selectedRecords"
+                     [globalFilter]="gb"
+                     #dt>
+            <!--<p-header>{{tableTitle}}</p-header>-->
+            <p-column [style]="{'width':'38px'}" selectionMode="multiple" styleClass="checkbox-header"
+                      *ngIf="permissions.canDelete || permissionsAllowed"></p-column>
+            <p-column *ngFor="let column of columns"
+                      [field]="column.name"
+                      [header]="column.titleHidden?'':column.label"
+                      [editable]="false"
+                      [hidden]="column.hidden"
+                      [sortable]="!column.titleHidden && column.sortable"
+                      [filter]="column.allowSearch"
+                      [filterPlaceholder]="'Search...'"
+                      [style]="column.type=='image'?{'width':'70px'}:column.widthFormat?column.widthFormat=='small'?{'width':'100px'}:
+                    column.widthFormat=='large'?{'width':'200px'}:column.widthFormat=='medium'?{'width':'150px'}:
+                    column.widthFormat=='extra-large'?{'width':'380px'}:{}:{}">
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='toggle'">
+                    <div *ngIf="row[column.name]==false" class="toggle-div-no">
+                        <div class="toggle-div-empty"></div>
+                    </div>
+                    <div *ngIf="row[column.name]==true" class="toggle-div-yes">
+                        <div class="toggle-div-empty"></div>
+                    </div>
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='date' && column.showBasedTimezone">
+                    {{column.datePipe ? (row[column.name] | date: column.datePipe) : row['dateDisplayFormatted']}}
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body"
+                             *ngIf="column.type=='date' && !column.showBasedTimezone">
+                    {{column.datePipe ? (row[column.name] | date: column.datePipe) : (row[column.name] | date:
+                    'dd MMM yyyy')}}
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body"
+                             *ngIf="column.type=='datepicker' && !column.showBasedTimezone">
+                    {{row[column.name] | date: 'dd MMM yyyy hh:mm a'}}
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body"
+                             *ngIf="column.type=='datepicker' && column.showBasedTimezone">
+                    {{row['fullDateDisplayFormatted']}}
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='time' && column.showBasedTimezone">
+                    {{row['timeDisplayFormatted']}}
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='number'">
+                    {{row[column.name] | number}}
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='button'">
+                    <button class="btn btn-save buttonForm1" style="margin: 0 !important;"
+                            (click)="customRowAction(column,row)">{{column.label}}
+                    </button>
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='image'">
+                    <div [ngClass]="!column.withBackgroundColor?'div-image-display table-image-display':'div-image-display table-image-display-background'">
+                        <img onerror="src = '../../assets/images/topbar/ic_profile.png'"
+                             class="image-display"
+                             [src]="row[column.name] !== '' ? row[column.name] : '../../assets/images/topbar/ic_profile.png'">
+                    </div>
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='video'">
+                    <div class="div-video-display" (click)="openVideoPopUp(row[column.name])">
+                        <img *ngIf="row[column.preview]" onerror="src = '../../assets/images/default-poster.png'"
+                             class="video-display div-video-display" [src]="row[column.preview]">
+                        <div *ngIf="!row[column.preview]" class="div-video-display default-video-image"></div>
+                        <div class="play-video-icon"></div>
+                    </div>
+                </ng-template>
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='color-picker'">
+                    <div [style.background-color]="row[column.name]" class="color-picker-table">
+                    </div>
+                </ng-template>
+                <ng-template *ngIf="manageFields && column.type == 'manage' && column.link" let-row="rowData"
+                             pTemplate="body">
+                    <div *ngFor="let item of manageFields" class="manage-in-table"
+                         (click)="routeToManage(item.link, $event)">
+                        <div class="manage-link" *ngIf="item.link == column.link">
+                            {{item.label}}
+                        </div>
+                    </div>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+
+        <p-dataTable *ngIf="groupingFields && !showNotification"
+                     [value]="data"
+                     [editable]="false"
+                     [rows]="maxPageLimit"
+                     [lazy]="usePagination"
+                     [paginator]="true"
+                     [pageLinks]="3"
+                     [totalRecords]="usePagination?totalRecords:data.length"
+                     (onLazyLoad)="loadMore($event)"
+                     [rowsPerPageOptions]="[3,10,20]"
+                     [responsive]="true"
+                     [(selection)]="selectedRecords"
+                     [sortField]="groupBy"
+                     rowGroupMode="subheader"
+                     expandableRowGroups="true"
+                     [expandedRowsGroups]="expandedItems"
+                     [groupField]="groupBy"
+                     styleClass="ui-corner-all"
+                     [sortableRowGroup]="false">
+            <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData[groupBy]}}
+                <div style="color: red;cursor: pointer" (click)="updateData(rowData)">Edit</div>
+            </ng-template>
+            <p-column *ngFor="let column of columns"
+                      [field]="column.name"
+                      [header]="column.label"
+                      [editable]="false"
+                      [hidden]="column.hidden"
+                      [sortable]="usePagination?false:column.sortable"
+                      [style]="column.widthFormat?column.widthFormat=='small'?{'width':'5%'}:column.widthFormat=='large'?{'width':'50%'}:column.widthFormat=='medium'?{'width':'10%'}:{}:{}">
+                <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='toggle'">
+                    <div *ngIf="row[column.name]==false" class="toggle-div-no">
+                        <div class="toggle-div-empty"></div>
+                    </div>
+                    <div *ngIf="row[column.name]==true" class="toggle-div-yes">
+                        <div class="toggle-div-empty"></div>
+                    </div>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>
+
+<div *ngIf="showEditDiv" class="appForm">
+    <div class="col-12 simple-form single-col-form table-padding url-link-{{pageUrl}}" style="display: inline-grid;"
+         *ngIf="showAddEditForm">
+        <div *ngIf="showForm" class="form-title">
+            <div class="edit-icon-div">
+                <div *ngIf="!showNotification" class="back-image back-icon-title"
+                     (click)="showTableDiv = true; showEditDiv = false;"></div>
+                <div class="edit-div">{{showNotification ? 'Send Notification' : 'Add ' + formTitle}}</div>
+            </div>
+        </div>
+        <app-form #myappfrm *ngIf="showForm"
+                  [FormFields]="fields_add"
+                  [FormFieldValues]="clickedRow"
+                  [FormFieldsOrder]="fieldsOrder"
+                  [validation]="validation"
+                  [dataLists]="dataLists"
+                  [dependencies]="dependencies"
+                  class="app-form">
+        </app-form>
+        <div *ngIf="showUpdateForm" class="form-title">
+            <div class="back-wrapper" (click)="showTableDiv = true; showEditDiv = false;">
+                <div class="back-image"></div>
+                <span>Back</span>
+            </div>
+            <div class="edit-icon-div">
+                <!--<div class="back-icon" (click)="showTableDiv = true; showEditDiv = false;"></div>-->
+                <div class="edit-div" *ngIf="!showUpdateButtons">View {{formTitle}}</div>
+                <div class="edit-div" *ngIf="showUpdateButtons">Edit {{formTitle}}</div>
+            </div>
+            <div *ngIf="manageFields" class="manage-fields">
+                <div *ngFor="let item of manageFields" class="manage-fields-elements"
+                     (click)="routeToManageFields(item.link, clickedRow['_id'],clickedRow)">
+                    <span>{{item.label}}</span>
+                </div>
+            </div>
+        </div>
+
+        <app-form #myappfrm *ngIf="showUpdateForm"
+                  [FormFields]="fields"
+                  [FormFieldValues]="clickedRow"
+                  [FormFieldsOrder]="fieldsOrder"
+                  [validation]="validation"
+                  [dataLists]="dataLists"
+                  [dependencies]="dependencies"
+                  class="app-form">
+        </app-form>
+        <div class='wrapper text-center'
+             *ngIf="!showPrivilegesTable && !showExtraTable">
+            <div class="button-div-save">
+                <button class="btn btn-save buttonForm1" (click)="onSave()"
+                        *ngIf="showForm || (showUpdateForm && showUpdateButtons)">
+                    {{showNotification ? 'Send' : ' Save'}}
+                </button>
+                <!--<button class="btn btn-cancel buttonForm1" (click)="closeForm()"-->
+                <!--*ngIf="(showForm || (showUpdateForm && showUpdateButtons)) && !showNotification">Cancel-->
+                <!--</button>-->
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showPrivilegesTable && showTableForm" class="table-padding">
+        <div class="title-div">{{rolesPrivileges.tableTitle}}</div>
+        <div class="search-div">
+            <i class="fa fa-search search-img2"></i>
+            <input #rP type="text" pInputText size="50" placeholder="Search Table..." class="search-input">
+        </div>
+
+        <p-dataTable [value]="rolesPrivileges.data"
+                     [editable]="true"
+                     [rows]="10"
+                     [paginator]="true"
+                     [pageLinks]="3"
+                     [rowsPerPageOptions]="[3,10,20]"
+                     [responsive]="true"
+                     sortMode="multiple"
+                     [globalFilter]="rP"
+                     #dtr>
+            <!--<p-header>{{rolesPrivileges.tableTitle}}</p-header>-->
+            <p-column [style]="{'width':'38px'}" selectionMode="multiple" styleClass="checkbox-header"
+                      *ngIf="rolesPrivileges.canDelete"
+                      (click)="showDeleteButton()"></p-column>
+            <p-column class="center-checkbox" *ngFor="let column of rolesPrivileges.columns"
+                      [field]="column.name"
+                      [header]="column.label"
+                      [editable]="false"
+                      [hidden]="column.hidden"
+                      [sortable]="column.sortable">
+                <ng-template let-row="rowData" let-index="rowIndex" let-col pTemplate="body"
+                             *ngIf="column.type=='toggle'">
+                    <div class="my-center-text">
+                        <mat-checkbox [(ngModel)]="row[col.field]"
+                                      (change)="checkBoxChanged($event,row,column.name)"
+                                      [disabled]="privilege_types[row.link][column.name]=='primary'?false:privilege_types[row.link][column.name]=='false'?true:false">
+                        </mat-checkbox>
+                    </div>
+                </ng-template>
+                <ng-template let-row="rowData" let-index="rowIndex" let-col pTemplate="body"
+                             *ngIf="column.type=='multiselect'">
+                    <div class="my-center-text">
+                        <p-multiSelect *ngIf="row[col.field]!=undefined" [options]="row[col.field]['options']"
+                                       [(ngModel)]="row[col.field]['value']" [style]="{'width':'100%'}"
+                                       appendTo="body"></p-multiSelect>
+                    </div>
+                </ng-template>
+                <ng-template let-row="rowData" let-index="rowIndex" let-col pTemplate="body"
+                             *ngIf="column.type=='text'">
+                    <div class="my-center-text">
+                        <input type="text" pInputText placeholder="Type text here"
+                               [(ngModel)]="row[col.field]" [style]="{'width':'100%'}" appendTo="body">
+                        <!--<p-multiSelect *ngIf="row[col.field]!=undefined" [options]="row[col.field]['options']"-->
+                        <!--[(ngModel)]="row[col.field]['value']" [style]="{'width':'100%'}"-->
+                        <!--appendTo="body"></p-multiSelect>-->
+                    </div>
+                </ng-template>
+            </p-column>
+            <p-footer *ngIf="rolesPrivileges.canAdd">
+                <div class="ui-helper-clearfix" style="width:100%">
+                    <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"
+                            label="Add">
+                        Add
+                    </button>
+                    <button *ngIf="rolesPrivileges.showDeleteBtn" type="button" pButton icon="fa-plus"
+                            style="float:left"
+                            label="Delete">Delete
+                    </button>
+                </div>
+            </p-footer>
+        </p-dataTable>
+        <div class='wrapper text-center' *ngIf="permissions.canUpdate">
+            <div class="button-div-save">
+                <button class="btn btn-save buttonForm1" (click)="onSavePrivileges()">
+                    {{addNewButton?'Add':'Save'}}
+                </button>
+                <button class="btn btn-cancel buttonForm1" (click)="closePrivilegesForm()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!showPrivilegesTable && showExtraTable && showTableForm" class="table-padding is-table-view-true">
+        <div *ngFor="let tableElement of extraTable;let indexElement = index">
+            <div class="title-div">{{tableElement.tableTitle}}</div>
+            <div *ngIf="showTableForm">
+                <p-table [value]="tableElement.data" [rows]="10" [paginator]="false" [pageLinks]="3"
+                         styleClass="ui-corner-all"
+                         [rowsPerPageOptions]="[3,10,20]" [responsive]="true" sortMode="multiple"
+                         [globalFilterFields]="tableElement.columnSearch" #dt>
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input type="text" pInputText size="50" placeholder="Search"
+                                   (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:2em"></th>
+                            <th *ngFor="let column2 of tableElement.columns" [hidden]="column2.hidden">
+                                {{column2.label}}
+                            </th>
+                            <th *ngIf="tableElement.canDelete">Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex"
+                                 *ngIf="showForm || (showUpdateForm && showUpdateButtons)">
+                        <tr [pReorderableRow]="index" [pSelectableRow]="rowData">
+                            <td>
+                                <i class="fa fa-bars" pReorderableRowHandle></i>
+                            </td>
+                            <ng-container *ngFor="let column of tableElement.columns">
+                                <td class="td-header" [hidden]="column.hidden">{{column.label}}</td>
+
+                                <td *ngIf="!column.editable && column.type!='dropdown'" class="td-header-body"
+                                    [pEditableColumn]="column.editable?'':null" [hidden]="column.hidden">
+                                    {{rowData[column.name]}}
+                                </td>
+                                <td *ngIf="!column.editable && column.type=='dropdown'" class="td-header-body"
+                                    [pEditableColumn]="column.editable?'':null" [hidden]="column.hidden">
+                                    {{column.options_text[rowData[column.name]]?column.options_text[rowData[column.name]]:rowData[column.name]}}
+                                </td>
+
+                                <td *ngIf="column.editable" class="td-header-body"
+                                    [pEditableColumn]="column.editable?'':null" [hidden]="column.hidden">
+                                    <p-cellEditor *ngIf="column.type=='text'">
+                                        <ng-template pTemplate="input">
+                                            <input type="text" pInputText placeholder="Type text here"
+                                                   [(ngModel)]="rowData[column.name]">
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            {{rowData[column.name]}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                    <p-cellEditor *ngIf="column.type=='number'">
+                                        <ng-template pTemplate="input">
+                                            <input #amountInput autocomplete="off" onDrag="return false"
+                                                   onDrop="return false"
+                                                   onPaste="return false" spellcheck="false"
+                                                   (keypress)="keyPress($event)" type="text" pInputText
+                                                   placeholder="Type text here"
+                                                   [(ngModel)]="rowData[column.name]">
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            {{rowData[column.name]}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                    <p-cellEditor *ngIf="column.type=='image'">
+                                        <ng-template pTemplate="input">
+                                            <app-image [element]="rowData[column.name]" [fromExtraTable]="true"
+                                                       (errorEmitter)="errorHandle($event)"></app-image>
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            <div class="div-image-display"
+                                                 *ngIf="rowData[column.name] && rowData[column.name]['value']['data'] && rowData[column.name]['value']['data']!=''">
+                                                <img class="image-display"
+                                                     [src]="'data:image/jpeg;base64,' + rowData[column.name]['value']['data']">
+                                            </div>
+                                            <div class="div-image-display"
+                                                 *ngIf="rowData[column.name] && !rowData[column.name]['value']['data'] && rowData[column.name]['value'] && rowData[column.name]['value']!=''">
+                                                <img class="image-display" [src]="rowData[column.name]['value']">
+                                            </div>
+                                        </ng-template>
+                                    </p-cellEditor>
+                                    <p-cellEditor *ngIf="column.type=='dropdown'">
+                                        <ng-template pTemplate="input">
+                                            <p-dropdown placeholder="Choose" [(ngModel)]="rowData[column.name]"
+                                                        [options]="column.options"
+                                                        [autoWidth]="false" [style]="{'width':'100%'}"
+                                                        required="true"
+                                                        appendTo="body"></p-dropdown>
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            {{column.options_text[rowData[column.name]]?column.options_text[rowData[column.name]]:rowData[column.name]}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                </td>
+                            </ng-container>
+                            <td *ngIf="tableElement.canDelete">
+                                <div class="my-center-text">
+                                    <button type="button" pButton class="delete-extra-table-button"
+                                            (click)="deleteRow(tableElement,index,rowData)" label="Delete"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex"
+                                 *ngIf="!showUpdateButtons && !showForm">
+                        <tr [pSelectableRow]="rowData">
+                            <ng-container *ngFor="let column of extraTable.columns">
+                                <td [ngClass]="column.hidden?'hide-columns':''" class="td-header">{{column.label}}
+                                </td>
+                                <td [ngClass]="column.hidden?'hide-columns':''" class="td-header-body"
+                                    *ngIf="column.type=='text' || column.type=='number'">
+                                    {{rowData[column.name]}}
+                                </td>
+                                <td [ngClass]="column.hidden?'hide-columns':''" class="td-header-body"
+                                    *ngIf="column.type=='dropdown'">
+                                    {{column.options_text[rowData[column.name]]?column.options_text[rowData[column.name]]:rowData[column.name]}}
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <div class='wrapper text-center' *ngIf="tableElement.showExtraTableError">
+                    <div class="error-extra-table">{{tableElement.extraTableError}}</div>
+                </div>
+                <div class='wrapper text-center' *ngIf='!hideControlButtons'>
+                    <div class="button-div-save">
+                        <button class="btn btn-cancel buttonForm1" (click)="addRow(tableElement)">Add Row</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='wrapper text-center' *ngIf='!hideControlButtons'>
+            <div class="button-div-save">
+                <button class="btn btn-save buttonForm1"
+                        (click)="onSaveExtraTable()">{{addNewButton?'Save Changes':'Save Changes'}}
+                </button>
+                <button class="btn btn-cancel buttonForm1" (click)="closePrivilegesForm()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="showTableWidgetForm" class="widget-form">
+    <app-widget-form [widgetConfiguration]="widgetConfiguration" [isAdd]="isWidgetAdd"
+                     [clickedRow]="clickedRowWidget"
+                     [manageFields]="manageFields" [pageUrl]="pageUrl" [formTitle]="formTitle"
+                     [showUpdateButtons]="showUpdateButtons"
+                     [saveAlert]="saveWidgetFormAlert"
+                     (saveData)="onSaveWidgetForm($event)" (eventEmitter)="closeForm()"></app-widget-form>
+</div>
+
+<ng-container *ngIf="showNewPage">
+    <div class="table-padding">
+        <div class="title-container">
+            <div class="title-back-div">
+                <div class="back-image back-icon-title"
+                     (click)="showNewPage = false;showTableDiv = true"></div>
+                <div class="title-div">
+                    {{this.action.title}}
+                </div>
+            </div>
+        </div>
+        <div class="appForm newPageForm">
+            <div style="display: inline-grid;">
+                <app-form #myactionfrm
+                          [FormFields]="this.action.form.formFields"
+                          [FormFieldValues]="this.action.form.data"
+                          [FormFieldsOrder]="this.action.form.fieldsOrder"
+                          [validation]="validation"
+                          [dataLists]="dataLists"
+                          [dependencies]="this.action.form.dependencies"
+                          class="app-form">
+                </app-form>
+                <div class='wrapper text-center'>
+                    <div class="button-div-save">
+                        <button class="btn btn-save buttonForm1" (click)="customActionNewPageHandleForm()">
+                            {{this.action.form.button.name}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

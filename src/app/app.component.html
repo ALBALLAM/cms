@@ -1,0 +1,20 @@
+<app-top-bar *ngIf="hasTopbar" [showIcon]="!showSideBar" [showToggle]="showSideBar && screenWidth < 840" (eventEmitter)='onNotify($event)'></app-top-bar>
+<ng-sidebar-container class="app main-container ng-sidebar--over opened-side-bar-{{openedSideBar}} has-topbar-{{hasTopbar}}">
+    <ng-sidebar *ngIf="showSideBar" [opened]="openedSideBar" [mode]="(screenWidth > 840) ? 'slide' : 'over'"   [sidebarClass]="'sidebar-panel'" #sidebar>
+        <app-layout [menuItems]="menuItems"></app-layout>
+    </ng-sidebar>
+    <div ng-sidebar-content>
+        <div class="main-layout">
+            <div class="main-content">
+                <!--<div *ngIf="screenWidth < 840 && openedSideBar" class="content-blur" (click)='onNotify("closeSideBar")'></div>-->
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</ng-sidebar-container>
+<app-loading [show]="showLoading"></app-loading>
+<app-error-page [error]="appError" [alert]="appAlert" [alertWithCallback]="alertWithCallback" [type]="type" [subtitle]="alertSubtitle" [showCloseButton]="alertShowClose" [showForm]="alertShowForm" [form]="alertForm" (eventEmitter)="onNotify($event)"></app-error-page>
+
+<!--<div style="height:100%;width:100%;background-color:white;padding: 30px;">-->
+    <!--<app-form #form1 [FormFields]="Fields" [validation]="Validation"></app-form>-->
+<!--</div>-->

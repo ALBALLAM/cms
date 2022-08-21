@@ -1,0 +1,30 @@
+<div class="position-relative">
+    <div class="field-label">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+    <!--<video width="100%" class="video-element" [src]="src" controls *ngIf="src !== '' && src !== undefined">-->
+    <!--</video>-->
+    <div *ngIf="(src !== '' && src !== undefined)" class="video-display-wrapper">
+        <div class="preview-default-image-uploaded"></div>
+        <div>{{src}}</div>
+        <div class="close-image" *ngIf="element.readonly === false"
+             (click)="handleRemoveVideo()">
+            <img src="../../../assets/images/ic_closewhite.png" class="image-close">
+        </div>
+    </div>
+    <!--<div *ngIf="src !== '' && src !== undefined" (click)="openVideoPopUp(src)">View in pop up</div>-->
+    <div class="col-xs-12 cursor-pointer" *ngIf="!src || src === ''" (click)="openFile()">
+        <div class="preview-default-image"></div>
+        <div class="preview-text">{{element.subtitle?element.subtitle:'Click to add your video'}}</div>
+    </div>
+    <ng-container *ngIf="!element['valid']">
+        <mat-error *ngIf="!element.value && element.required" style="text-align: left;">Field is required</mat-error>
+        <!--<mat-error *ngIf="showError" style="text-align: left;">{{errorText}}</mat-error>-->
+    </ng-container>
+    <ng-container *ngIf="showError">
+        <mat-error style="text-align: left;">{{errorText}}</mat-error>
+    </ng-container>
+
+    <div style="display: none">
+        <input type="file" style="visibility: hidden" accept={{acceptedFilesString}} (change)="handleVideoUpload($event)"
+               #videoInput>
+    </div>
+</div>

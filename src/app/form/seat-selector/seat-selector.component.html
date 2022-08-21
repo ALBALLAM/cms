@@ -1,0 +1,91 @@
+<div *ngIf="zones && seatsConfig && zones.length>0 && seatsConfig.length>0"
+     [formGroup]="element.group" class="togray {{additionalClass}}">
+    <div fxLayout="column" fxLayoutGap="20px">
+        <div>
+            <div>
+                <div class="field-label">{{element.label}}<span
+                        *ngIf="element.required === true && !element.readonly">*</span></div>
+                <app-seat-chart [currentLang]="'en'" [seatConfig]="seatsConfig"
+                                (selectSeatEvent)="chooseSeating($event)"></app-seat-chart>
+            </div>
+            <div style="border: solid 1px #ededed;border-radius: 8px;padding:10px; margin-top: 10px" >
+                <!--<div class="field-label">Zones</div>-->
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div *ngFor="let zone of zones">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div fxFlex="nogrow" [style.background-color]="zone.color" class="color-picker-table"></div>
+                            <div style="font-size: 13px;font-weight: bold">{{zone.name}} ({{zone.price}} KWD)
+                                {{zonesAvailabilityObj[zone._id]?(zonesAvailabilityObj[zone._id].seats_available |
+                                number):'0'}} available
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div>Seats Availability</div>-->
+                    <!--<div *ngFor="let availableZone of zonesAvailable">-->
+                    <!--<div fxLayout="row" fxLayoutAlign="start center">-->
+                    <!--<div fxFlex="nogrow" [style.background-color]="availableZone.color" class="color-picker-table"></div>-->
+                    <!--<div style="font-size: 13px;font-weight: bold">{{availableZone.name}}: {{availableZone.seats_available}}</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <div *ngIf="seatsToDiplay && seatsToDiplay.length >0" fxLayout="column" class="tickets-info">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header class="disable_ripple">
+                        <mat-panel-title>
+                            <div>Tickets</div>
+                            <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
+                                <div class="total-amount right-row">Total Amount To Pay: KWD {{totalAmount}}</div>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div fxFlex="100" style="border: solid 1px #ededed;border-radius: 8px;padding:15px">
+                        <div fxLayout="column" fxLayoutGap="8px" class="padding-left-right-en">
+                            <ng-container>
+                                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                                    <div fxFlex="25" class="bill-info">Ticket</div>
+                                    <div fxFlex="25" class="bill-info center-row">Row</div>
+                                    <div fxFlex="25" class="bill-info center-row">Seat</div>
+                                    <div fxFlex="25" class="bill-info right-row">Price</div>
+                                </div>
+                                <div *ngFor="let seat of seatsToDiplay;let ind=index;" fxLayout="row"
+                                     fxLayoutAlign="start center" fxFlex="100">
+                                    <div fxFlex="25" class="bill-value" fxLayout="row" fxLayoutGap="10px"
+                                         fxLayoutAlign="start center">
+                                        <div class="rounded-point"
+                                             [style.background-color]="seat.color"></div>
+                                        <div>{{ind +1}}</div>
+                                    </div>
+                                    <div fxFlex="25" class="bill-value center-row">{{seat.row}}</div>
+                                    <div fxFlex="25" class="bill-value center-row">{{seat.seat}}</div>
+                                    <div fxFlex="25" class="bill-value right-row bill-price">KWD {{seat.price}}
+                                    </div>
+                                </div>
+                                <div *ngIf="element.oldAmount && element.oldAmount!==0" class="exchange-total-amount"
+                                     fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
+                                    <span class="exchange-ticket-old-price-title">Total</span>
+                                    <span class="exchange-ticket-old-price-title">KWD {{totalAmountExchange}}</span>
+                                </div>
+                                <div *ngIf="element.oldAmount && element.oldAmount!==0"
+                                     class="exchange-ticket-old-price" fxLayout="row"
+                                     fxLayoutAlign="space-between center" fxFlex="100">
+                                    <span class="exchange-ticket-old-price-title">Exchanged Tickets Amount</span>
+                                    <span class="exchange-ticket-old-price-title">KWD -{{element.oldAmount}}</span>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    <div *ngIf="!element.group.get(element.identifier).valid" style="position: absolute" class="error-msg">
+        <div
+                *ngIf="element.group.get(element.identifier).touched && seatsToDiplay.length === 0">
+            Please Select Seats
+        </div>
+    </div>
+
+</div>

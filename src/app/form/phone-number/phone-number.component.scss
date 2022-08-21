@@ -1,0 +1,43 @@
+//@import "../../../../assets/style/variables";
+
+.input-search {
+  padding: 12px 0;
+  padding-left: 5px;
+  border-bottom: 1px solid #acacac;
+}
+
+::ng-deep app-phone-number .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding-top: 5px !important;
+  padding-bottom: 12px !important;
+}
+
+.mat-select-panel{
+  overflow: hidden !important;
+}
+
+.input-title{
+  font-size: 14px;
+  //font-family: get-font(primary-semibold) !important;
+  //color: get-color(secondary);
+}
+.form-fields{
+  margin-top: 2px;
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px #dfe3e9!important;
+  padding: 0px 10px;
+  height: 38px;
+  mat-select{
+    margin-top: 5px;
+  }
+}
+
+.app-phone-number{
+  position: relative;
+}
+
+.phone-number-error{
+  position: absolute;
+  top: 74px;
+}

@@ -1,0 +1,152 @@
+<form [formGroup]="validationForm ? validationForm: ''" #Form="ngForm" [id]="FormId">
+    <ng-container *ngFor="let element of fields">
+        <div *ngIf="element.type=='color-picker'" style="position: relative;">
+            <div class="form-group color-picker-form">
+                <app-color-picker [element]="element"
+                                  *ngIf="element.type=='color-picker'"
+                                  (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                                  (customEventEmitter)='onCustomNotify($event)'></app-color-picker>
+            </div>
+        </div>
+        <div *ngIf="!element.form_hidden" [ngClass]="element.hidden ? 'hidden' : ''"
+             class="form-group {{element.type}} {{element.readonly ? 'readonly-input': ''}}">
+            <app-editor [element]="element"
+                        *ngIf="element.type=='editor'"
+                        (eventEmitter)='onNotify($event)'></app-editor>
+            <app-phone-number [element]="element" [floatLabel]="floatLabel"
+                              *ngIf="element.type=='phone_number'"
+                              (changeValueEvent)='onNotify($event)'
+                              (customEventEmitter)='onCustomNotify($event)'></app-phone-number>
+            <app-number [element]="element" *ngIf="element.type=='number'" class="app_number" [floatLabel]="floatLabel"
+                        (eventEmitter)='onCustomNotify($event)'
+                        (customEventEmitter)='onCustomNotify($event)'></app-number>
+            <app-text [element]="element"
+                      *ngIf="element.type=='text' || element.type=='password' || element.type=='email'"
+                      (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                      (customEventEmitter)='onCustomNotify($event)'></app-text>
+            <app-text-area [element]="element" *ngIf="element.type=='text-area'" [maxLength]="element.maxLength ? element.maxLength : 10000"
+                           (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                           (customEventEmitter)='onCustomNotify($event)'></app-text-area>
+            <app-chip-select [element]="element" *ngIf="element.type=='chip-select'" [floatLabel]="floatLabel"
+                             (eventEmitter)='onNotify($event)'
+                             (customEventEmitter)='onCustomNotify($event)'></app-chip-select>
+            <app-chip-input [element]="element" *ngIf="element.type=='chip-input'" [floatLabel]="floatLabel"
+                             (eventEmitter)='onNotify($event)'
+                             (customEventEmitter)='onCustomNotify($event)'></app-chip-input>
+            <app-auto-complete [element]="element" *ngIf="element.type=='auto-complete'" [floatLabel]="floatLabel"
+                               (eventEmitter)='onNotify($event)'></app-auto-complete>
+            <app-text [element]="element" *ngIf="element.type=='tooltip'"
+                      (eventEmitter)='onNotify($event)'
+                      (customEventEmitter)='onCustomNotify($event)'></app-text>
+            <app-toggle [element]="element" *ngIf="element.type=='toggle'"
+                        (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                        (customEventEmitter)='onCustomNotify($event)'></app-toggle>
+            <app-checkbox [element]="element" *ngIf="element.type=='checkbox'"
+                          (eventEmitter)='onNotify($event)'></app-checkbox>
+            <app-date [element]="element" *ngIf="element.type=='date'" [floatLabel]="floatLabel"
+                      (eventEmitter)='onNotify($event)'></app-date>
+            <app-datepicker [element]="element" *ngIf="element.type=='datepicker'" [floatLabel]="floatLabel"
+                            (eventEmitter)='onNotify($event)'></app-datepicker>
+            <app-time [element]="element" *ngIf="element.type=='time'" [floatLabel]="floatLabel"
+                      (eventEmitter)='onNotify($event)'></app-time>
+            <app-video [element]="element" *ngIf="element.type=='video'"
+                      (eventEmitter)='onNotify($event)'></app-video>
+            <app-result [element]="element" *ngIf="element.type=='result'"
+                        [preFix]="element.prefix_field && SavedData && SavedData[element.prefix_field] ? SavedData[element.prefix_field] : element.prefix"
+                        [postFix]="element.postfix_field && SavedData && SavedData[element.postfix_field] ? SavedData[element.postfix_field] : element.postfix"
+                        [value]="SavedData && SavedData[element.identifier] ? SavedData[element.identifier] : 0 "
+                        [error]="FormFieldsErrors && FormFieldsErrors[element.identifier] ? FormFieldsErrors[element.identifier] : '' "
+                        (eventEmitter)='onNotify($event)'></app-result>
+            <!--<app-password [element]="element" *ngIf="element.type=='password'"-->
+            <!--(eventEmitter)='onNotify($event)'></app-password>-->
+            <app-dropdown [element]="element" [floatLabel]="floatLabel" [options]="element.options"
+                          *ngIf="element.type=='dropdown'" [allowClear]="element.allowClear"
+                          [value]="element.value" (eventEmitter)='onNotify($event)'
+                          [dataLists]="dataLists !=undefined && dataLists[element['options_data']]? dataLists[element['options_data']] : null"></app-dropdown>
+            <app-multiselect [element]="element" [floatLabel]="floatLabel"
+                             *ngIf="element.type=='multi-select'"
+                             [value]="element.value" (eventEmitter)='onNotify($event)'></app-multiselect>
+            <app-seat-selector [element]="element" *ngIf="element.type=='seat-selector'"
+                      (eventEmitter)='onNotify($event)'
+                      (customEventEmitter)='onCustomNotify($event)'></app-seat-selector>
+            <div *ngIf="element.type=='title'" style="width: 101%; color: #861536; margin-bottom: 15px;"
+                 id="{{element.field_group}}_title">{{element.label}}
+            </div>
+            <app-file [element]="element"
+                      [savedFile]="SavedData && SavedData[element.identifier] ? true : false"
+                      *ngIf="element.type=='file'"
+                      (eventEmitter)='onNotify($event)'></app-file>
+            <app-image [element]="element"
+                       *ngIf="element.type=='image'"
+                       (eventEmitter)='onNotify($event)'></app-image>
+            <app-gallery [element]="element"
+                         *ngIf="element.type=='gallery'"
+                         (eventEmitter)='onNotify($event)'></app-gallery>
+            <app-geo-locations [element]="element"
+                               *ngIf="element.type=='location'"
+                               (eventEmitter)='onNotify($event)'></app-geo-locations>
+            <app-group *ngIf="element.type=='fields-group'" [element]="element"
+                       [change]="element.change == true ? true : false"></app-group>
+            <div *ngIf="element.type=='fields-group'" style="width: 100%;"
+                 id="{{element.identifier}}"
+                 [ngClass]="element.hidden ? 'hidden' : ''">
+                <div class='grp-elements-container'>
+                    <div *ngIf="element.value.length > 0" class="remove-icon"
+                         onclick="$(this).parent().hide();$(this).parent().find('input').val('');"></div>
+                    <div *ngFor="let grpElement of element.fields"
+                         [ngClass]="grpElement.hidden ? 'hidden' : ''"
+                         class="form-group {{grpElement.type}}">
+                        <div class="right block-tooltip {{grpElement.identifier}}"
+                             *ngIf="grpElement.info_box_text && grpElement.info_box_text.header">
+                            <img triggers="click" [tooltip]="loginTltp" #pop="bs-tooltip"
+                                 (clickOutside)="pop.hide()"
+                                 placement="bottom" src="../../assets/images/question-mark.svg"
+                                 class="tooltip-icon"/>
+                            <ng-template #loginTltp class="tooltip-container"> <span
+                                    class="tooltip-text">{{grpElement.info_box_text.header}}</span>
+                                <div class="tooltip-btn" (click)="pop.hide()">Got It</div>
+                            </ng-template>
+                        </div>
+                        <app-text [element]="grpElement" *ngIf="grpElement.type=='text'"
+                                  (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                                  (customEventEmitter)='onCustomNotify($event)'></app-text>
+                        <app-checkbox [element]="grpElement"
+                                      *ngIf="grpElement.type=='checkbox'"
+                                      (eventEmitter)='onNotify($event)'></app-checkbox>
+                        <app-toggle [element]="grpElement"
+                                    *ngIf="grpElement.type=='toggle'"
+                                    (eventEmitter)='onNotify($event)'></app-toggle>
+                        <app-date [element]="grpElement" *ngIf="grpElement.type=='date'" [floatLabel]="floatLabel"
+                                  (eventEmitter)='onNotify($event)'></app-date>
+                        <app-datepicker [element]="grpElement" *ngIf="grpElement.type=='datepicker'"
+                                        [floatLabel]="floatLabel"
+                                        (eventEmitter)='onNotify($event)'></app-datepicker>
+                        <app-time [element]="element" *ngIf="element.type=='time'"
+                                  (eventEmitter)='onNotify($event)'></app-time>
+                        <!--<app-password [element]="grpElement"-->
+                        <!--*ngIf="grpElement.type=='password'"-->
+                        <!--(eventEmitter)='onNotify($event)'></app-password>-->
+                        <app-dropdown [element]="grpElement" [floatLabel]="floatLabel"
+                                      *ngIf="grpElement.type=='dropdown' || grpElement.type=='multi-select'"
+                                      [value]="grpElement.value" (eventEmitter)='onNotify($event)'
+                                      [dataLists]="dataLists !=undefined && dataLists[grpElement['options_data']]? dataLists[grpElement['options_data']] : null"></app-dropdown>
+                        <app-phone-number [element]="grpElement" [floatLabel]="floatLabel"
+                                          *ngIf="grpElement.type=='phone_number'"
+                                          (changeValueEvent)='onNotify($event)'
+                                          (customEventEmitter)='onCustomNotify($event)'></app-phone-number>
+                        <app-number [element]="grpElement" *ngIf="grpElement.type=='number'"
+                                    (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                                    (customEventEmitter)='onCustomNotify($event)'></app-number>
+                        <div *ngIf="grpElement.type=='title'" style="width: 100%;">{{grpElement.label}}</div>
+                    </div>
+                </div>
+                <button class="form-group add-new" (click)="addToTable(element, true)">+
+                    Add {{addField}}
+                </button>
+            </div>
+        </div>
+    </ng-container>
+    <button *ngFor="let button of buttons" [ngClass]="isLogin ? 'login' : ''" class="form-btn-{{button.style}}" (click)="submitButon(button.id)">
+        {{button.label}}
+    </button>
+</form>

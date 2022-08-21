@@ -1,0 +1,21 @@
+<div [formGroup]="element.group" class="togray">
+    <div [ngClass]="element.customizedDesign ? 'customized-field-label' : 'field-label'" *ngIf="floatLabel === true">{{element.label}}<span
+            *ngIf="element.required === true && !element.readonly">*</span></div>
+    <div [ngClass]="element.customizedDesign ? '' : 'toggle-wrapper'">
+        <div *ngIf="!element.customizedDesign" class="toggle-label toggle-{{element.value}}">{{element.value === true ? 'Yes' : 'No'}}</div>
+        <div [ngClass]="element.customizedDesign ? 'customized-toggle-value' : 'toggle-value'">
+            <mat-slide-toggle
+                    [formControlName]="element.identifier"
+                    [required]="element.required"
+                    [id]="element.identifier"
+                    [labelPosition]="'before'"
+                    [(ngModel)]="element.value"
+                    [checked]="element.value"
+                    [disabled]="element.readonly"
+                    (change)="change()"
+                    [attr.subGroup]="element.field_sub_group">{{floatLabel === true ? '' : element.label}}
+            </mat-slide-toggle>
+        </div>
+    </div>
+</div>
+

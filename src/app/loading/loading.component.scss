@@ -1,0 +1,29 @@
+$CONSTANTS: (
+	'loading-top': calc( 50% - 50px),
+	'loading-left': calc( 50% - 50px),
+);
+
+@function const($name) {
+	@if not map-has-key($CONSTANTS, $name) {
+		@error 'Unknown constant `#{$name}`.';
+	}
+
+	@return map-get($CONSTANTS, $name);
+}
+
+.loading-fullscreen{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	background-color: rgba(155, 158, 163, 0.7);
+	z-index: 9999;
+}
+
+.loading-container{
+	position: absolute;
+	top: const('loading-top');
+	left:  const('loading-left');
+	//z-index: 9999;
+}

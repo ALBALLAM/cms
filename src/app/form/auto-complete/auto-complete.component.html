@@ -1,0 +1,30 @@
+<div [formGroup]="element.group" class="togray {{additionalClass}}">
+	<div class="field-label" *ngIf="floatLabel === true">{{element.label}}</div>
+	<mat-form-field class="test-spinner2" [floatLabel]="floatLabel === true ? 'always': 'never'">
+		<input matInput
+			   [formControlName]="element.identifier"
+			   spellcheck="false"
+			   [required]="element.required"
+			   [id]="element.identifier"
+			   [readonly]="element.readonly"
+			   (keyup)="loadList($event)"
+			    type="text" [placeholder]="floatLabel === true ? '' : element.label"
+			   [matAutocomplete]="contacts"
+			   (blur)="stopSpinner()">
+		<mat-spinner *ngIf="spinnerActive" class="test-spinner"></mat-spinner>
+		<mat-autocomplete #contacts="matAutocomplete" (optionSelected)="change($event)" [displayWith]="displayFn">
+			<mat-option *ngFor="let option of optionsList" [value]="option">
+				{{option.text}}
+			</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+	<div *ngIf="!element.group.get(element.identifier).valid" style="position: absolute" class="error-msg">
+		<div
+			*ngIf="element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">
+			Field is required
+		</div>
+		<div *ngIf="element.group.get(element.identifier).hasError('pattern') && element.group.get(element.identifier).dirty">
+				{{element.validationText}}
+		</div>
+	</div>
+</div>

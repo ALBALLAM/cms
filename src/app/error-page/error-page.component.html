@@ -1,0 +1,13 @@
+<app-popup *ngIf="show"
+		   [title]=title
+		   [subTitle]="subtitle"
+		   [showCloseButton]="showCloseButton"
+		   [buttons]="popupButtons"
+		   [showForm]="showForm"
+		   [form]="formFields"
+		   [extraInfo]="extraInfo"
+		   [fieldsOrder]="fieldsOrder"
+		   [validation]="validation"
+		   [dataLists]="dataLists"
+		   (eventEmitter)="closePopup($event)"
+></app-popup>

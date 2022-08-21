@@ -1,0 +1,48 @@
+<div *ngIf="!fromExtraTable" class="col-xs-12 component-container">
+    <div class="col-xs-12 image-container"
+         (click)="imageInput.click()" data-toggle="tab">
+
+        <div class="col-xs-12 gallery-wrapper" *ngIf="preview.length>0">
+            <div *ngFor="let image of preview; let i = index">
+                <div class="gallery-element" *ngIf="image !== ''">
+                    <img class="preview-uploaded-image" [src]="image">
+                    <div *ngIf="preview" class="close-image" (click)="$event.stopPropagation(); removeFile($event, i)">
+                        <img src="../../../assets/images/ic_closewhite.png" class="image-close">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12" *ngIf="preview.length===0">
+            <div class="preview-default-image"></div>
+            <div class="preview-text">Click to add your gallery</div>
+        </div>
+    </div>
+    <div *ngIf="showGalleryError">
+        <div class="gallery-error">{{galleryErrorMessage}}</div>
+    </div>
+
+    <div style="display: none">
+        <input accept="image/*" type="file" (change)="onChangeFile($event)" #imageInput multiple>
+    </div>
+
+    <ng-container *ngIf="!element['valid']">
+        <mat-error *ngIf="!element.value" style="text-align: left;">Field is required</mat-error>
+    </ng-container>
+</div>
+
+<div *ngIf="fromExtraTable" class="component-container">
+    <div class="preview-image-div" *ngIf="preview">
+        <img class="preview-uploaded-image-small" [src]="preview">
+        <img class="close-image image-close" src="../../../assets/images/ic_closewhite.png" (click)="removeFile($event)">
+    </div>
+
+    <div class="image-div-small" *ngIf="!preview" (click)="openFile()" data-toggle="tab">
+        <img src="../../../assets/images/upload.png" class="preview-default-image-small">
+    </div>
+    <div style="display: none">
+        <input type="file" style="visibility: hidden" accept={{acceptedFilesString}} (change)="onChangeFile($event)"
+               #imageInput>
+    </div>
+</div>
+
+

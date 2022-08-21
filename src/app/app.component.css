@@ -1,0 +1,243 @@
+/*//@import "styles/variables.scss";*/
+
+.sidenav-library-source-font {
+/*//font-family: SourceSansPro-regular;*/
+    font-size: 15px;
+    text-align: left;
+    color: #fff;
+    width: 100%;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.sidenav-library-source-font-docked {
+/*//font-family: SourceSansPro-light;*/
+    font-size: 15px;
+    text-align: left;
+    color: #fff;
+    width: 80%;
+    position: relative;
+    margin-left: 35px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.sidenav-library-dashline {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: auto;
+    height: 1px;
+    opacity: 0.1;
+    color: #fff;
+    border-top: solid 1px #fff;
+}
+
+.sidenav-library-dashline-docked {
+    width: 100%;
+    height: 1px;
+    opacity: 0.1;
+    color: #fff;
+    border-top: solid 1px #fff;
+}
+
+.sidenav-library-text-menu {
+    color: #fff;
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.sidenav-library-dropdown {
+    display: inline-block;
+    transform: translateY(200%);
+}
+
+.sidenav-library-icons {
+    position: absolute;
+    margin-left: 25px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.sidenav-library {
+    margin-top: 40px;
+    margin-bottom: 122px;
+}
+
+.sidenav-title-logo {
+    position: relative;
+    width: 80%;
+    margin: 20px 0px 10px 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sidenav-title-logo a {
+    text-decoration: none;
+    border: 0;
+    outline: none;
+}
+
+.sidenav-library-menu-indicator {
+    display: inline-block;
+    position: absolute;
+    align-self: flex-start;
+    width: 5px;
+    height: 40px;
+    top: 15%;
+    object-fit: fill;
+    border-radius: 0px 16px 16px 0px;
+    background-color: #fff;
+    margin-right: 20px;
+    box-shadow: 2px 0px 8px 0 rgba(#fff, 0.75);
+}
+
+.sidenav-bottom-image {
+    margin-bottom: 8px;
+}
+
+.main-layout {
+    /*padding: 0px 15px;*/
+    padding-right: 0px;
+    /*overflow: auto;*/
+}
+
+.sidenav-docked {
+    position: relative;
+    height: 100%;
+    width: 80px;
+    animation: shrink 300ms;
+    transform: translateX(145px);
+}
+
+@keyframes shrink {
+    0% {
+        transform: translateX(-145px);
+    }
+    100% {
+        transform: translateX(145px);
+    }
+}
+
+.sidenav-docked-title {
+    width: 25px;
+    margin-top: 27px;
+    margin-bottom: 20px;
+    transform: translate(100%);
+    cursor: pointer;
+}
+
+.sidenav-hamburger {
+    width: 25px;
+    margin: 15px;
+    transform: translate(100%);
+    cursor: pointer;
+}
+
+.sidenav-docked-icon {
+    width: 30px;
+    height: 30px;
+    margin: 13px;
+    margin-left: 20px;
+}
+
+.sidenav-library-menu-indicator-docked {
+    display: inline-block;
+    position: absolute;
+    width: 5px;
+    left: 0;
+    height: 40px;
+    top: 15%;
+    object-fit: fill;
+    border-radius: 0px 16px 16px 0px;
+    background-color: #fff;
+    box-shadow: 2px 0px 8px 0 rgba(#fff, 0.75);
+}
+
+.main-layout {
+    /*height: 100vh;*/
+}
+
+
+.main-content {
+    /*min-height: calc(100vh - 100px);*/
+}
+
+@media screen and (max-width: 1185px) {
+    .main-content {
+        /*min-height: calc(100vh - 200px);*/
+    }
+
+    .main-footer {
+        min-height: 150px;
+    }
+
+    @media screen and (max-width: 470px) {
+        .main-footer {
+            min-height: 200px;
+        }
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    .main-footer {
+    /*// height: $footerMDHeight;*/
+    }
+    .main-content {
+    /*// min-height: calc(100vh - #{$footerMDHeight} - #{$footerPadding});*/
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main-footer {
+    /*// height: $footerSMHeight;*/
+    }
+    .main-content {
+    /*min-height: calc(100vh - #{$footerSMHeight} - #{$footerPadding});*/
+    }
+}
+
+
+.sidenav-elements {
+    position: relative;
+    height: 10%;
+}
+
+.sidenav-bottom {
+    height: 60px;
+}
+
+.sidenav-title{
+    height: 50px;
+    margin-top: 15px;
+    border-bottom: 1px solid #766969;
+    color: white;
+    font-size: 23px;
+}
+.main-content{
+    width: 100%;
+    float: right;
+    /*height: 100vh;*/
+}
+.side-menu-left-border{
+    width: 8px;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+}
+.content-blur {
+    background: black;
+    opacity: 0.1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1001;
+}

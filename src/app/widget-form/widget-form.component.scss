@@ -1,0 +1,139 @@
+@import "../../style/variables.scss";
+
+.edit-icon-div {
+  float: left;
+  display: flex;
+}
+
+.back-image {
+  background-image: url("../../assets/images/arrow-left.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.back-icon-title {
+  margin: 11px 5px 5px 0px !important;
+}
+
+.edit-div {
+  float: left;
+  margin-right: 30px;
+  color: get-color("light-theme-primary-color");
+  font-weight: 600;
+  font-size: 21px;
+  margin-left: 5px;
+}
+
+.app-form {
+  border: solid 1px #cdd3db;
+  background-color: #ffffff;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.button-div-save {
+  float: right
+}
+
+.buttonForm1 {
+  margin: 20px 10px;
+  border-radius: 25px !important;
+  border-color: get-color('main-color-buttons') !important;
+  min-width: 120px;
+  min-height: 35px;
+  font-size: 16px;
+}
+
+.btn-save, .btn-add {
+  color: get-color(secondary-color);
+  background-color: get-color('main-color-buttons');
+}
+
+.table-preview-row {
+  margin-top: 0 !important;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.table-preview-element {
+  //border: solid 1px red;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  .preview-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .image-element {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .default-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/images/topbar/ic_profile.png");
+  }
+  .preview-value {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+
+  .preview-video {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+  }
+  .video-element {
+    width: 100%;
+    height: 100%;
+    //border-radius: 50%;
+    object-fit: cover;
+  }
+  .default-video {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/images/default-poster.png");
+  }
+}
+.empty-table-error{
+  font-size: 16px;
+  font-weight: bold;
+  color: get-color('error-color');
+  text-align: center;
+  margin-top: 10px;
+}
+
+.manage-fields {
+  float: right;
+  font-size: 15px;
+  color: get-color(main-color);
+  //padding-top: 5px;
+  //padding-right: 10px;
+  display: flex;
+  .manage-fields-elements {
+    border: 1px solid get-color(main-color);
+    border-radius: 25px;
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+
+
+.dimmed-buttons{
+  pointer-events: none;
+  opacity: 0.5;
+}

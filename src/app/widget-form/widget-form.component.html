@@ -1,0 +1,115 @@
+<div class="appForm">
+    <div class="col-12 simple-form single-col-form table-padding" style="display: inline-grid;">
+        <div>
+            <div class="edit-icon-div">
+                <div class="back-image back-icon-title" (click)="closeForm()"></div>
+                <div class="edit-div">{{isAdd?'Add '+ formTitle:showUpdateButtons?'Edit '+ formTitle:'View '+
+                    formTitle}}
+                </div>
+            </div>
+            <div *ngIf="manageFields && !isAdd" class="manage-fields"
+                 [ngClass]="showPreview && showUpdateButtons ? 'dimmed-buttons' : ''">
+                <div *ngFor="let item of manageFields" class="manage-fields-elements"
+                     (click)="routeToManageFields(item.link, clickedRow['_id'],clickedRow)">
+                    <span>{{item.label}}</span>
+                </div>
+            </div>
+        </div>
+        <app-form #myappfrm *ngIf="showForm"
+                  [FormFields]="fields"
+                  [FormFieldValues]="clickedRow"
+                  [FormFieldsOrder]="fieldsOrder"
+                  [validation]="validation"
+                  class="app-form">
+        </app-form>
+        <app-datatable *ngIf="showTable"
+                       (loadMorePages)=loadMorePages($event)
+                       (rowSelection)="onRowSelection($event)"
+                       (rowUnSelection)="onRowSelection($event)"
+                       [data]="responseData"
+                       [hideSelectionAll]="true"
+                       [tableTitle]="currentConfig.title"
+                       [selectionModeSingle]="currentConfig.singleSelection"
+                       [headers]="headers"
+                       [useSearch]="currentConfig.allowSearch"
+                       [firstTablePage]="firstTablePage"
+                       [usePagination]="allowPagination"
+                       [maxPageLimit]="limitMaxPage"
+                       [totalRecords]="totalRecords"
+                       [selectedRecords]="tableSelectedRows"
+                       [tableRowHeight]="currentConfig.tableRowHeight"
+                       [columns]="columns"></app-datatable>
+        <div class="empty-table-error" *ngIf="showEmptyTableError && showEmptyTableError!=''">{{showEmptyTableError}}
+        </div>
+        <div *ngIf="showPreview">
+            <div *ngFor="let step of previewDataArray" style="padding: 20px">
+                <div *ngIf="(step.step_type==='form' || step.step_type!=='form' && step.tableArray && step.tableArray.length>0)"
+                     style="font-size: 18px;font-weight: bold">{{step.step_title}}
+                </div>
+                <ng-container *ngIf="step.step_type==='form'">
+                    <div class="col-12 simple-form single-col-form table-padding" style="display: inline-grid;">
+                        <app-form
+                                [FormFields]="step.fields"
+                                [FormFieldsOrder]="step.fieldsOrder"
+                                [validation]="validation"
+                                class="app-form" style="margin-top: 0 !important;">
+                        </app-form>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="step.step_type==='table' && step.tableArray && step.tableArray.length>0">
+                    <div class="col-12 simple-form single-col-form table-padding">
+                        <div class="app-form table-preview-row">
+                            <div *ngFor="let tableData of step.tableArray" class="col-md-6 table-preview-element">
+                                <ng-container *ngIf="tableData.video">
+                                    <div class="preview-video" (click)="openVideoPopUp(tableData.video)">
+                                        <div *ngIf="tableData.image" class="preview-video">
+                                            <img [src]="tableData.image" class="video-element"
+                                                 onerror="src = '../../assets/images/default-poster.png'"/>
+                                        </div>
+                                        <div *ngIf="!tableData.image" class="preview-video default-video"></div>
+                                        <div class="play-video-icon"></div>
+                                    </div>
+                                    <div class="preview-value">{{tableData.value}}</div>
+                                </ng-container>
+                                <ng-container *ngIf="!tableData.video">
+                                    <div *ngIf="tableData.image" class="preview-image">
+                                        <img [src]="tableData.image" class="image-element"
+                                             onerror="src = '../../assets/images/topbar/ic_profile.png'"/>
+                                    </div>
+                                    <div *ngIf="!tableData.image" class="preview-image default-image"></div>
+                                    <div class="preview-value">{{tableData.value}}</div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class='wrapper text-center'>
+            <div class="button-div-save">
+                <ng-container *ngIf="!showPreview && (showUpdateButtons || isAdd)">
+                    <button *ngIf="step!==1" class="btn btn-cancel buttonForm1" (click)="handleBack()">
+                        Back
+                    </button>
+                    <button *ngIf="!isAdd && !(disableSaveButton && disableSaveButtonStep!==step)" class="btn btn-save buttonForm1"
+                            (click)="onSave(true)">
+                        Save
+                    </button>
+                    <button class="btn btn-save buttonForm1" (click)="onSave(false)">
+                        Next
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="showPreview && (showUpdateButtons || isAdd)">
+                    <button class="btn btn-cancel buttonForm1" (click)="handleBack(true)">
+                        Back
+                    </button>
+                    <button class="btn btn-save buttonForm1" (click)="submitData()">
+                        Submit
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,324 @@
+@import "../../style/variables.scss";
+
+.widget-cards-container {
+  padding: 30px 55px;
+  position: relative;
+  .title-parent {
+    //display: inline-block;
+    //width: 100%;
+    //margin-bottom: 25px;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      //float: left;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      margin-top: 10px;
+      width: 100%;
+
+      .input-margin {
+        margin-right: 50px;
+      }
+      .field-width1{
+        width: 30%;
+      }
+      .field-width2{
+        width: 50%;
+      }
+    }
+    .form-filter {
+      display: flex;
+    }
+  }
+  .search-input {
+    outline: none;
+    border: 1px solid get-color(main-color);;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  .widget-element-wrapper {
+    box-shadow: 0 0 10px #e9e5e5;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    min-height: 165px;
+    position: relative;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    cursor: pointer;
+    .padding-zero {
+      padding: 5px !important;
+    }
+    .widget-image-wrapper {
+      width: 65px;
+    }
+    .info-wrapper {
+      width: calc(100% - 65px);
+      word-break: break-word;
+      padding-left: 15px;
+      position: relative;
+    }
+    .widget-image {
+      width: 65px;
+      height: 65px;
+      border: 1px solid #cdcdcd;
+      border-radius: 5px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .name {
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .subtitle {
+      font-size: 14px;
+      padding-bottom: 7px;
+      color: black;
+    }
+    .description {
+      font-size: 14px;
+      color: #888888;
+    }
+    .view-details {
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid get-color(main-color);
+      width: calc(100% - 105px);
+      color: get-color(main-color);
+      position: absolute;
+      margin-top: 5px;
+      border-radius: 5px;
+      font-size: 14px;
+      bottom: 15px;
+      right: 15px;
+      background-color: white;
+    }
+  }
+}
+
+.main-information {
+  margin-top: 16px;
+  .widget-image-details-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 10px 0px;
+    position: relative;
+    .widget-image-details {
+      width: 120px;
+      height: 120px;
+      border: 1px solid #cdcdcd;
+      border-radius: 5px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .widget-image-null {
+      background-image: url("../../assets/images/null-profile.png");
+      background-color: #000000;
+    }
+  }
+
+  .info-wrapper-details {
+    /*width: calc(100% - 120px);*/
+    word-break: break-word;
+    /*padding-left: 15px;*/
+    position: relative;
+    .name {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .jobTitle {
+      color: get-color(main-color);
+      font-size: 18px;
+    }
+  }
+  .experience {
+    color: #888888;
+    clear: both;
+    font-size: 15px;
+  }
+  .bio-details {
+    color: #888888;
+    clear: both;
+  }
+}
+
+.availability-line {
+  color: white;
+  font-size: 14px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  float: left;
+}
+
+.available-true {
+  background-color: #11b311;
+}
+
+.available-false {
+  background-color: orange;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.blocks-information {
+  margin-top: 30px;
+  .block-wrapper {
+    border: 1px solid get-color(main-color);
+    border-radius: 5px;
+    position: relative;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    /* width: calc(50% - 40px);
+     float: left;
+     margin: 10px;*/
+    .block-title {
+      position: absolute;
+      top: -16px;
+      left: 15px;
+      padding: 0px 5px;
+      background-color: white;
+      font-weight: bold;
+      color: get-color(main-color);
+      font-size: 18px;
+    }
+    .block-element {
+      margin: 10px 0px;
+      word-break: break-word;
+      .title-element {
+        font-size: 15px;
+        font-weight: bold;
+        color: #8e8e8e;
+      }
+    }
+    .item-box {
+      margin: 20px 0;
+      display: inline-block;
+      width: 100%;
+      .date-element {
+        color: #8e8e92;
+        font-size: 15px;
+        line-height: 28px;
+      }
+      .title-element {
+        color: #3e3e3e;
+        font-weight: bold;
+        font-size: 17px;
+      }
+      .description-element {
+        color: #3e3e3e;
+        font-size: 15px;
+      }
+      .title-field {
+        color: #8e8e92;
+        font-weight: 600;
+      }
+    }
+  }
+  .value {
+    font-size: 15px;
+  }
+}
+
+.flag-green {
+  color: #11b311;
+  font-weight: 600;
+}
+
+.flag-red {
+  color: red;
+  font-weight: 600;
+}
+
+.back-wrapper {
+  cursor: pointer;
+  width: 50px;
+  .back-icon {
+    background-image: url("../../assets/images/backIconBlue.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 12px;
+    height: 12px;
+  }
+  span {
+    margin-top: -6px;
+    color: get-color(main-color);
+  }
+}
+
+.array-title {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #8e8e8e;
+}
+
+.progress-div {
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 991px) {
+  .widget-element-wrapper {
+    min-height: 130px !important;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .search-input {
+    width: 160px !important;
+  }
+  .search-box {
+    display: block !important;
+
+    .input-margin {
+      margin-right: 0 !important;
+    }
+    .field-width1{
+      width: 100% !important;
+    }
+    .field-width2{
+      width: 100% !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .main-information {
+    float: left;
+    width: 300px;
+  }
+  .blocks-information {
+    float: left;
+    width: calc(100% - 330px);
+    margin-left: 30px;
+    .item-box {
+      .item-column {
+        float: left;
+        width: 50%;
+      }
+    }
+  }
+}
+
+
+
+.ellipsis {
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  height: 40px;
+}
+

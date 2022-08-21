@@ -1,0 +1,107 @@
+<div class="bg-container center-background-image">
+  <!--<div class="left-background-image"></div>-->
+  <div class="main-signin">
+    <div>
+      <div>
+        <div class="logo-img"></div>
+      </div>
+      <!--<div class="personalized-title">-->
+        <!--<span>Personalized Talent shout-outs</span>-->
+      <!--</div>-->
+    </div>
+    <div class="signin-container">
+      <ng-container *ngIf="showResetEmail">
+        <div class="screen-title">Reset Password</div>
+        <div class="sub-title">
+          <span>Enter email to reset the password</span>
+        </div>
+        <div class="simple-form reset-email-form signin-form single-col-form" style="margin-top: 0;">
+          <app-form #reset
+                    [FormFields]="resetFields"
+                    [FormFieldValues]="[]"
+                    [validation]="validation"
+                    [FormFieldsOrder]="resetFormFieldsOrder"
+                    [buttons]="resetButtons"
+                    [floatLabel]="false"
+                    [isLogin]="true"
+                    (submitBtns)="submitReset()"
+          ></app-form>
+        </div>
+        <!--<div class="submit-container">-->
+        <!--<button (click)="submitReset()" class="sign-in-button">Submit</button>-->
+        <!--</div>-->
+        <div class="homepage-div-container">
+          <span class="sign-in-span" (click)="showResetEmail = false; showLoginForm = true;" style="cursor: pointer;">Go To Sign In</span>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showResetForm">
+        <div class="sub-title">
+          <span>Enter your new password</span>
+        </div>
+        <div class="simple-form reset-password-form signin-form single-col-form reset-error">
+          <app-form #resetForm
+                    [FormFields]="resetPasswordFields"
+                    [FormFieldValues]="[]"
+                    [validation]="validation"
+                    [floatLabel]="false"
+                    [FormFieldsOrder]="resetPasswordFormFieldsOrder"
+                    [buttons]="resetPasswordButtons"
+                    [isLogin]="true"
+                    (submitBtns)="submitResetForm()"
+          ></app-form>
+        </div>
+        <!--<div class="submit-container">-->
+        <!--<div *ngIf="showErrorMessage" class="error-password">{{errorMessage}}</div>-->
+        <!--<button (click)="submitResetForm()" class="sign-in-button">Submit</button>-->
+        <!--</div>-->
+        <div class="homepage-div-container" style="padding-top:10px;">
+        <span class="sign-in-span" [routerLink]="['/sign-in']" (click)="showResetForm = false; showLoginForm = true;"
+              style="cursor: pointer;">Go To Sign In</span>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showLoginForm"><form class="simple-form signin-form">
+        <div class="welcome-title">
+          <div class="main">Welcome!</div>
+          <div class="second">Sign in to access your admin panel</div>
+        </div>
+        <div class="email-field field-div">
+          <mat-form-field class="full-width" dividerColor="accent" [floatLabel]="'never'">
+            <input
+                    id="email"
+                    matInput
+                    type="text"
+                    required="true"
+                    name="email"
+                    placeholder="Email"
+                    [(ngModel)]="email"
+                    (keyup.enter)="submit()"
+            >
+          </mat-form-field>
+        </div>
+        <div class="field-div password-field">
+          <mat-form-field class="full-width" dividerColor="accent" [floatLabel]="'never'">
+            <input
+                    matInput
+                    type="password"
+                    required="true"
+                    name="password"
+                    placeholder="Password"
+                    [(ngModel)]="password"
+                    (keyup.enter)="submit()"
+            >
+            <mat-hint class="forgot-password"
+                      (click)="forgotPassword()">Forgot Password
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div *ngIf="showErrorMessage" class="error-btn">
+          <div>{{errorMessage}}</div>
+        </div>
+      </form>
+        <div class="button-div">
+          <button type="submit" (click)="submit()" class="sign-in-button">Sign in</button>
+        </div></ng-container>
+    </div>
+  </div>
+  <!--<div class="right-background-image"></div>-->
+</div>

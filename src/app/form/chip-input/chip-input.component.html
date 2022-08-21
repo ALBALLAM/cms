@@ -1,0 +1,25 @@
+<div [formGroup]="element.group" class="togray {{additionalClass}}">
+	<div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+	<mat-form-field dividerColor="accent" [floatLabel]="floatLabel === true ? 'always': 'never'">
+		<mat-chip-list #chipList aria-label="Fruit selection">
+			<mat-chip *ngFor="let item of chipItems;let i=index;" [selectable]="selectable"
+					  [removable]="removable" (removed)="remove(i)">
+				{{item}}
+				<mat-icon matChipRemove *ngIf="removable">
+					<div (click)="remove(i)" class="mdchip-cancel"></div>
+				</mat-icon>
+			</mat-chip>
+			<input matInput class="md-chip-input"
+				   [placeholder]="floatLabel === true ? '' : element.required?element.label+' *' : element.label"
+				   [matChipInputFor]="chipList"
+				   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+				   [matChipInputAddOnBlur]="addOnBlur"
+				   (blur)="setTouched()"
+				   (matChipInputTokenEnd)="add($event)">
+		</mat-chip-list>
+	</mat-form-field>
+	<div class="error-msg chip-select"
+		 *ngIf="element.required && element.value.length==0 && touched">
+		Field is required
+	</div>
+</div>

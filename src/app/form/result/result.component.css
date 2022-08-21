@@ -1,0 +1,35 @@
+$CONSTANTS: (
+	'font-family': Gotham
+);
+
+@function const($name) {
+	@if not map-has-key($CONSTANTS, $name) {
+		@error 'Unknown constant `#{$name}`.';
+	}
+
+	@return map-get($CONSTANTS, $name);
+}
+
+@media only screen and (max-width: 1125px) {
+	.result-placeholder, .result-value{
+		font-size: 13px !important;
+	}
+}
+
+.result-input {
+	border-bottom: 1px solid #9e9e9e;
+}
+
+.result-placeholder {
+	font-family: const('font-family');
+	font-size: 15px;
+	font-weight: 300;
+}
+
+.result-value {
+	font-size: 15px;
+	font-weight: 500;
+	color: #000000;
+	float: right;
+	font-family: Gotham;
+}

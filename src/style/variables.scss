@@ -1,0 +1,69 @@
+//Colors
+$colors: (
+        "main-color": #1E1E1E,
+        "sidebar-color": #f0f4f9,
+        "main-color-buttons": #F9A031,
+        "main-color-5": #51606d75,
+        'main-color-opacity':rgba(30,30,30,0.4),
+        "error-color": #f44336,
+        "secondary-color": #fff,
+        "white": #fff,
+        "black": #000,
+        "red": #f44336,
+        "green": #539e42,
+        "blue": #42569e,
+        "cyan": #2f9ba7,
+        "teal": #00896b,
+        "yellow": #f4a423,
+        "invalid": #a33,
+        "good": #383,
+        'subtitle-opacity':rgba(53, 64, 82, 0.56),
+);
+
+@function get-color($color) {
+  @return map-get($colors, $color);
+}
+
+@function get-light-color($color, $intensity: null) {
+  $base-color: get-color($color);
+  @if ($intensity) {
+    @return lighten(desaturate($base-color, $intensity), $intensity);
+  }
+
+  @return lighten(desaturate($base-color, 20), 20);
+}
+
+@function get-faded-color($color, $intensity: null) {
+  $base-color: get-color($color);
+  @if ($intensity) {
+    @return desaturate($base-color, $intensity);
+  }
+
+  @return desaturate($base-color, 25);
+}
+
+@function get-darker-color($color, $intensity: null) {
+  $base-color: get-color($color);
+  @if ($intensity) {
+    @return darken($base-color, $intensity);
+  }
+
+  @return darken($base-color, 10);
+}
+
+//Constants
+
+$constants: (
+        'background-color': rgba(14, 25, 49, 0.5),
+        'box-shadow' : 2px 4px 20px 3px #e9e5e5,
+        'rounded-image-height': 100px,
+        'rounded-image-width': 100px,
+        'rounded-image-border-radius': 50px,
+        'button-background-color-blue': #4990e2,
+        'button-background-color-main': get-color(main-color),
+        'button-font-color-white': white
+);
+
+@function get-constant($constant) {
+  @return map-get($constants, $constant);
+}

@@ -1,0 +1,65 @@
+options:
+  docker: true
+  size: 2x
+
+definitions:
+  services:
+    docker:
+      memory: 4096
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: 'Build Prod'
+          script:
+            # build the image
+            - docker build -t $AWS_REPOSITORY_NAME .
+            - export BUILD_ID=${BITBUCKET_COMMIT}_${BITBUCKET_BUILD_NUMBER}
+
+            # use the pipe to push to AWS ECR
+            - pipe: atlassian/aws-ecr-push-image:1.0.2
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                IMAGE_NAME: $AWS_REPOSITORY_NAME
+                TAGS: '${BUILD_ID} latest'
+                WAIT: 'true'
+                WAIT_INTERVAL: 60
+
+      - step:
+          # python image with aws-cli installed
+          image: tstrohmeier/awscli:3.6.4
+          name: 'Deploy Prod'
+          script:
+            # Update the service on AWS
+            - aws ecs update-service --force-new-deployment --region $AWS_DEFAULT_REGION --cluster $ECS_PROD_CLUSTER_NAME --service $ECS_PROD_SERVICE_NAME
+            # Wait for the deployment to stabilize
+            - aws ecs wait services-stable --region $AWS_DEFAULT_REGION --cluster $ECS_PROD_CLUSTER_NAME --service $ECS_PROD_SERVICE_NAME
+
+    staging:
+      - step:
+          name: 'Build Uat'
+          script:
+            # build the image
+            - docker build -t $UAT_AWS_REPOSITORY_NAME .
+            - export BUILD_ID=${BITBUCKET_COMMIT}_${BITBUCKET_BUILD_NUMBER}
+
+            # use the pipe to push to AWS ECR
+            - pipe: atlassian/aws-ecr-push-image:1.0.2
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $UAT_AWS_DEFAULT_REGION
+                IMAGE_NAME: $UAT_AWS_REPOSITORY_NAME
+                TAGS: '${BUILD_ID} latest'
+      - step:
+          # python image with aws-cli installed
+          image: tstrohmeier/awscli:3.6.4
+          name: 'Deploy Uat'
+          script:
+            # Update the service on AWS
+            - aws ecs update-service --force-new-deployment --region $AWS_DEFAULT_REGION --cluster $ECS_UAT_CLUSTER_NAME --service $ECS_UAT_SERVICE_NAME
+            # Wait for the deployment to stabilize
+            - aws ecs wait services-stable --region $AWS_DEFAULT_REGION --cluster $ECS_UAT_CLUSTER_NAME --service $ECS_UAT_SERVICE_NAME

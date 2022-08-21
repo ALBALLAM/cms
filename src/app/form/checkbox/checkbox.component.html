@@ -1,0 +1,8 @@
+<div id="{{element.identifier}}">
+<div class="md-radio-label">{{element.label}}</div>
+<mat-checkbox *ngFor="let option of element.options; let idx = index"
+             (change)="change(idx,$event)" [aria-label]="option.value" [checked]="element.value?element.value.indexOf(option.value)>-1:false">
+  {{option.text}}
+</mat-checkbox>
+</div>
+<div *ngIf="changed && element.required && element.value==''" class="error-msg" style="margin-top: 3px!important;">Field is required</div>

@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+    <div class="col-xs-12 field-label" *ngIf="floatLabel === true">{{element.label}}<span
+            *ngIf="element.required === true && !element.readonly">*</span></div>
+    <div class="col-xs-12">
+        <input class="color-picker-parent" [(colorPicker)]="element.value"
+               [style.background]="element.value"
+               [cpDisableInput]="element.readonly"
+               [cpDisabled]="element.readonly"
+               [disabled]="element.readonly"
+               (colorPickerClose)="clicked()"
+               (colorPickerChange)="change()"/>
+    </div>
+    <div class="error-msg custom-error"
+         *ngIf="element.required && !element.readonly && !element.value && element.changed">
+        Field is required
+    </div>
+</div>

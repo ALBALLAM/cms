@@ -1,0 +1,32 @@
+.toggle-wrapper{
+    border-top: 0 !important;
+    border-radius: 4px;
+    border: solid 1px #dfe3e9 !important;
+    padding: 5px 10px !important;
+    font-size: 15px;
+    display: flex;
+    margin-bottom: 9px;
+}
+
+.toggle-label{
+    width: calc(100% - 50px);
+    padding-top: 2px;
+}
+
+.toggle-value{
+    margin-top: -3px;
+    margin-bottom: 2px;
+}
+
+.customized-toggle-value{
+    margin-top: -30px;
+    margin-bottom: 2px;
+}
+
+.toggle-true{
+    color: #4cd964;
+}
+
+.toggle-false{
+    color: #ff7978;
+}

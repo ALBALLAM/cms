@@ -1,0 +1,15 @@
+<div [formGroup]="element.group">
+    <label class="field-label" *ngIf="floatLabel === true" for="name">{{element.label}}<span
+            *ngIf="element.required === true && !element.readonly">*</span></label>
+    <angular2-multiselect [data]="element.options" [(ngModel)]="selectedItems"
+                          [settings]="dropdownSettings"
+                          (onSelect)="onItemSelect()"
+                          (onDeSelect)="OnItemDeSelect()"
+                          (onSelectAll)="onSelectAll()"
+                          (onDeSelectAll)="onDeSelectAll()" [formControlName]="element.identifier">
+    </angular2-multiselect>
+    <div style="position: absolute" class="error-msg" *ngIf="element.group.get(element.identifier).hasError('required') &&
+   element.group.get(element.identifier).touched && selectedItems.length===0">
+        Field is required
+    </div>
+</div>

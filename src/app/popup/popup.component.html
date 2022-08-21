@@ -1,0 +1,26 @@
+<div class="popup-fullscreen" *ngIf="isShown">
+	<div class="popup-container">
+		<div class="close-popup" (click)="closePopUp()"></div>
+		<div class="popup-content-one">
+			<div class="popup-title">{{title}} <span class="extra-info" *ngIf="extraInfo">({{extraInfo}})</span></div>
+			<div *ngIf="subTitle && subTitle!=''" class="popup-subtitle">{{subTitle}}</div>
+			<div *ngIf="showForm" class="form-popup">
+				<app-form #myappfrmpopup
+						  [FormFields]="form"
+						  [FormFieldsOrder]="fieldsOrder"
+						  [validation]="validation"
+						  [dataLists]="dataLists"
+						  [FormFieldValues]="values"
+						  class="app-form app-form-popup">
+				</app-form>
+			</div>
+			<div class="popup-buttons">
+				<div *ngFor="let button of buttons; let buttonNum = index">
+					<a class="popup-link" (click)="targetFunction(buttonNum)">
+						<button class="btn btn-{{button.type}}">{{button.text}}</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

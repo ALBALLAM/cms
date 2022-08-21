@@ -1,0 +1,38 @@
+<div [formGroup]="element.group" class="togray {{additionalClass}}">
+	<div class="field-label" *ngIf="floatLabel === true">{{element.label}}</div>
+	<mat-form-field dividerColor="accent" [floatLabel]="floatLabel === true ? 'always': 'never'">
+		<!--[floatPlaceholder]="(element.value && element.value.length>0)||(blurClicked2)? 'always': 'never'">-->
+		<mat-chip-list #chipList2>
+			<mat-chip class="not-selectable default-cursor"
+					  *ngFor="let item of chipItems" [selectable]="selectable"
+					  [removable]="removable" (remove)="remove(item)">
+				{{item}}
+				<mat-icon matChipRemove *ngIf="removable">
+					<div (click)="remove(item)" class="mdchip-cancel"></div>
+				</mat-icon>
+			</mat-chip>
+			<input matInput class="md-chip-input" #autocompleteInput
+				   [formControlName]="element.identifier"
+				   [required]="element.required"
+				   [placeholder]="floatLabel === true ? '' : element.required?element.label+' *' : element.label"
+				   [readonly]="element.readonly"
+				   [matChipInputFor]="chipList2"
+				   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+				   [matChipInputAddOnBlur]="addOnBlur"
+				   (blur)="blur2($event)"
+				   (keyup)="filterValues($event.target.value)"
+				   (click)="blurClicked2=true"
+				   (matChipInputTokenEnd)="add($event)"
+				   [matAutocomplete]="users"/>
+			<mat-autocomplete #users="matAutocomplete" (optionSelected)="addOption($event)">
+				<mat-option *ngFor="let option of filteredValues; let i = index;" [value]="option.value">
+					{{option.text}}
+				</mat-option>
+			</mat-autocomplete>
+		</mat-chip-list>
+	</mat-form-field>
+	<div class="error-msg chip-select"
+		 *ngIf="element.required && element.value.length==0 && (element.group.get(element.identifier).dirty || element.group.get(element.identifier).touched)">
+		Required Field.
+	</div>
+</div>

@@ -1,0 +1,166 @@
+<div class="widget-cards-container">
+    <div *ngIf="!showDetails">
+        <div class="title-parent">
+            <div class="title">{{tableTitle}}</div>
+            <form *ngIf="showFilters" [formGroup]="searchForm">
+                <div class="search-box">
+                    <!--<input #searchElement class="search-input input-margin field-width" placeholder="search candidates" [(ngModel)]="searchCandidates"/>-->
+                    <app-dropdown class="input-margin field-width1" [element]="seniorityElement"
+                                  (eventEmitter)='onSearch()'></app-dropdown>
+                    <app-dropdown class="field-width2" [element]="skillsElement"
+                                  (eventEmitter)='onSearch()'></app-dropdown>
+                </div>
+            </form>
+        </div>
+
+        <div class="body">
+            <div class="row">
+                <div class="col-lg-4" *ngFor="let widgetData of data">
+                    <div class="widget-element-wrapper"
+                         (click)="selectedWidget = widgetData; viewDetailsFunction(widgetData._id)">
+                        <div class="display-flex">
+                            <div class="widget-image-wrapper">
+                                <div class="widget-image" *ngIf="widgetData.profileImage"
+                                     [style.background-image]="'url(' + widgetData.profileImage + ')'"></div>
+                                <div class="widget-image widget-image-null" *ngIf="!widgetData.profileImage"></div>
+                            </div>
+                            <div class="info-wrapper">
+                                <div class="name">{{widgetData.fullName}}</div>
+                                <div class="subtitle">
+                                    <div *ngIf="widgetData.jobTitle">{{widgetData.jobTitle}}</div>
+                                </div>
+                                <!--<div class="description">{{widgetData.bio}}</div>-->
+								<div class="description ellipsis">{{widgetData.bio}}</div>
+                            </div>
+                        </div>
+                        <div class="view-details"
+                             (click)="selectedWidget = widgetData; viewDetailsFunction(widgetData._id)">Go to Profile
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showDetails">
+        <div class="display-flex back-wrapper" (click)="showDetails = false">
+            <div class="back-icon"></div>
+            <span> Back</span></div>
+        <div class="main-information">
+            <div>
+                <div class="widget-image-details-wrapper">
+                    <div class="widget-image-details" *ngIf="detailsResponse.profileInfo.profileImage"
+                         [style.background-image]="'url(' + detailsResponse.profileInfo.profileImage + ')'"></div>
+                    <div class="widget-image-details widget-image-null"
+                         *ngIf="!detailsResponse.profileInfo.profileImage"></div>
+                </div>
+
+                <div class="info-wrapper-details">
+                    <div class="name">{{detailsResponse.profileInfo.fullName}}</div>
+                    <div class="jobTitle" *ngIf="detailsResponse.profileInfo.jobTitle">
+                        {{detailsResponse.profileInfo.jobTitle}}
+                    </div>
+                </div>
+
+                <div class="experience" *ngIf="detailsResponse.profileInfo.yearsOfExperience">
+                    {{detailsResponse.profileInfo.yearsOfExperience}} years of experience
+                </div>
+
+                <div class="availability-line available-true" *ngIf="detailsResponse.profileInfo.availability">
+                    Available
+                </div>
+                <div class="availability-line available-false"
+                     *ngIf="!detailsResponse.profileInfo.availability && detailsResponse.profileInfo.availabilityDate">
+                    Available on {{detailsResponse.profileInfo.availabilityDate | date}}
+                </div>
+                <div class="availability-line available-false"
+                     *ngIf="!detailsResponse.profileInfo.availability && !detailsResponse.profileInfo.availabilityDate">
+                    Not available
+                </div>
+
+            </div>
+			<div class="bio-details">{{detailsResponse.profileInfo.bio}}</div>
+        </div>
+        <div class="blocks-information">
+            <div class="block-wrapper" *ngFor="let block of detailsArray">
+                <div class="block-title">{{block.blockTitle}}</div>
+                <div *ngIf="block.blockType=='card'">
+                    <div class="item-box" *ngFor="let blockElement of block.blockFields">
+                        <div class="item-column">
+                            <div class="title-element" *ngIf="blockElement.title && blockElement.title.length>0">
+                                {{blockElement.title=='other' ? blockElement.otherTitle : blockElement.title}}
+                            </div>
+                            <div class="date-element" *ngIf="blockElement.date && blockElement.date.length>0">
+                                {{blockElement.date | date}}
+                            </div>
+                            <div class="date-element" *ngIf="blockElement.from && blockElement.from.length>0">
+                                {{blockElement.from | date}} to
+                                <span *ngIf="blockElement.to && blockElement.to.length>0">{{blockElement.to | date}}</span>
+                                <span *ngIf="!blockElement.to || blockElement.to.length==0">date</span>
+                            </div>
+                            <div class="link-element" *ngIf="blockElement.link && blockElement.link.length>0">
+                                <a [href]="blockElement.link" [target]="'_blank'">view challenge</a></div>
+                        </div>
+                        <div class="item-column">
+                            <div class="description-element"
+                                 *ngIf="(blockElement.description && blockElement.description.length>0) || (blockElement.title && blockElement.title=='other')">
+                                {{(blockElement.title && blockElement.title=='other') ? blockElement.otherDescription :
+                                blockElement.description}}
+                            </div>
+                            <div class="description-element"
+                                 *ngIf="blockElement.remark && blockElement.remark.length>0">{{blockElement.remark}}
+                            </div>
+                            <div class="description-element"
+                                 *ngIf="blockElement.location && blockElement.location.length>0">
+                                <span class="title-field">Location:</span> {{blockElement.location}}
+                            </div>
+                            <div class="description-element"
+                                 *ngIf="blockElement.contribution && blockElement.contribution.length>0">
+                                <span class="title-field">Contribution:</span> {{blockElement.contribution}}
+                            </div>
+                            <div class="description-element" *ngIf="blockElement.passed != null"><span
+                                    class="title-field">Passed: </span> <span
+                                    [ngClass]="blockElement.passed ? 'flag-green' : 'flag-red'">{{blockElement.passed ? 'Yes' : 'No'}}</span>
+                            </div>
+                            <div class="description-element"
+                                 *ngIf="blockElement.responsible && blockElement.responsible.length>0">
+                                <span class="title-field">Responsible:</span> {{blockElement.responsible}}
+                            </div>
+                            <div class="description-element"
+                                 *ngIf="blockElement.feedback && blockElement.feedback.length>0">
+                                <span class="title-field">Feedback:</span> {{blockElement.feedback}}
+                            </div>
+                            <div class="description-element" *ngIf="blockElement.isEnhanced != null"><span
+                                    class="title-field">Enhanced: </span> <span
+                                    [ngClass]="blockElement.isEnhanced ? 'flag-green' : 'flag-red'">{{blockElement.isEnhanced ? 'Yes' : 'No'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="block.blockType=='list'" class="block-element-wrapper row">
+                    <div class="block-element col-lg-6" *ngFor="let blockElement of block.blockFields">
+                        <div class="title-element" *ngIf="blockElement.type !== 'array'">{{blockElement.label}}</div>
+                        <div class="value"
+                             *ngIf="blockElement.type !== 'date' && blockElement.type !== 'toggle' && blockElement.type !== 'age' && blockElement.type !== 'array'">
+                            {{blockElement.value}}
+                        </div>
+                        <div class="value" *ngIf="blockElement.type === 'date'">{{blockElement.value | date}}</div>
+                        <div class="value" *ngIf="blockElement.type === 'age'">{{_calculateAge(blockElement.value)}}
+                        </div>
+                        <div class="value" *ngIf="blockElement.type === 'toggle'"><span
+                                [ngClass]="blockElement.value ? 'flag-green' : 'flag-red'">{{blockElement.value ? 'Yes' : 'No'}}</span>
+                        </div>
+
+                        <div *ngIf="blockElement.type === 'array'">
+                            <div class="title-element" *ngIf="blockElement.label && blockElement.label.length>0">
+                                {{blockElement.label}}
+                            </div>
+                            <div *ngIf="blockElement.value && blockElement.value>0" class="progress-div">
+                                <mat-progress-bar mode="determinate" [value]="blockElement.value*10"></mat-progress-bar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

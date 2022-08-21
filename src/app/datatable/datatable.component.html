@@ -1,0 +1,88 @@
+<div>
+    <div class="title-div" *ngIf="tableTitle">{{tableTitle}}</div>
+    <div class="row">
+        <div class="col-lg-6 row-selection-text">
+            <div *ngIf="!showSeletedRecords" (click)="viewSelectedRows()">View Selected rows</div>
+            <div *ngIf="showSeletedRecords" (click)="viewAllRows()">View all rows</div>
+        </div>
+        <div class="title-container col-lg-6">
+            <div [ngClass]="(usePagination && !useSearch) || (groupingFields)?'no-display-search':'search-div'">
+                <i class="fa fa-search search-img2"></i>
+                <input #gb type="text" pInputText size="50" placeholder="Search Table..." class="search-input">
+            </div>
+        </div>
+    </div>
+    <p-dataTable styleClass="ui-corner-all"
+                 [value]="data"
+                 [rows]="maxPageLimit"
+                 [paginator]="true"
+                 [lazy]="(usePagination && !showSeletedRecords)"
+                 [pageLinks]="3"
+                 [first]="firstTablePage"
+                 [totalRecords]="(usePagination && !showSeletedRecords)?totalRecords:data.length"
+                 (onLazyLoad)="loadMore($event)"
+                 [rowsPerPageOptions]="[20,40,60]"
+                 [editable]="false"
+                 [responsive]="true"
+                 sortMode="multiple"
+                 [metaKeySelection]="false"
+                 (onHeaderCheckboxToggle)="onAllRowSelect($event)"
+                 (onRowSelect)="onRowSelect($event)"
+                 (onRowUnselect)="onRowUnselect($event)"
+                 [selectionMode]="selectionModeSingle ?'single':'multiple'"
+                 [(selection)]="selectedRecords"
+                 (onPage)="paginate($event)"
+                 [globalFilter]="gb"
+                 #dt>
+        <p-column [style]="{'width':'38px'}" selectionMode="multiple" [styleClass]="hideSelectionAll?'checkbox-header datatable-checkbox':'checkbox-header'"
+                  *ngIf="!selectionModeSingle"></p-column>
+        <p-column *ngFor="let column of columns"
+                  [field]="column.name"
+                  [header]="column.titleHidden?'':column.label"
+                  [editable]="false"
+                  [hidden]="column.hidden"
+                  [sortable]="!column.titleHidden && column.sortable"
+                  [filter]="column.allowSearch"
+                  [filterPlaceholder]="'Search...'"
+                  [style]="column.type=='image'?{'width':'40px'}:column.widthFormat?column.widthFormat=='small'?{'width':'100px'}:
+column.widthFormat=='large'?{'width':'200px'}:column.widthFormat=='medium'?{'width':'150px'}:column.widthFormat=='extra-large'?{'width':'380px'}:{}:{}">
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='toggle'">
+                <div *ngIf="row[column.name]==false" class="toggle-div-no">
+                    <div class="toggle-div-empty"></div>
+                </div>
+                <div *ngIf="row[column.name]==true" class="toggle-div-yes">
+                    <div class="toggle-div-empty"></div>
+                </div>
+            </ng-template>
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='date'">
+                {{column.datePipe ? (row[column.name] | date: column.datePipe) : (row[column.name] | date:
+                'dd MMM yyyy')}}
+            </ng-template>
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='datepicker'">
+                {{row[column.name] | date: 'dd MMM yyyy hh:mm a'}}
+            </ng-template>
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='number'">
+                {{row[column.name] | number}}
+            </ng-template>
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='button'">
+                <button class="btn btn-save buttonForm1" style="margin: 0 !important;"
+                        (click)="customRowAction(column,row)">{{column.label}}
+                </button>
+            </ng-template>
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='image'">
+                <div [ngClass]="!column.withBackgroundColor?'div-image-display table-image-display':'div-image-display table-image-display-background'">
+                    <img *ngIf="row[column.name]" onerror="src = '../../assets/images/topbar/ic_profile.png'"
+                         class="image-display" [src]="row[column.name]">
+                </div>
+            </ng-template>
+            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='video'">
+                <div class="div-video-display" (click)="openVideoPopUp(row[column.name])">
+                    <img *ngIf="row[column.preview]" onerror="src = '../../assets/images/default-poster.png'"
+                         class="video-display div-video-display" [src]="row[column.preview]">
+                    <div *ngIf="!row[column.preview]" class="div-video-display default-video-image"></div>
+                    <div class="play-video-icon"></div>
+                </div>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+</div>

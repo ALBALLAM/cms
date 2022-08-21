@@ -1,0 +1,6419 @@
+[
+  {
+    "_id": {
+      "$oid": "5f6c76169f95fbb473a7b5ae"
+    },
+    "menuHidden": false,
+    "name": "Dashboard",
+    "isParent": false,
+    "icon": "icon-dashboard",
+    "link": "dashboard",
+    "url": "dashboard",
+    "showKPI": true,
+    "order": 0,
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/dashboard",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export this page?",
+        "allowNoneSelection": true,
+        "title": "Dashboard",
+        "exportExcel": true
+      }
+    ],
+    "small_boxes": [
+      {
+        "identifier": "totalSales",
+        "label": "Total Online/Offline Sales",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalWindowSales",
+        "label": "Total Offline Sales",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalOnlineSales",
+        "label": "Total Online Sales",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalHesabe",
+        "label": "Total Online Payments with Hesabe (Excluding wallets)",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalCash",
+        "label": "Total Offline Cash Sales",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalKnet",
+        "label": "Total Offline KNET Sales",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalMasterCard",
+        "label": "Total Offline Master Card Sales",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalCanceled",
+        "label": "Total Online/Offline Canceled Amount",
+        "symbol": "KWD",
+        "isSymbolBefore": true
+      },
+      {
+        "identifier": "totalTickets",
+        "label": "Total Tickets Booked (Excluding additional seats)"
+      },
+      {
+        "identifier": "totalAdditionalSeats",
+        "label": "Total Additional Seats"
+      }
+    ],
+    "get_url": "/cms/tickets/dashboard",
+    "filters": [
+      {
+        "identifier": "show",
+        "label": "Choose Show",
+        "all_label": "All Shows",
+        "all_label_value": "all",
+        "filterBy": "show",
+        "type": "dropdown",
+        "url": "/cms/show/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "identifier": "fromTo",
+        "label": "",
+        "filterBy": "fromTo",
+        "type": "dateFromTo"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "5b17ea5eca72441aa87bea84"
+    },
+    "menuHidden": false,
+    "name": "Users",
+    "formTitle": "User",
+    "isParent": true,
+    "parent": {
+      "link": "administration",
+      "name": "Administration",
+      "icon": "icon-users",
+      "order": 1
+    },
+    "icon": "icon-users",
+    "link": "users",
+    "url": "users",
+    "__v": 0,
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can activate",
+        "name": "Activate User(s)",
+        "url": "/cmsUser/activate/",
+        "method": "put",
+        "permission": "canActivate",
+        "sentence": "Are you sure you want to activate User(s)?"
+      },
+      {
+        "id": "deactivate",
+        "label": "Can Deactivate",
+        "name": "Deactivate User(s)",
+        "url": "/cmsUser/deactivate/",
+        "method": "put",
+        "permission": "canDeactivate",
+        "sentence": "Are you sure you want to deactivate User(s)?"
+      }
+    ],
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "_id": {
+          "$oid": "5b3e2440b947a305814f0c06"
+        },
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "firstName",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2581b947a305814f0c07"
+        },
+        "label": "First Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "lastName",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2622b947a305814f0c08"
+        },
+        "label": "Last Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "email",
+        "readonly": true,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2830fa72bc067dbb9be6"
+        },
+        "label": "Email",
+        "validation": "mail_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "profiles",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Profiles",
+        "validation": "free_text_validator",
+        "type": "multi-select",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "activeText",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Status",
+        "textColor": {
+          "Active": "#000000",
+          "Inactive": "#000000"
+        },
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "vendor",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Vendor",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "lastLoginDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Last Login Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "lastLogoutDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Last Logout Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 9
+      }
+    ],
+    "tableName": "Users",
+    "allowSearch": true,
+    "get_url": "/cmsUser/users",
+    "add_url": "/cmsUser/users",
+    "save_url": "/cmsUser/users",
+    "delete_url": "/cmsUser/users",
+    "delete_sentence": "Are you sure you want to delete this CMS User?",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 1,
+    "extraData": [
+      {
+        "data_id": "profiles",
+        "url": "/profile/list",
+        "text_label": "text",
+        "value_label": "value",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "vendor",
+        "url": "/cms/vendor/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "5b17ea61ca72441aa87bea85"
+    },
+    "name": "Profiles",
+    "formTitle": "Profile",
+    "isParent": true,
+    "order": 1,
+    "parent": {
+      "link": "administration",
+      "name": "Administration",
+      "icon": "icon-users",
+      "order": 0
+    },
+    "icon": "icon-profiles",
+    "link": "profiles",
+    "url": "profile",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "extraSection": {
+      "$oid": "5b3de0c88d65882f48434e1c"
+    },
+    "fields": [
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "_id": {
+          "$oid": "5b3e28a8fa72bc067dbb9be9"
+        },
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "name",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e28b6fa72bc067dbb9bea"
+        },
+        "label": "Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      }
+    ],
+    "tableName": "Profiles",
+    "menuHidden": false,
+    "sortBy": "",
+    "allowSearch": true,
+    "get_url": "/profile/",
+    "add_url": "/profile/",
+    "save_url": "/profile/",
+    "delete_url": "/profile",
+    "delete_sentence": "Are you sure you want to delete this profile?",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "extraData": []
+  },
+  {
+    "_id": {
+      "$oid": "5b3de0c88d65882f48434e1c"
+    },
+    "sectionPermissions": {
+      "canRead": "false",
+      "canAdd": "false",
+      "canUpdate": "false",
+      "canDelete": "false",
+      "canExport": "false"
+    },
+    "defaultPermissions": {
+      "canRead": false,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "menuHidden": true,
+    "name": "Permissions",
+    "formTitle": "Permission",
+    "icon": "icon-permissions",
+    "link": "permissions",
+    "url": "permissions",
+    "customActions": [],
+    "__v": 0,
+    "fields": [
+      {
+        "identifier": "section_id",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "_id": {
+          "$oid": "5b3e2bd7bc0e6e07013fcfe8"
+        },
+        "label": "Section Identifier",
+        "validation": "free_text_validator",
+        "type": "view",
+        "order": 1
+      },
+      {
+        "identifier": "section_name",
+        "readonly": true,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2be5bc0e6e07013fcfe9"
+        },
+        "label": "Section Name",
+        "validation": "free_text_validator",
+        "type": "view",
+        "order": 2
+      },
+      {
+        "identifier": "canRead",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2bf3bc0e6e07013fcfea"
+        },
+        "label": "Can View",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "order": 3
+      },
+      {
+        "identifier": "canAdd",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2bfcbc0e6e07013fcfeb"
+        },
+        "label": "Can Add",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "order": 4
+      },
+      {
+        "identifier": "canUpdate",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2c05bc0e6e07013fcfec"
+        },
+        "label": "Can Update",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "order": 5
+      },
+      {
+        "identifier": "canDelete",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3e2c17bc0e6e07013fcfed"
+        },
+        "label": "Can Delete",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "order": 6
+      },
+      {
+        "identifier": "customActions",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "_id": {
+          "$oid": "5b3f43bfd2de0417cd3b6323"
+        },
+        "label": "Custom actions",
+        "validation": "free_text_validator",
+        "type": "multiselect",
+        "order": 7
+      }
+    ],
+    "tableName": "Permissions",
+    "sortBy": "",
+    "allowSearch": true,
+    "get_url": "/permissions/",
+    "add_url": "/permissions/",
+    "save_url": "/permissions/",
+    "delete_url": "/permissions",
+    "delete_sentence": "Are you sure you want to delete this permission?",
+    "order": 2,
+    "allowPagination": false
+  },
+  {
+    "_id": {
+      "$oid": "5e68e28a99191c0d78b67105"
+    },
+    "menuHidden": false,
+    "name": "Crew",
+    "formTitle": "Crew",
+    "isParent": false,
+    "icon": "icon-crew",
+    "link": "crew",
+    "url": "crew",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "columnTitleHide": true,
+        "sortable": true,
+        "maxSize": 614400,
+        "maxSizeSentence": "600KB",
+        "subtitle": "Image should be a maximum of 600KB, Dimensions of image should be 195 * 290 px",
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "type",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Type",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "isActor",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Is Actor",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "isDirector",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Is Director",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "isAuthor",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Is Author",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "isFeatured",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Is Featured",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "order",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Order",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 11
+      }
+    ],
+    "tableName": "Crew",
+    "allowSearch": true,
+    "get_url": "/cms/crew",
+    "add_url": "/cms/crew",
+    "save_url": "/cms/crew/",
+    "delete_url": "/cms/crew",
+    "delete_sentence": "Are you sure you want to delete this Crew?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 4
+  },
+  {
+    "_id": {
+      "$oid": "5e68eeef99191c0d78b68676"
+    },
+    "menuHidden": false,
+    "name": "Shows",
+    "formTitle": "Show",
+    "isParent": false,
+    "icon": "icon-show",
+    "link": "show",
+    "url": "show",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "columnTitleHide": true,
+        "sortable": true,
+        "maxSize": 512000,
+        "maxSizeSentence": "500KB",
+        "subtitle": "Image should be a maximum of 500KB, Dimensions of image should be 195 * 290 px",
+        "order": 0
+      },
+      {
+        "identifier": "cover",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Cover",
+        "validation": "free_text_validator",
+        "type": "image",
+        "columnTitleHide": true,
+        "sortable": true,
+        "maxSize": 4194304,
+        "isPoster": true,
+        "maxSizeSentence": "4MB",
+        "subtitle": "Image should be a maximum of 4MB, Dimensions of image should be 1000 * 650 px",
+        "order": 1
+      },
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "description_en",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Description English",
+        "validation": "number_validator",
+        "type": "text-area",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "description_ar",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Description Arabic",
+        "validation": "number_validator",
+        "type": "text-area",
+        "sortable": true,
+        "isArabic": true,
+        "order": 6
+      },
+      {
+        "identifier": "vendor",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Vendor",
+        "validation": "free_text_validator",
+        "type": "multi-select",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "duration",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Duration (in mins)",
+        "validation": "number_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "actors",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Actors",
+        "validation": "free_text_validator",
+        "type": "multi-select",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "authors",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Authors",
+        "validation": "free_text_validator",
+        "type": "multi-select",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "directors",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Directors",
+        "validation": "free_text_validator",
+        "type": "multi-select",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "vendorName",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Vendor",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 12
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 13
+      }
+    ],
+    "extraData": [
+      {
+        "data_id": "directors",
+        "url": "/cms/crew/directors",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "authors",
+        "url": "/cms/crew/authors",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "actors",
+        "url": "/cms/crew/actors",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "vendor",
+        "url": "/cms/vendor/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ],
+    "tableName": "Show",
+    "allowSearch": true,
+    "get_url": "/cms/show",
+    "add_url": "/cms/show",
+    "save_url": "/cms/show/",
+    "delete_url": "/cms/show",
+    "delete_sentence": "Are you sure you want to delete this Show?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 4
+  },
+  {
+    "_id": {
+      "$oid": "5e70f52f99191c0d78bfa8ce"
+    },
+    "menuHidden": false,
+    "name": "Plays",
+    "formTitle": "Play",
+    "isParent": false,
+    "icon": "icon-play",
+    "link": "plays",
+    "url": "plays",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "manageFields": [
+      {
+        "label": "Manage Window's Tickets",
+        "link": "windowTickets"
+      },
+      {
+        "label": "View Online Tickets",
+        "link": "tickets"
+      },
+      {
+        "label": "View Refunded Tickets",
+        "link": "refundedTickets"
+      },
+      {
+        "label": "View Purchases",
+        "link": "purchases"
+      }
+    ],
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can show in website",
+        "name": "Show In Website",
+        "url": "/cms/play/showInWeb/",
+        "method": "put",
+        "permission": "canShow",
+        "sentence": "Are you sure you want to show this play in the website?"
+      },
+      {
+        "id": "deactivate",
+        "label": "Can hide in website",
+        "name": "Hide In Website",
+        "url": "/cms/play/hideInWeb/",
+        "method": "put",
+        "permission": "canHide",
+        "sentence": "Are you sure you want to hide this play in the website?"
+      }
+    ],
+    "fields": [
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Play Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Play Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "show_en",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Play English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "date",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Play Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "showBasedTimezone": true,
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "dateDisplay",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Play Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "showBasedTimezone": true,
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "time",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Play Time",
+        "validation": "free_text_validator",
+        "type": "time",
+        "showBasedTimezone": true,
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "show",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Show",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "theater",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Theater",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "theaterName",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Theater",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "entranceTime",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Entrance Time",
+        "validation": "free_text_validator",
+        "type": "time",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 12
+      },
+      {
+        "identifier": "isShown",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Visible In Website",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 13
+      },
+      {
+        "identifier": "manage",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "",
+        "link": "windowTickets",
+        "validation": "free_text_validator",
+        "type": "manage",
+        "widthFormat": "medium",
+        "order": 14
+      }
+    ],
+    "extraData": [
+      {
+        "data_id": "show",
+        "url": "/cms/show/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "theater",
+        "url": "/cms/theater/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "showFilter",
+        "url": "/cms/show/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ],
+    "allowDateSearch": true,
+    "removeDateMax": true,
+    "dateSearch": {
+      "field": "date"
+    },
+    "allowCustomFilter": true,
+    "filterSearch": [
+      {
+        "identifier": "showFilter",
+        "label": "Show",
+        "type": "dropdown",
+        "all_label": "All Shows",
+        "all_label_value": "all"
+      }
+    ],
+    "tableName": "Plays",
+    "allowSearch": true,
+    "get_url": "/cms/play",
+    "add_url": "/cms/play",
+    "save_url": "/cms/play/",
+    "delete_url": "/cms/play",
+    "delete_sentence": "Are you sure you want to delete this Play?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 5
+  },
+  {
+    "_id": {
+      "$oid": "5e70e7b799191c0d78bf8ead"
+    },
+    "menuHidden": false,
+    "name": "Vendors",
+    "formTitle": "Vendor",
+    "isParent": false,
+    "icon": "icon-vendor",
+    "link": "vendor",
+    "url": "vendor",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "description_en",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Description English",
+        "validation": "number_validator",
+        "type": "text-area",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "description_ar",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Description Arabic",
+        "validation": "number_validator",
+        "type": "text-area",
+        "sortable": true,
+        "isArabic": true,
+        "order": 5
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 6
+      }
+    ],
+    "tableName": "Vendor",
+    "allowSearch": true,
+    "get_url": "/cms/vendor",
+    "add_url": "/cms/vendor",
+    "save_url": "/cms/vendor/",
+    "delete_url": "/cms/vendor",
+    "delete_sentence": "Are you sure you want to delete this Vendor?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 6
+  },
+  {
+    "_id": {
+      "$oid": "5e7cc08899191c0d78cd4fe8"
+    },
+    "menuHidden": false,
+    "name": "Show Slider",
+    "formTitle": "Show",
+    "isParent": false,
+    "icon": "icon-slider",
+    "link": "slider",
+    "url": "slider",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "show",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Show",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "show_name_en",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Show English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "show_name_ar",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Show Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "order",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Order",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 4
+      }
+    ],
+    "extraData": [
+      {
+        "data_id": "show",
+        "url": "/cms/play/list",
+        "text_label": "showName",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ],
+    "tableName": "Show Slider",
+    "allowSearch": true,
+    "get_url": "/cms/carousel",
+    "add_url": "/cms/carousel",
+    "save_url": "/cms/carousel/",
+    "delete_url": "/cms/carousel",
+    "delete_sentence": "Are you sure you want to remove this show from slider?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 7
+  },
+  {
+    "_id": {
+      "$oid": "5e843d2799191c0d78d5d6b4"
+    },
+    "menuHidden": false,
+    "name": "Theaters",
+    "formTitle": "Theater",
+    "isParent": false,
+    "icon": "icon-theater",
+    "link": "theaters",
+    "url": "theaters",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "address_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Address English",
+        "validation": "number_validator",
+        "type": "text-area",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "address_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Address Arabic",
+        "validation": "number_validator",
+        "type": "text-area",
+        "isArabic": true,
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "number_validator",
+        "type": "phone_number",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seatPlanNameEn",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Seat Plan English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": false,
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "seatPlanNameAr",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Seat Plan Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "seatPlan",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Seat Plan",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "countryName",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Country",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "country",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Country",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 12
+      }
+    ],
+    "tableName": "Theaters",
+    "allowSearch": true,
+    "get_url": "/cms/theater",
+    "add_url": "/cms/theater",
+    "save_url": "/cms/theater/",
+    "delete_url": "/cms/theater",
+    "delete_sentence": "Are you sure you want to delete this Theater?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 8,
+    "extraData": [
+      {
+        "data_id": "seatPlan",
+        "url": "/cms/plan/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "data_id": "country",
+        "url": "/theater/countries",
+        "text_label": "name",
+        "value_label": "code",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "5e843d2799191c0d78d5d6b5"
+    },
+    "menuHidden": false,
+    "name": "Contact Us",
+    "formTitle": "Contact Us",
+    "isParent": false,
+    "icon": "icon-contact",
+    "link": "contactUs",
+    "url": "contactUs",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "name",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "widthFormat": "medium",
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "email",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "widthFormat": "medium",
+        "order": 3
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "widthFormat": "medium",
+        "order": 4
+      },
+      {
+        "identifier": "message",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Message",
+        "validation": "number_validator",
+        "type": "text-area",
+        "sortable": true,
+        "widthFormat": "large",
+        "order": 5
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "widthFormat": "medium",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 6
+      }
+    ],
+    "tableName": "Contact Us",
+    "allowSearch": true,
+    "get_url": "/cms/contact",
+    "delete_url": "/cms/contact",
+    "delete_sentence": "Are you sure you want to delete this Message?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 9
+  },
+  {
+    "_id": {
+      "$oid": "5e84915399191c0d78d66187"
+    },
+    "menuHidden": false,
+    "name": "FAQ",
+    "formTitle": "FAQ",
+    "isParent": false,
+    "icon": "icon-faq",
+    "link": "faq",
+    "url": "faq",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "question_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Question English",
+        "validation": "free_text_validator",
+        "type": "text-area",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "question_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Question Arabic",
+        "validation": "free_text_validator",
+        "type": "text-area",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "answer_en",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Answer English",
+        "validation": "free_text_validator",
+        "type": "text-area",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "answer_ar",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Answer Arabic",
+        "validation": "free_text_validator",
+        "type": "text-area",
+        "isArabic": true,
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 6
+      }
+    ],
+    "tableName": "FAQ",
+    "allowSearch": true,
+    "get_url": "/cms/faq",
+    "add_url": "/cms/faq",
+    "save_url": "/cms/faq/",
+    "delete_url": "/cms/faq",
+    "delete_sentence": "Are you sure you want to delete this Question?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 10
+  },
+  {
+    "_id": {
+      "$oid": "5e84935a99191c0d78d666ee"
+    },
+    "menuHidden": false,
+    "name": "Seat Plan",
+    "formTitle": "Seat Plan",
+    "isParent": false,
+    "icon": "icon-plan",
+    "link": "seatPlan",
+    "url": "seatPlan",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "manageFields": [
+      {
+        "label": "Manage Zones",
+        "link": "zones"
+      },
+      {
+        "label": "Manage Seats",
+        "link": "matrix"
+      }
+    ],
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "columnTitleHide": true,
+        "sortable": true,
+        "maxSize": 307200,
+        "maxSizeSentence": "300KB",
+        "subtitle": "Image should be a maximum of 300KB",
+        "order": 0
+      },
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "createdBy",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Created By",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 5
+      }
+    ],
+    "tableName": "Seat Plan",
+    "allowSearch": true,
+    "get_url": "/cms/plan",
+    "save_url": "/cms/plan/",
+    "add_url": "/cms/plan/",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 11
+  },
+  {
+    "_id": {
+      "$oid": "5e8497a199191c0d78d66f97"
+    },
+    "menuHidden": false,
+    "name": "Static Pages",
+    "formTitle": "Static Page",
+    "isParent": false,
+    "icon": "icon-static-pages",
+    "link": "staticPages",
+    "url": "staticPages",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "title_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Title English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "title_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Title Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "body_en",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Content English",
+        "validation": "free_text_validator",
+        "type": "editor",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "body_ar",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Content Arabic",
+        "validation": "free_text_validator",
+        "type": "editor",
+        "isArabic": true,
+        "sortable": true,
+        "order": 5
+      }
+    ],
+    "tableName": "Static Pages",
+    "allowSearch": true,
+    "get_url": "/cms/lov",
+    "save_url": "/cms/lov",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 12
+  },
+  {
+    "_id": {
+      "$oid": "5e849e5d99191c0d78d67cea"
+    },
+    "menuHidden": true,
+    "name": "Zones",
+    "formTitle": "Zone",
+    "isParent": false,
+    "icon": "icon-zones",
+    "link": "zones",
+    "url": "zones",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "color",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "name_en",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 4
+      }
+    ],
+    "tableName": "Zones",
+    "allowSearch": true,
+    "get_url": "/cms/zone",
+    "save_url": "/cms/zone",
+    "delete_url": "/cms/zone",
+    "delete_sentence": "Are you sure you want to delete this zone?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "add_url": "/cms/zone",
+    "backSection": {
+      "$oid": "5e84935a99191c0d78d666ee"
+    },
+    "order": 13
+  },
+  {
+    "_id": {
+      "$oid": "5ed5041799191c0d78470e5c"
+    },
+    "menuHidden": true,
+    "name": "Tickets",
+    "formTitle": "Ticket",
+    "isParent": false,
+    "icon": "icon-tickets",
+    "link": "tickets",
+    "url": "tickets",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Exchange Tickets",
+        "name": "Exchange Ticket(s)",
+        "url": "/cms/tickets/exchange",
+        "method": "post",
+        "permission": "canExchangeTickets",
+        "sentence": "Exchange Ticket(s)",
+        "addID": true,
+        "action_type": "newPage",
+        "form": {
+          "showRecordInformation": true,
+          "concatField": "totalPriceBooked",
+          "button": {
+            "name": "Exchange",
+            "value": "submit"
+          },
+          "formFields": [
+            {
+              "identifier": "place",
+              "required": true,
+              "label": "Select Seats",
+              "validation": "free_text_validator",
+              "type": "seat-selector",
+              "getData": "/cms/map/all",
+              "order": 0
+            },
+            {
+              "identifier": "cash",
+              "required": true,
+              "label": "Cash",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 1
+            },
+            {
+              "identifier": "knet",
+              "required": true,
+              "label": "KNET",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 2
+            },
+            {
+              "identifier": "masterCard",
+              "required": true,
+              "label": "Master Card",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "activate",
+        "label": "Can Refund",
+        "name": "Refund Ticket(s)",
+        "url": "/cms/tickets/refund",
+        "method": "post",
+        "permission": "canRefund",
+        "sentence": "Are you sure you want to refund ticket(s)?",
+        "showExtraData": {
+          "isConcat": true,
+          "concatField": "price"
+        }
+      },
+      {
+        "id": "activate",
+        "label": "Can Print Tickets",
+        "name": "Print Tickets",
+        "url": "/cms/tickets/printPDF",
+        "method": "post",
+        "permission": "canPrintTickets",
+        "sentence": "Are you sure you want to print tickets?",
+        "title": "Tickets",
+        "openPDF": true
+      },
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Tickets",
+        "exportID": "tickets",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "seats",
+          "text": "Total Online Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Online Ticket Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "zoneColor",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "zoneName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "row",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Row",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seat",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Seat",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "referenceId",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Reference ID",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "reservationDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "status",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Status",
+        "validation": "free_text_validator",
+        "initialValue": "booking",
+        "type": "text",
+        "sortable": true,
+        "order": 11
+      }
+    ],
+    "tableName": "Tickets",
+    "allowSearch": true,
+    "allowCustomFilter": true,
+    "filterSearch": [
+      {
+        "identifier": "status",
+        "label": "Status",
+        "type": "dropdown",
+        "all_label": "All",
+        "all_label_value": "all",
+        "options": [
+          {
+            "text": "All",
+            "value": "all"
+          },
+          {
+            "text": "Booking",
+            "value": "reserved"
+          },
+          {
+            "text": "Pending Review",
+            "value": "pendingReview"
+          }
+        ]
+      }
+    ],
+    "get_url": "/cms/tickets",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5e70f52f99191c0d78bfa8ce"
+    },
+    "order": 14
+  },
+  {
+    "_id": {
+      "$oid": "5ed5065a99191c0d784714a2"
+    },
+    "menuHidden": true,
+    "name": "Refunded Tickets",
+    "formTitle": "Refunded Ticket",
+    "isParent": false,
+    "icon": "icon-refunded-tickets",
+    "link": "refundedTickets",
+    "url": "refundedTickets",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/refunded",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Refunded Tickets",
+        "exportID": "tickets",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "seats",
+          "text": "Total Refunded Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Refunded Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "zoneColor",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "zoneName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "row",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Row",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seat",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Seat",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "referenceId",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Reference ID",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "purchaseDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "canceledDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Refunded Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "clientName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 12
+      },
+      {
+        "identifier": "clientMobileNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Mobile Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 13
+      }
+    ],
+    "tableName": "Refunded Tickets",
+    "allowSearch": true,
+    "get_url": "/cms/tickets/refunded",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5e70f52f99191c0d78bfa8ce"
+    },
+    "order": 15
+  },
+  {
+    "_id": {
+      "$oid": "5ed511c299191c0d7847338e"
+    },
+    "menuHidden": true,
+    "name": "Purchases",
+    "formTitle": "Purchase",
+    "isParent": false,
+    "icon": "icon-purchases",
+    "link": "purchases",
+    "url": "purchases",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "allowDateSearch": true,
+    "dateSearch": {
+      "field": "purchaseDate"
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/purchases",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Purchases",
+        "exportID": "Purchases",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "totalPrice",
+          "text": "Total Price Online/Offline",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "cash",
+          "text": "Total Offline Cash:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "hesabePrice",
+          "text": "Total Online Cash:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "knet",
+          "text": "Total Offline KNET:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "masterCard",
+          "text": "Total Offline Master Card:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "canceledTotal",
+          "text": "Total Online/Offline Canceled:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "User Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "seat",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Seats",
+        "validation": "free_text_validator",
+        "type": "array",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "numberOfTickets",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Number of Tickets",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "seatText",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Seats",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "hesabePrice",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Hesabe Payment",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "walletPrice",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Wallet Payment",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "knet",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "KNET",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "masterCard",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Master Card",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "cash",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Cash",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "canceledSeat",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Canceled Seats",
+        "validation": "free_text_validator",
+        "type": "array",
+        "sortable": true,
+        "order": 12
+      },
+      {
+        "identifier": "canceledSeatText",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Canceled Seats",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 13
+      },
+      {
+        "identifier": "canceledAmount",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Canceled Amount",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 14
+      },
+      {
+        "identifier": "purchaseReference",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Purchase Reference",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 15
+      },
+      {
+        "identifier": "clientName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 16
+      },
+      {
+        "identifier": "clientMobileNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Mobile Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 17
+      },
+      {
+        "identifier": "purchaseDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 18
+      },
+      {
+        "identifier": "isExchange",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Is Exchange",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 19
+      },
+      {
+        "identifier": "isBookingOverload",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Is Extra Seats",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 20
+      }
+    ],
+    "tableName": "Purchases",
+    "allowSearch": true,
+    "get_url": "/cms/tickets/purchases",
+    "save_url": "/cms/tickets/updateTicket",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5e70f52f99191c0d78bfa8ce"
+    },
+    "order": 16
+  },
+  {
+    "_id": {
+      "$oid": "5f17df499ebad7e760f0fe65"
+    },
+    "menuHidden": true,
+    "name": "Admin's Tickets",
+    "formTitle": "Ticket",
+    "isParent": false,
+    "icon": "icon-tickets",
+    "link": "windowTickets",
+    "url": "windowTickets",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": false,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": false,
+      "canDelete": true,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Refund",
+        "name": "Refund Ticket(s)",
+        "url": "/cms/tickets/refund",
+        "method": "post",
+        "permission": "canRefund",
+        "sentence": "Are you sure you want to refund ticket(s)?",
+        "showExtraData": {
+          "isConcat": true,
+          "concatField": "price"
+        }
+      },
+      {
+        "id": "activate",
+        "label": "Can Book Reserved Tickets",
+        "name": "Book Reserved Ticket(s)",
+        "url": "/cms/tickets/bookReserved",
+        "method": "post",
+        "permission": "canBookReserved",
+        "sentence": "Book Reserved Ticket(s)",
+        "addID": true,
+        "action_type": "popup",
+        "form": {
+          "showExtraData": {
+            "isConcat": true,
+            "concatField": "price"
+          },
+          "button": {
+            "name": "Book",
+            "value": "submit"
+          },
+          "formFields": [
+            {
+              "identifier": "clientName",
+              "required": true,
+              "label": "Client Name",
+              "validation": "free_text_validator",
+              "type": "text",
+              "order": 1
+            },
+            {
+              "identifier": "clientMobileNumber",
+              "required": true,
+              "label": "Client Mobile Number",
+              "validation": "free_text_validator",
+              "type": "text",
+              "order": 2
+            },
+            {
+              "identifier": "cash",
+              "required": true,
+              "label": "Cash",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 3
+            },
+            {
+              "identifier": "knet",
+              "required": true,
+              "label": "KNET",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 4
+            },
+            {
+              "identifier": "masterCard",
+              "required": true,
+              "label": "Master Card",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "activate",
+        "label": "Can Exchange Tickets",
+        "name": "Exchange Ticket(s)",
+        "url": "/cms/tickets/exchange",
+        "method": "post",
+        "permission": "canExchangeTickets",
+        "sentence": "Exchange Ticket(s)",
+        "addID": true,
+        "action_type": "newPage",
+        "form": {
+          "showRecordInformation": true,
+          "concatField": "totalPriceBooked",
+          "button": {
+            "name": "Exchange",
+            "value": "submit"
+          },
+          "formFields": [
+            {
+              "identifier": "place",
+              "required": true,
+              "label": "Select Seats",
+              "validation": "free_text_validator",
+              "type": "seat-selector",
+              "getData": "/cms/map/all",
+              "order": 0
+            },
+            {
+              "identifier": "cash",
+              "required": true,
+              "label": "Cash",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 1
+            },
+            {
+              "identifier": "knet",
+              "required": true,
+              "label": "KNET",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 2
+            },
+            {
+              "identifier": "masterCard",
+              "required": true,
+              "label": "Master Card",
+              "validation": "free_text_validator",
+              "type": "number",
+              "order": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "activate",
+        "label": "Can Print Tickets",
+        "name": "Print Tickets",
+        "url": "/cms/tickets/printOfflinePDF",
+        "method": "post",
+        "permission": "canPrintTickets",
+        "sentence": "Are you sure you want to print tickets?",
+        "title": "Tickets",
+        "openPDF": true
+      },
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/admin",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Tickets",
+        "exportID": "tickets",
+        "limit": 50000,
+        "exportExcel": true
+      },
+      {
+        "id": "activate",
+        "label": "Can Print Statistics",
+        "name": "Print Statistics",
+        "url": "/cms/tickets/printStatistics",
+        "method": "post",
+        "permission": "canPrintStatistics",
+        "title": "Statistics",
+        "allowNoneSelection": true,
+        "sentence": "Print Statistics",
+        "action_type": "popup",
+        "exportPDF": true,
+        "form": {
+          "button": {
+            "name": "Print",
+            "value": "submit"
+          },
+          "formFields": [
+            {
+              "identifier": "statisticSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Booked Seats/Remaining",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 0
+            },
+            {
+              "identifier": "seats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Offline Booked Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 1
+            },
+            {
+              "identifier": "priceSum",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Offline Booked Prices",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 2
+            },
+            {
+              "identifier": "reservedSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Reserved Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 3
+            },
+            {
+              "identifier": "invitedSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Invited Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 4
+            },
+            {
+              "identifier": "totalPriceInvited",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Invited Prices",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 5
+            },
+            {
+              "identifier": "totalPriceInvitedIssued",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Issued Invited Prices",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 6
+            },
+            {
+              "identifier": "remainingSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Remaining Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 7
+            },
+            {
+              "identifier": "remainingSeatsPrice",
+              "required": false,
+              "label": "Total Remaining Cost",
+              "customizedDesign": true,
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 8
+            }
+          ]
+        }
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "statisticSeats",
+          "text": "Booked Seats/Remaining:",
+          "type": "text"
+        },
+        {
+          "identifier": "seats",
+          "text": "Total Offline Booked Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Offline Booked Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "reservedSeats",
+          "text": "Total Reserved Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "invitedSeats",
+          "text": "Total Invited Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "totalPriceInvited",
+          "text": "Total Invited Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "totalPriceInvitedIssued",
+          "text": "Total Issued Invited Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "remainingSeats",
+          "text": "Total Remaining Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "remainingSeatsPrice",
+          "text": "Total Remaining Cost:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "cmsUserName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "zoneName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Zone Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "zoneColor",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Zone Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "row",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Row",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seat",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Seat",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "referenceId",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Reference ID",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "type",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Choose Option",
+        "validation": "free_text_validator",
+        "initialValue": "booking",
+        "type": "dropdown",
+        "options": [
+          {
+            "text": "Booking",
+            "value": "booking"
+          },
+          {
+            "text": "Reservation",
+            "value": "reservation"
+          },
+          {
+            "text": "Invitation",
+            "value": "invitation"
+          },
+          {
+            "text": "Booking Extra Seats",
+            "value": "overloadBooking"
+          }
+        ],
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "type",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Status",
+        "validation": "free_text_validator",
+        "initialValue": "booking",
+        "type": "dropdown",
+        "options": [
+          {
+            "text": "Booking",
+            "value": "booking"
+          },
+          {
+            "text": "Reservation",
+            "value": "reservation"
+          },
+          {
+            "text": "Invitation",
+            "value": "invitation"
+          },
+          {
+            "text": "Booking Extra Seats",
+            "value": "overloadBooking"
+          }
+        ],
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "place",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Select Seats",
+        "validation": "free_text_validator",
+        "type": "seat-selector",
+        "getData": "/cms/map/all",
+        "sortable": true,
+        "order": 12,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "ticketNumber",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Number of Tickets",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 13,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "clientName",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Client Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 14,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "clientMobileNumber",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Client Mobile Number",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 15,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "cash",
+        "readonly": true,
+        "table_hidden": true,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Cash",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 16,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "knet",
+        "readonly": true,
+        "table_hidden": true,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "KNET",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 17,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "masterCard",
+        "readonly": true,
+        "table_hidden": true,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Master Card",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 18,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "status",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Status",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 19
+      },
+      {
+        "identifier": "passedScan",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Is Issued",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 20
+      },
+      {
+        "identifier": "reservationDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 21
+      }
+    ],
+    "dependencies": [
+      {
+        "field": "type",
+        "value": ["booking", "reservation", "invitation", "overloadBooking"],
+        "changeField": [
+          "place",
+          "clientName",
+          "clientMobileNumber",
+          "cash",
+          "knet",
+          "masterCard"
+        ],
+        "changeType": "show"
+      },
+      {
+        "field": "type",
+        "value": ["reservation", "invitation"],
+        "changeField": ["cash", "knet", "masterCard"],
+        "changeType": "hide"
+      },
+      {
+        "field": "type",
+        "value": ["booking", "reservation", "invitation"],
+        "changeField": ["ticketNumber"],
+        "changeType": "hide"
+      },
+      {
+        "field": "type",
+        "value": ["overloadBooking"],
+        "changeField": ["place"],
+        "changeType": "hide"
+      },
+      {
+        "field": "type",
+        "value": ["overloadBooking"],
+        "changeField": ["ticketNumber"],
+        "changeType": "show"
+      }
+    ],
+    "tableName": "Admin's Tickets",
+    "allowSearch": true,
+    "allowCustomFilter": true,
+    "filterSearch": [
+      {
+        "identifier": "status",
+        "label": "Status",
+        "type": "dropdown",
+        "all_label": "All",
+        "all_label_value": "all",
+        "options": [
+          {
+            "text": "All",
+            "value": "all"
+          },
+          {
+            "text": "Booking",
+            "value": "reserved"
+          },
+          {
+            "text": "Reservation",
+            "value": "reservedCMS"
+          },
+          {
+            "text": "Invitation",
+            "value": "invited"
+          }
+        ]
+      }
+    ],
+    "get_url": "/cms/tickets/admin",
+    "add_url": "/cms/tickets/addTicket",
+    "delete_url": "/cms/tickets/deleteTicket",
+    "delete_sentence": "Are you sure you want to delete this ticket?",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "saveParamInQuery": true,
+    "backSection": {
+      "$oid": "5e70f52f99191c0d78bfa8ce"
+    },
+    "order": 17
+  },
+  {
+    "_id": {
+      "$oid": "5f15a191cc39f3e5ff767681"
+    },
+    "menuHidden": true,
+    "name": "Matrix",
+    "formTitle": "Matrix",
+    "isParent": false,
+    "icon": "icon-matrix",
+    "link": "matrix",
+    "url": "matrix",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "tableName": "Matrix",
+    "get_url": "/cms/plan/matrix",
+    "getZonesUrl": "/cms/zone/list",
+    "save_url": "/cms/plan/matrix",
+    "add_url": "/cms/plan/matrix",
+    "showMatrix": true,
+    "backSection": {
+      "$oid": "5e84935a99191c0d78d666ee"
+    },
+    "order": 18
+  },
+  {
+    "_id": {
+      "$oid": "5f63169383a31d533267c226"
+    },
+    "menuHidden": false,
+    "name": "Web Users",
+    "formTitle": "Web User",
+    "isParent": false,
+    "icon": "icon-app-users",
+    "link": "webUsers",
+    "url": "webUsers",
+    "__v": 0,
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can activate",
+        "name": "Activate User(s)",
+        "url": "/cms/users/activate/",
+        "method": "put",
+        "permission": "canActivate",
+        "sentence": "Are you sure you want to activate User(s)?"
+      },
+      {
+        "id": "deactivate",
+        "label": "Can Deactivate",
+        "name": "Deactivate User(s)",
+        "url": "/cms/users/deactivate/",
+        "method": "put",
+        "permission": "canDeactivate",
+        "sentence": "Are you sure you want to deactivate User(s)?"
+      },
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/users",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Web Users",
+        "exportID": "webUsers",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": false,
+        "columnTitleHide": true,
+        "order": 0
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": false,
+        "order": 1
+      },
+      {
+        "identifier": "name",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": false,
+        "order": 2
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Email",
+        "validation": "mail_validator",
+        "type": "email",
+        "sortable": false,
+        "order": 3
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": false,
+        "order": 4
+      },
+      {
+        "identifier": "wallet",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Wallet",
+        "validation": "number_validator",
+        "type": "number",
+        "sortable": false,
+        "order": 5
+      },
+      {
+        "identifier": "registerDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Registration Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": false,
+        "order": 6
+      },
+      {
+        "identifier": "active",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Active",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": false,
+        "order": 7
+      }
+    ],
+    "tableName": "Web Users",
+    "allowSearch": true,
+    "allowDateSearch": true,
+    "dateSearch": {
+      "field": "registerDate"
+    },
+    "get_url": "/cms/users",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 19
+  },
+  {
+    "_id": {
+      "$oid": "5f6aee7d48fa278991847ab6"
+    },
+    "menuHidden": false,
+    "name": "Archived Plays",
+    "formTitle": "Archived Play",
+    "isParent": false,
+    "icon": "icon-play",
+    "link": "archivedPlays",
+    "url": "archivedPlays",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "manageFields": [
+      {
+        "label": "View Window's Tickets",
+        "link": "archivedWindowTickets"
+      },
+      {
+        "label": "View Online Tickets",
+        "link": "archivedTickets"
+      },
+      {
+        "label": "View Refunded Tickets",
+        "link": "archivedRefundedTickets"
+      },
+      {
+        "label": "View Purchases",
+        "link": "archivedPurchases"
+      }
+    ],
+    "fields": [
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "show_en",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Play English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "show_ar",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Play Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "date",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Play Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "showBasedTimezone": true,
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "dateDisplay",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Play Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "showBasedTimezone": true,
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "time",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Play Time",
+        "validation": "free_text_validator",
+        "type": "time",
+        "showBasedTimezone": true,
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "theaterName",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Theater",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "entranceTime",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Entrance Time",
+        "validation": "free_text_validator",
+        "type": "time",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "createdDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Creation Date",
+        "validation": "free_text_validator",
+        "type": "date",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "isShown",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Visible In Website",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 12
+      }
+    ],
+    "tableName": "Archived Plays",
+    "allowSearch": true,
+    "get_url": "/cms/play/archived",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 5
+  },
+  {
+    "_id": {
+      "$oid": "5f6af4f943732d9ec9e91e39"
+    },
+    "menuHidden": true,
+    "name": "Archived Purchases",
+    "formTitle": " Archived Purchase",
+    "isParent": false,
+    "icon": "icon-purchases",
+    "link": "archivedPurchases",
+    "url": "archivedPurchases",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "allowDateSearch": true,
+    "dateSearch": {
+      "field": "purchaseDate"
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/purchases",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Purchases",
+        "exportID": "Purchases",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "totalPrice",
+          "text": "Total Price Online/Offline",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "cash",
+          "text": "Total Offline Cash:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "hesabePrice",
+          "text": "Total Online Cash:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "knet",
+          "text": "Total Offline KNET:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "masterCard",
+          "text": "Total Offline Master Card:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "canceledTotal",
+          "text": "Total Online/Offline Canceled:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "User Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "seat",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Seats",
+        "validation": "free_text_validator",
+        "type": "array",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "numberOfTickets",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Number of Tickets",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "seatText",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Seats",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "hesabePrice",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Hesabe Payment",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "walletPrice",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Wallet Payment",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "knet",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "KNET",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "masterCard",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Master Card",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "cash",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Cash",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "canceledSeat",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Canceled Seats",
+        "validation": "free_text_validator",
+        "type": "array",
+        "sortable": true,
+        "order": 12
+      },
+      {
+        "identifier": "canceledSeatText",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Canceled Seats",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 13
+      },
+      {
+        "identifier": "canceledAmount",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Canceled Amount",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 14
+      },
+      {
+        "identifier": "purchaseReference",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Purchase Reference",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 15
+      },
+      {
+        "identifier": "clientName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 16
+      },
+      {
+        "identifier": "clientMobileNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Mobile Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 17
+      },
+      {
+        "identifier": "purchaseDate",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 18
+      },
+      {
+        "identifier": "isExchange",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Is Exchange",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 19
+      },
+      {
+        "identifier": "isBookingOverload",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Is Extra Seats",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 20
+      }
+    ],
+    "tableName": "Archived Purchases",
+    "allowSearch": true,
+    "get_url": "/cms/tickets/purchases",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5f6aee7d48fa278991847ab6"
+    },
+    "order": 21
+  },
+  {
+    "_id": {
+      "$oid": "5f6af7b5dcf0877c3f0f928d"
+    },
+    "menuHidden": true,
+    "name": "Archived Refunded Tickets",
+    "formTitle": "Archived Refunded Ticket",
+    "isParent": false,
+    "icon": "icon-refunded-tickets",
+    "link": "archivedRefundedTickets",
+    "url": "archivedRefundedTickets",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/refunded",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Refunded Tickets",
+        "exportID": "tickets",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "seats",
+          "text": "Total Refunded Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Refunded Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "zoneColor",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "zoneName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "row",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Row",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seat",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Seat",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "referenceId",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Reference ID",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "purchaseDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "canceledDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Refunded Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "clientName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 12
+      },
+      {
+        "identifier": "clientMobileNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Client Mobile Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 13
+      }
+    ],
+    "tableName": "Archived Refunded Tickets",
+    "allowSearch": true,
+    "get_url": "/cms/tickets/refunded",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5f6aee7d48fa278991847ab6"
+    },
+    "order": 22
+  },
+  {
+    "_id": {
+      "$oid": "5f6af8893d805783bb4902e9"
+    },
+    "menuHidden": true,
+    "name": "Archived Tickets",
+    "formTitle": "Archived Ticket",
+    "isParent": false,
+    "icon": "icon-tickets",
+    "link": "archivedTickets",
+    "url": "archivedTickets",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Tickets",
+        "exportID": "tickets",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "seats",
+          "text": "Total Online Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Online Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "image",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Image",
+        "validation": "free_text_validator",
+        "type": "image",
+        "sortable": true,
+        "order": 0
+      },
+      {
+        "identifier": "appUserEmail",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "User Email",
+        "validation": "free_text_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "phoneNumber",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Phone Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "zoneColor",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "zoneName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Zone Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "row",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Row",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seat",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Seat",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "referenceId",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Reference ID",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "reservationDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 10
+      }
+    ],
+    "tableName": "Archived Tickets",
+    "allowSearch": true,
+    "get_url": "/cms/tickets",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5f6aee7d48fa278991847ab6"
+    },
+    "order": 23
+  },
+  {
+    "_id": {
+      "$oid": "5f6afcccaa9711bc411fef3e"
+    },
+    "menuHidden": true,
+    "name": "Archived Admin's Tickets",
+    "formTitle": "Archived Ticket",
+    "isParent": false,
+    "icon": "icon-tickets",
+    "link": "archivedWindowTickets",
+    "url": "archivedWindowTickets",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": false,
+      "canUpdate": false,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Export Excel",
+        "name": "Export Excel",
+        "url": "/cms/tickets/admin",
+        "method": "get",
+        "permission": "canExportExcel",
+        "sentence": "Are you sure you want to export to Excel?",
+        "allowNoneSelection": true,
+        "title": "Tickets",
+        "exportID": "tickets",
+        "limit": 50000,
+        "exportExcel": true
+      }
+    ],
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "statisticSeats",
+          "text": "Booked Seats/Remaining:",
+          "type": "text"
+        },
+        {
+          "identifier": "seats",
+          "text": "Total Offline Booked Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Offline Booked Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "reservedSeats",
+          "text": "Total Reserved Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "invitedSeats",
+          "text": "Total Invited Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "totalPriceInvited",
+          "text": "Total Invited Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "totalPriceInvitedIssued",
+          "text": "Total Issued Invited Prices:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        },
+        {
+          "identifier": "remainingSeats",
+          "text": "Total Remaining Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "remainingSeatsPrice",
+          "text": "Total Remaining Cost:",
+          "type": "number",
+          "fieldToConcat": "currency"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "fields": [
+      {
+        "identifier": "cmsUserName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "zoneName",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Zone Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 4
+      },
+      {
+        "identifier": "zoneColor",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Zone Color",
+        "validation": "free_text_validator",
+        "type": "color-picker",
+        "sortable": true,
+        "order": 5
+      },
+      {
+        "identifier": "row",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Row",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 6
+      },
+      {
+        "identifier": "seat",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Seat",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 7
+      },
+      {
+        "identifier": "price",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Price",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 8
+      },
+      {
+        "identifier": "referenceId",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Reference ID",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 9
+      },
+      {
+        "identifier": "type",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Choose Option",
+        "validation": "free_text_validator",
+        "initialValue": "booking",
+        "type": "dropdown",
+        "options": [
+          {
+            "text": "Booking",
+            "value": "booking"
+          },
+          {
+            "text": "Reservation",
+            "value": "reservation"
+          },
+          {
+            "text": "Invitation",
+            "value": "invitation"
+          }
+        ],
+        "sortable": true,
+        "order": 10
+      },
+      {
+        "identifier": "type",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Status",
+        "validation": "free_text_validator",
+        "initialValue": "booking",
+        "type": "dropdown",
+        "options": [
+          {
+            "text": "Booking",
+            "value": "booking"
+          },
+          {
+            "text": "Reservation",
+            "value": "reservation"
+          },
+          {
+            "text": "Invitation",
+            "value": "invitation"
+          }
+        ],
+        "sortable": true,
+        "order": 11
+      },
+      {
+        "identifier": "place",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Select Seats",
+        "validation": "free_text_validator",
+        "type": "seat-selector",
+        "getData": "/cms/map/all",
+        "sortable": true,
+        "order": 12,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "clientName",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Client Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 13,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "clientMobileNumber",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": false,
+        "update_hidden": false,
+        "form_hidden": false,
+        "label": "Client Mobile Number",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 14,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "cash",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Cash",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 15,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "knet",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "KNET",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 16,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "masterCard",
+        "readonly": true,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Master Card",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 17,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "status",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Status",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 18
+      },
+      {
+        "identifier": "passedScan",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Is Issued",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": true,
+        "order": 19
+      },
+      {
+        "identifier": "reservationDate",
+        "readonly": false,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Purchased Date",
+        "validation": "free_text_validator",
+        "type": "datepicker",
+        "sortable": true,
+        "order": 20
+      }
+    ],
+    "dependencies": [
+      {
+        "field": "type",
+        "value": ["booking", "reservation", "invitation"],
+        "changeField": [
+          "place",
+          "clientName",
+          "clientMobileNumber",
+          "cash",
+          "knet",
+          "masterCard"
+        ],
+        "changeType": "show"
+      },
+      {
+        "field": "type",
+        "value": ["reservation", "invitation"],
+        "changeField": ["cash", "knet", "masterCard"],
+        "changeType": "hide"
+      }
+    ],
+    "tableName": "Archived Admin's Tickets",
+    "allowSearch": true,
+    "get_url": "/cms/tickets/admin",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "5f6aee7d48fa278991847ab6"
+    },
+    "order": 24
+  },
+  {
+    "_id": {
+      "$oid": "60a5203090ec4806bd442186"
+    },
+    "menuHidden": false,
+    "name": "Mobile Users",
+    "formTitle": "Mobile User",
+    "isParent": false,
+    "icon": "icon-mobile-users",
+    "link": "mobileUsers",
+    "url": "mobileUsers",
+    "__v": 0,
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Activate",
+        "name": "Activate User(s)",
+        "url": "/cms/users/activate/",
+        "method": "put",
+        "permission": "canActivate",
+        "sentence": "Are you sure you want to activate User(s)?"
+      },
+      {
+        "id": "deactivate",
+        "label": "Can Deactivate",
+        "name": "Deactivate User(s)",
+        "url": "/cms/users/deactivate/",
+        "method": "put",
+        "permission": "canDeactivate",
+        "sentence": "Are you sure you want to deactivate User(s)?"
+      }
+    ],
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "manageFields": [
+      {
+        "label": "Manage Shows",
+        "link": "mobileUsersShows"
+      }
+    ],
+    "fields": [
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "options": [],
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "name",
+        "readonly": false,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Name",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "email",
+        "readonly": true,
+        "table_hidden": false,
+        "options": [],
+        "required": true,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Email",
+        "validation": "mail_validator",
+        "type": "email",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "vendor",
+        "readonly": false,
+        "table_hidden": true,
+        "required": false,
+        "add_hidden": false,
+        "form_hidden": false,
+        "label": "Vendor",
+        "validation": "free_text_validator",
+        "type": "dropdown",
+        "sortable": true,
+        "allowClear": true,
+        "order": 4
+      },
+      {
+        "identifier": "active",
+        "readonly": true,
+        "table_hidden": false,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Active",
+        "validation": "free_text_validator",
+        "type": "toggle",
+        "sortable": false,
+        "order": 5
+      },
+      {
+        "identifier": "generatePass",
+        "sortable": false,
+        "label": "Generate Password",
+        "readonly": true,
+        "order": 6,
+        "validation": "free_text_validator",
+        "options": null,
+        "required": false,
+        "type": "button",
+        "button_action": {
+          "send_attributes": ["_id"],
+          "id": "generatePass",
+          "name": "Generate Password",
+          "url": "/cmsUser/scanUsers/generatePassword",
+          "method": "post",
+          "sentence": "Are you sure you want to generate a new password for this user?"
+        }
+      }
+    ],
+    "tableName": "Mobile Users",
+    "allowSearch": true,
+    "get_url": "/cmsUser/scanUsers",
+    "add_url": "/cmsUser/scanUsers",
+    "save_url": "/cmsUser/scanUsers",
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "order": 25,
+    "extraData": [
+      {
+        "data_id": "vendor",
+        "url": "/cms/vendor/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "60a63f523e82961c6637ab84"
+    },
+    "menuHidden": true,
+    "name": "Mobile User's Shows",
+    "formTitle": "Mobile User's Shows",
+    "isParent": false,
+    "icon": "icon-mobile-users-shows",
+    "link": "mobileUsersShows",
+    "url": "mobileUsersShows",
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": false,
+      "canDelete": true,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": false,
+      "canDelete": true,
+      "canExport": false
+    },
+    "fields": [
+      {
+        "identifier": "name_en",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Show English",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "name_ar",
+        "readonly": true,
+        "table_hidden": false,
+        "required": false,
+        "add_hidden": true,
+        "form_hidden": false,
+        "label": "Show Arabic",
+        "validation": "free_text_validator",
+        "type": "text",
+        "isArabic": true,
+        "sortable": true,
+        "order": 2
+      },
+      {
+        "identifier": "_id",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": true,
+        "form_hidden": true,
+        "label": "Identifier",
+        "validation": "free_text_validator",
+        "type": "text",
+        "sortable": true,
+        "order": 3
+      },
+      {
+        "identifier": "shows",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Shows",
+        "validation": "free_text_validator",
+        "type": "multi-select",
+        "sortable": true,
+        "order": 4
+      }
+    ],
+    "tableName": "Mobile User's Shows",
+    "allowSearch": true,
+    "get_url": "/cms/userPlays",
+    "add_url": "/cms/userPlays",
+    "save_url": "/cms/userPlays",
+    "delete_url": "/cms/userPlays",
+    "delete_sentence": "Are you sure you want to delete this show for this user?",
+    "saveParamInQuery": true,
+    "manageFlds": false,
+    "backIcon": false,
+    "allowPagination": true,
+    "backSection": {
+      "$oid": "60a5203090ec4806bd442186"
+    },
+    "extraData": [
+      {
+        "data_id": "shows",
+        "url": "/cms/show/listScanUser",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ],
+    "order": 26
+  },
+  {
+    "_id": {
+      "$oid": "61486e422ab655eaa99f0bac"
+    },
+    "menuHidden": false,
+    "name": "Book Tickets",
+    "formTitle": "Book Tickets",
+    "isParent": false,
+    "icon": "icon-book-tickets",
+    "link": "bookTickets",
+    "url": "bookTickets",
+    "showBookTicketDashboard": true,
+    "__v": 0,
+    "defaultPermissions": {
+      "canRead": true,
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "sectionPermissions": {
+      "canRead": "primary",
+      "canAdd": true,
+      "canUpdate": true,
+      "canDelete": false,
+      "canExport": false
+    },
+    "customActions": [
+      {
+        "id": "activate",
+        "label": "Can Print Statistics",
+        "name": "Print Statistics",
+        "url": "/cms/tickets/dashboardStatistics/print",
+        "method": "post",
+        "permission": "canPrintStatistics",
+        "title": "Statistics",
+        "allowNoneSelection": true,
+        "sentence": "Print Statistics",
+        "action_type": "popup",
+        "exportPDF": true,
+        "form": {
+          "button": {
+            "name": "Submit",
+            "value": "submit"
+          },
+          "formFields": [
+            {
+              "identifier": "statisticSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Booked Seats/Remaining",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 0
+            },
+            {
+              "identifier": "seats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Offline Booked Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 1
+            },
+            {
+              "identifier": "priceSum",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Offline Booked Prices",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 2
+            },
+            {
+              "identifier": "reservedSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Reserved Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 3
+            },
+            {
+              "identifier": "invitedSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Invited Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 4
+            },
+            {
+              "identifier": "totalPriceInvited",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Invited Prices",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 5
+            },
+            {
+              "identifier": "totalPriceInvitedIssued",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Issued Invited Prices",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 6
+            },
+            {
+              "identifier": "remainingSeats",
+              "required": false,
+              "customizedDesign": true,
+              "label": "Total Remaining Seats",
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 7
+            },
+            {
+              "identifier": "remainingSeatsPrice",
+              "required": false,
+              "label": "Total Remaining Cost",
+              "customizedDesign": true,
+              "validation": "free_text_validator",
+              "type": "toggle",
+              "order": 8
+            }
+          ]
+        }
+      }
+    ],
+    "filters": [
+      {
+        "identifier": "play",
+        "hidden": true,
+        "label": "Choose Play",
+        "filterBy": "play",
+        "type": "dropdown",
+        "text_label": "name_en",
+        "url": "/cms/play/listByShow",
+        "text_label_2": "entranceTime",
+        "text_label_3": "date",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      },
+      {
+        "identifier": "show",
+        "hidden": false,
+        "label": "Choose Show",
+        "filterBy": "show",
+        "type": "dropdown",
+        "url": "/cms/show/list",
+        "text_label": "name",
+        "value_label": "_id",
+        "text_to_display": "text",
+        "value_label_to_display": "value"
+      }
+    ],
+    "tableName": "Book Tickets",
+    "get_statistics": "/cms/tickets/dashboardStatistics",
+    "get_plays_url": "/cms/play/listByShow",
+    "add_url": "/cms/tickets/addTicket",
+    "tableHeaders": {
+      "data": [
+        {
+          "identifier": "statisticSeats",
+          "text": "Booked Seats/Remaining:",
+          "type": "text"
+        },
+        {
+          "identifier": "seats",
+          "text": "Total Booked Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "priceSum",
+          "text": "Total Booked Prices:",
+          "type": "text"
+        },
+        {
+          "identifier": "reservedSeats",
+          "text": "Total Reserved Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "invitedSeats",
+          "text": "Total Invited Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "totalPriceInvited",
+          "text": "Total Invited Prices:",
+          "type": "text"
+        },
+        {
+          "identifier": "totalPriceInvitedIssued",
+          "text": "Total Issued Invited Prices:",
+          "type": "text"
+        },
+        {
+          "identifier": "remainingSeats",
+          "text": "Total Remaining Seats:",
+          "type": "number"
+        },
+        {
+          "identifier": "remainingSeatsPrice",
+          "text": "Total Remaining Cost:",
+          "type": "text"
+        }
+      ],
+      "title": "Statistics"
+    },
+    "manageFields": [
+      {
+        "label": "Offline Tickets",
+        "link": "windowTickets"
+      },
+      {
+        "label": "Online Tickets",
+        "link": "tickets"
+      },
+      {
+        "label": "Refunded Tickets",
+        "link": "refundedTickets"
+      },
+      {
+        "label": "Purchases",
+        "link": "purchases"
+      }
+    ],
+    "fields": [
+      {
+        "identifier": "type",
+        "readonly": false,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Choose Option",
+        "allowClear": false,
+        "validation": "free_text_validator",
+        "initialValue": "booking",
+        "type": "dropdown",
+        "options": [
+          {
+            "text": "Booking",
+            "value": "booking"
+          },
+          {
+            "text": "Reservation",
+            "value": "reservation"
+          },
+          {
+            "text": "Invitation",
+            "value": "invitation"
+          },
+          {
+            "text": "Booking Extra Seats",
+            "value": "overloadBooking"
+          }
+        ],
+        "sortable": true,
+        "order": 1
+      },
+      {
+        "identifier": "place",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Select Seats",
+        "validation": "free_text_validator",
+        "type": "seat-selector",
+        "getData": "/cms/map/all",
+        "sortable": true,
+        "order": 2,
+        "hidden": true,
+        "resetFields": true
+      },
+      {
+        "identifier": "ticketNumber",
+        "readonly": false,
+        "table_hidden": true,
+        "required": true,
+        "add_hidden": false,
+        "update_hidden": true,
+        "form_hidden": false,
+        "label": "Number of Tickets",
+        "validation": "free_text_validator",
+        "type": "number",
+        "sortable": true,
+        "order": 3,
+        "hidden": true,
+        "resetFields": true
+      }
+    ],
+    "bookPopupForm": {
+      "sentence": "Add Ticket Informations",
+      "form": {
+        "button": {
+          "name": "Book",
+          "value": "submit"
+        },
+        "formFields": [
+          {
+            "identifier": "clientName",
+            "required": false,
+            "label": "Client Name",
+            "validation": "free_text_validator",
+            "type": "text",
+            "order": 1
+          },
+          {
+            "identifier": "clientMobileNumber",
+            "required": false,
+            "label": "Client Mobile Number",
+            "validation": "free_text_validator",
+            "type": "text",
+            "order": 2
+          },
+          {
+            "identifier": "cash",
+            "required": false,
+            "label": "Cash",
+            "validation": "free_text_validator",
+            "type": "number",
+            "order": 3
+          },
+          {
+            "identifier": "knet",
+            "required": false,
+            "label": "KNET",
+            "validation": "free_text_validator",
+            "type": "number",
+            "order": 4
+          },
+          {
+            "identifier": "masterCard",
+            "required": false,
+            "label": "Master Card",
+            "validation": "free_text_validator",
+            "type": "number",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "dependencies": [
+      {
+        "field": "type",
+        "value": ["booking", "reservation", "invitation", "overloadBooking"],
+        "changeField": ["place"],
+        "changeType": "show"
+      },
+      {
+        "field": "type",
+        "value": ["overloadBooking"],
+        "changeField": ["place"],
+        "changeType": "hide"
+      },
+      {
+        "field": "type",
+        "value": ["booking", "reservation", "invitation"],
+        "changeField": ["ticketNumber"],
+        "changeType": "hide"
+      },
+      {
+        "field": "type",
+        "value": ["overloadBooking"],
+        "changeField": ["ticketNumber"],
+        "changeType": "show"
+      }
+    ],
+    "order": 27
+  }
+]

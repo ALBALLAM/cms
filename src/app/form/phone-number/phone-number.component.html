@@ -1,0 +1,38 @@
+<div fxLayout="column" class="app-phone-number">
+  <div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+    <mat-error class="phone-number-error" *ngIf="element.group.get(element.identifier).hasError('required') && selectedCountryCode
+    && element.group.get(element.identifier).touched">Phone number is required</mat-error>
+    <mat-error class="phone-number-error" *ngIf="(!selectedCountryCode || selectedCountryCode==='')
+    && element.group.get(element.identifier).touched">Country is required</mat-error>
+    <div class="form-fields">
+    <div style="width: 35%;">
+        <mat-form-field [floatLabel]="floatLabel === false ? 'always': 'never'">
+        <mat-select [placeholder]="selectedCountryCode !== null && selectedCountryCode !== undefined ? '' : 'Country'" [required]="element.required"
+                    [(value)]="selectedCountryCode" (selectionChange)="changeValue($event)" (openedChange)="myInput.focus()">
+          <input class="input-search" #myInput matInput focused="'true'" type="text"
+                 (keyup)="search($event.target.value)" autocomplete="off" placeholder="Search">
+          <mat-option *ngFor="let option of selectedOptions"
+                      [disabled]="disabledOptions" [value]="option.value">
+            {{option.text}}
+          </mat-option>
+        </mat-select>
+            </mat-form-field>
+    </div>
+    <div style="width: 65%;" class="phone-number">
+      <mat-form-field [formGroup]="element.group" [floatLabel]="'never'">
+        <!--<mat-icon *ngIf="(icon || svgIcon) && matPrefix" matPrefix [svgIcon]="svgIcon">{{icon}}</mat-icon>-->
+        <!--<mat-icon *ngIf="(icon || svgIcon) && !matPrefix" matSuffix [svgIcon]="svgIcon">{{icon}}</mat-icon>-->
+        <input matInput [formControlName]="element.identifier" [placeholder]="floatLabel === true ? 'Mobile number' : element.label"
+               [required]="element.required"
+               [maxlength]="15"
+               type="text" (keyup)="triggerKeyUp($event)" (keypress)="onKeyPress($event)"/>
+        <!--<mat-hint *ngIf="hint">{{hint}}</mat-hint>-->
+        <!--<mat-error *ngIf="element.group.get(line).hasError('pattern')">{{patternErrorMessage?patternErrorMessage:'Invalid Pattern'}}-->
+        <!--</mat-error>-->
+        <!--<mat-error *ngIf="element.group.get(line).hasError('maxlength')">Field can be maximum {{maxLengthNumber}} characters-->
+          <!--long-->
+        <!--</mat-error>-->
+      </mat-form-field>
+    </div>
+  </div>
+</div>

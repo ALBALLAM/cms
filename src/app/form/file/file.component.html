@@ -1,0 +1,25 @@
+<div class="col-xs-12 component-container">
+  <div class="col-xs-12 file-container"
+       (click)="openFile()" data-toggle="tab">
+    <div *ngIf="preview" class="close-image"
+         (click)="removeFile($event)">
+    </div>
+
+    <div class="col-xs-12" *ngIf="preview">
+      <img class="preview-uploaded-image" [src]="preview">
+    </div>
+    <div class="col-xs-12"
+         *ngIf="!element['valid'] || !element.value || element.value === '' || element.value.length ===0">
+      <div class="preview-default-image"></div>
+      <div class="preview-text">Click to add your image</div>
+    </div>
+  </div>
+
+  <div style="display: none">
+    <input type="file" style="visibility: hidden" accept={{acceptedFilesString}} (change)="onChangeFile($event)"
+           #fileInput>
+  </div>
+  <ng-container *ngIf="!element['valid']">
+    <mat-error *ngIf="!element.value && element.required" style="text-align: left;">Field is required</mat-error>
+  </ng-container>
+</div>

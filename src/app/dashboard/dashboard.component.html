@@ -1,0 +1,62 @@
+<div class="dashboard-wrapper" style="margin: 10px 0;">
+    <div class="dashboard-title">{{attributesObject.formTitle}}</div>
+    <div class="row" style="margin: 10px 0;">
+        <div *ngFor="let dashboardObject of attributesObject.dashboardConfiguration" class="col-lg-6">
+            <div class="widget-wrapper">
+                <div class="display-flex">
+                    <div class="table-title">{{dashboardObject.title}} ({{data[dashboardObject.identifier + '_count']}})
+                    </div>
+                    <div *ngIf="data[dashboardObject.identifier + '_count']>0" class="view-all"
+                         (click)="routeToSection(dashboardObject.get_view_all)">View All
+                    </div>
+                </div>
+                <div *ngIf="dashboardObject.type === 'table'">
+                    <p-dataTable styleClass="ui-corner-all"
+                                 [value]="data[dashboardObject.identifier]"
+                                 [rows]="data[dashboardObject.identifier].length"
+                                 [paginator]="false"
+                                 [totalRecords]="data[dashboardObject.identifier].length"
+                                 [editable]="false"
+                                 [responsive]="true"
+                                 [metaKeySelection]="false"
+                                 #dt>
+                        <p-column *ngFor="let column of dashboardObject.columns"
+                                  [field]="column.name"
+                                  [header]="column.titleHidden?'':column.label"
+                                  [editable]="false"
+                                  [hidden]="column.hidden"
+                                  [style]="column.type=='image'?{'width':'40px'}:column.widthFormat?column.widthFormat=='small'?{'width':'100px'}:
+column.widthFormat=='large'?{'width':'200px'}:column.widthFormat=='medium'?{'width':'150px'}:column.widthFormat=='extra-large'?{'width':'380px'}:{}:{}">
+                            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='toggle'">
+                                <div *ngIf="row[column.name]==false" class="toggle-div-no">
+                                    <div class="toggle-div-empty"></div>
+                                </div>
+                                <div *ngIf="row[column.name]==true" class="toggle-div-yes">
+                                    <div class="toggle-div-empty"></div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='date'">
+                                {{column.datePipe ? (row[column.name] | date: column.datePipe) : (row[column.name] |
+                                date:
+                                'dd MMM yyyy')}}
+                            </ng-template>
+                            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='datepicker'">
+                                {{row[column.name] | date: 'dd MMM yyyy hh:mm a'}}
+                            </ng-template>
+                            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='number'">
+                                {{row[column.name] | number}}
+                            </ng-template>
+                            <ng-template let-row="rowData" pTemplate="body" *ngIf="column.type=='image'">
+                                <div [ngClass]="!column.withBackgroundColor?'div-image-display table-image-display':'div-image-display table-image-display-background'">
+                                    <img *ngIf="row[column.name]"
+                                         onerror="src = '../../assets/images/topbar/ic_profile.png'"
+                                         class="image-display" [src]="row[column.name]">
+                                </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

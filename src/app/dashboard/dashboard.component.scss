@@ -1,0 +1,37 @@
+.dashboard-title{
+  font-weight: bold;
+  font-size: 22px;
+  color: #32325d;
+  margin-left: 15px;
+}
+
+.table-title{
+  font-weight: bold;
+  font-size: 18px;
+  color: #32325d;
+}
+
+.widget-wrapper{
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+  position: relative;
+  overflow: auto;
+}
+
+.display-flex{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.view-all{
+  font-weight: bold;
+  font-size: 15px;
+  color: #32325d;
+  cursor: pointer;
+  text-decoration: underline;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}

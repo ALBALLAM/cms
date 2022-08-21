@@ -1,0 +1,66 @@
+@import "../../../style/variables.scss";
+
+.preview-default-image {
+  //width: 120px;
+  height: 100px;
+  background-image: url("../../../assets/images/upload.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%
+}
+
+.preview-text {
+  color: get-color("main-color");
+  text-align: center;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.edit-icon{
+  background-image: url("../../../assets/images/ic-edit.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 9px;
+  right: -14px;
+}
+
+.video-element{
+  max-height: 300px;
+}
+
+.close-image {
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  width: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-close{
+  width: 30px;
+  border-radius: 50%;
+}
+
+.video-display-wrapper{
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.preview-default-image-uploaded {
+  height: 42px;
+  margin: 25px auto;
+  background-image: url("../../../assets/images/uploaded.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%
+}

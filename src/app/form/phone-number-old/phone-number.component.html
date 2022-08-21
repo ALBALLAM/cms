@@ -1,0 +1,27 @@
+<!--<div [formGroup]="element.group" [ngClass]="(element['visitedOnce'] && visited && !element.valid) || (visited && !hasFocus && element.value == '' && element.required) ? 'phone-focus-error': 'phone-focus'">-->
+	<!--<mat-form-field class="full-width" dividerColor="accent">-->
+		<!--<input [id]=element.identifier type="text"-->
+			   <!--matInput-->
+			   <!--[placeholder]="element.label"-->
+			   <!--[required]="element.required"-->
+			   <!--value={{value}}-->
+			   <!--[formControlName]="element.identifier"-->
+			   <!--(keyup)="keyup()"-->
+			   <!--(focus)="hasFocus = true; visited = true;"-->
+			   <!--(blur)="blur(); element['visitedOnce'] = true;"-->
+			   <!--autocomplete="off"-->
+		<!--&gt;-->
+		<!--<mat-hint *ngIf="!element.group.get(element.identifier).touched" align="start">+ Country code - Area code - Phone number</mat-hint>-->
+	<!--</mat-form-field>-->
+	<!--<div *ngIf="element['visitedOnce'] &&  element.required && !element.readonly && element.isEmpty && element.group.get(element.identifier).touched"-->
+		 <!--style="position: absolute" class="error-msg">-->
+		<!--<div-->
+			<!--*ngIf="element.isEmpty && element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">-->
+			<!--Field is required-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div style="position: absolute" class="error-msg"-->
+		 <!--*ngIf="!element.readonly && !element.isEmpty && !element.valid && element.group.get(element.identifier).touched">-->
+		<!--Please enter a valid {{element.label}}-->
+	<!--</div>-->
+<!--</div>-->

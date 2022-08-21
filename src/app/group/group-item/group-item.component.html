@@ -1,0 +1,9 @@
+<div class='grp-box' style="margin-left: 3%; margin-right: 7%; width: 90%;">
+	<div class='remove-icon' (click)="close()"></div>
+	<ng-container *ngFor="let field of element['fields']">
+		<div class='grp-field' *ngIf="data && data[field['identifier']]">
+			<div class='grp-field-title'>{{field['label']}}</div>
+			<div class='grp-field-value'>{{data[field['identifier']]}}</div>
+		</div>
+	</ng-container>
+</div>

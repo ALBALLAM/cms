@@ -1,0 +1,119 @@
+.back-image {
+  background-image: url("../../assets/images/arrow-left.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.header-back {
+  float: none !important;
+  margin-bottom: 10px;
+}
+
+.title-back-div {
+  float: left;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.title-div {
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+  color: #32325d;
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+  width: 73%;
+}
+
+.back-icon-title {
+  margin: 11px 5px 5px 0px !important;
+}
+
+.matrix-padding {
+  padding: 15px;
+}
+
+.app-form {
+  //text-align: center !important;
+  border: solid 1px #cdd3db;
+  background-color: #ffffff;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+
+.reset-matrix {
+  float: right;
+  cursor: pointer;
+  display: flex;
+}
+
+.matrix-button {
+  width: 100%;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.color-picker-table {
+  width: 20px;
+  height: 20px;
+  border-radius: 25px;
+  margin-right: 10px;
+}
+
+.matrix-table {
+  //border: solid 0.5px black;
+
+  .row-matrix {
+    height: 60px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .column-matrix {
+    border: solid 1px grey;
+    cursor: pointer;
+    height: 60px;
+    min-width: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+  }
+}
+
+.buttonForm1 {
+  min-width: 125px !important;
+}
+
+.matrix-table-parent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+
+  .matrix-row-text {
+    height: 60px;
+    line-height: 60px;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .margin-letter-left {
+    margin-right: 10px;
+  }
+  .margin-letter-right {
+    margin-left: 10px;
+  }
+}

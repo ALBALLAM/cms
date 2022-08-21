@@ -1,0 +1,61 @@
+<div class="parent-div">
+    <div class="flex-div-kpi">
+        <div class="table-title-div float-left title-flex">
+            <ng-container *ngIf="actions">
+                <ng-container *ngFor="let action of actions">
+                    <div *ngIf="permissions['customActions'] && permissions['customActions'][action.permission]"
+                        (click)="customAction(action)" class="actions-parent">
+                        <div class="colored-action primary-colored-background"></div>
+                        <span class="span-action primary-colored">{{action.name}}</span>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="float-right">
+            <form *ngIf="showFilters" [formGroup]="filterForm">
+                <div class="form-parent">
+                    <div *ngFor="let filter of attributesObject.filters"
+                        [class]="filter.type==='dateFromTo'?'filter-div filter-div-calendar':'filter-div'">
+                        <app-dropdown *ngIf="filter.type==='dropdown'" [element]="filter" [allowSearch]="false"
+                            [allowClear]="false" (eventEmitter)="getKPIsAPI(true)"></app-dropdown>
+                        <ng-container *ngIf="filter.type==='dateFromTo'">
+                            <div class="dates-calendar">
+                                <div style="float: left">
+                                    <p-calendar [readonlyInput]="true" (onSelect)="selectSearchDate($event)"
+                                        (onClearClick)="selectSearchDate($event)"
+                                        [maxDate]="removeDateMax?null:currentDateFrom" placeholder="Select From Date"
+                                        [(ngModel)]="dateValueFrom" [ngModelOptions]="{standalone: true}"
+                                        yearRange="2000:2030" [monthNavigator]="true" [yearNavigator]="true"
+                                        [showIcon]="true" dateFormat="dd/mm/yy" [showButtonBar]="true"></p-calendar>
+                                </div>
+                                <div class="filter-space" style="float: right">
+                                    <p-calendar [readonlyInput]="true" (onSelect)="selectSearchDate($event)"
+                                        [minDate]="dateValueFrom" (onClearClick)="selectSearchDate($event)"
+                                        [maxDate]="removeDateMax?null:currentDate" placeholder="Select To Date"
+                                        [(ngModel)]="dateValueTo" [ngModelOptions]="{standalone: true}"
+                                        yearRange="2000:2030" [monthNavigator]="true" [yearNavigator]="true"
+                                        [showIcon]="true" dateFormat="dd/mm/yy" [showButtonBar]="true"></p-calendar>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <ng-container *ngIf="KPIResponse">
+        <div class="small-boxes-parent">
+            <div *ngFor="let box of attributesObject.small_boxes" class="box-div small-box-div">
+                <ng-container>
+                    <div class="box-title">{{box.label}}</div>
+                    <div class="box-number">
+                        <span *ngIf="box.symbol && box.isSymbolBefore">{{box.symbol}}</span>
+                        {{KPIResponse[box.identifier] | number:'1.0-2'}}
+                        <span *ngIf="box.symbol && !box.isSymbolBefore">{{box.symbol}}</span>
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,181 @@
+@import "../../style/variables.scss";
+
+.popup-fullscreen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+}
+
+.app-form-popup {
+  text-align: center !important;
+  padding-bottom: 20px;
+}
+
+.form-popup {
+  display: inline-grid !important;
+  padding-bottom: 20px !important;
+  width: 100% !important;
+}
+
+.close-popup {
+  background-image: url('../../assets/images/ic-close.svg');
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  height: 14px;
+  width: 14px;
+  background-size: contain;
+}
+
+.popup-container {
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  background-color: get-color(secondary-color);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  padding: 20px 30px 30px 30px;
+  opacity: 0;
+  width: 500px;
+}
+
+.popup-container.load {
+  opacity: 1;
+  animation-name: container;
+  animation-duration: 0.6s;
+}
+
+.popup-content-one {
+  opacity: 0;
+  margin: 0 auto;
+  text-align: -webkit-center;
+  margin-bottom: -20px;
+}
+
+.popup-content-one.load {
+  opacity: 1;
+  animation-name: example;
+  animation-duration: 0.7s;
+}
+
+@keyframes example {
+  from {
+    transform: translate(0px, -150px);
+  }
+  to {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes container {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    -webkit-transition: opacity 0.6s ease-in;
+    -moz-transition: opacity 0.6s ease-in;
+    -o-transition: opacity 0.6s ease-in;
+    -ms-transition: opacity 0.6s ease-in;
+    transition: opacity 0.6s ease-in;
+  }
+}
+
+.popup-title {
+  font-family: const(main-font-family);
+  font-size: 18px;
+  color: #3f3f3f;
+  margin-bottom: 25px;
+  //max-width: 40vw;
+  text-align: left;
+}
+
+.popup-subtitle {
+  font-family: const(secondary-font-family);
+  font-size: 17px;
+  color: #3f3f3f;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.popup-link {
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: get-color("main-color-buttons");
+  border-color: get-color("main-color-buttons");
+  min-width: 140px !important;
+  border-radius: 25px !important;
+  margin-bottom: 15px !important;
+  margin-right: 15px !important;
+}
+
+.btn-secondary {
+  background-color: get-color("white");
+  border-color: get-color("main-color-buttons");
+  color: get-color("main-color-buttons");
+  min-width: 140px !important;
+  border-radius: 25px !important;
+  margin-bottom: 15px !important;
+}
+
+.custom-loader md-progress-spinner {
+  width: 40px;
+  height: 40px;
+}
+
+@media only screen and (max-width: 767px) {
+  .popup-title {
+    max-width: 75vw !important;
+    font-size: 17px !important;
+  }
+  .extra-info {
+    font-size: 17px !important;
+  }
+  .popup-subtitle {
+    font-size: 15px !important;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 766px) {
+  .popup-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .popup-container {
+    width: 85%;
+  }
+
+}
+
+@media only screen and (min-width: 601px) and (max-width: 766px) {
+  .popup-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .popup-container {
+    width: 85%;
+  }
+}
+
+.extra-info {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+::ng-deep .popup-fullscreen .mat-form-field-wrapper {
+  margin-bottom: -30px !important;
+}

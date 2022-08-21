@@ -1,0 +1,255 @@
+@import "../../style/variables.scss";
+
+.parent-div {
+  padding: 5px 15px 15px calc(15px + 15px);
+}
+
+.flex-div {
+  display: inline-block;
+  width: 100%;
+
+  .float-left {
+    float: left
+  }
+
+  .float-right {
+    float: right;
+  }
+}
+
+.title-div {
+  font-weight: bold;
+  font-size: 28px;
+  color: get-color(kpi);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.boxes-parent {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.small-boxes-parent {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.small-box-div {
+  padding: 5px 40px;
+
+  .box-title {
+    font-size: 16px !important;
+  }
+
+  .box-number {
+    margin-top: 5px !important;
+  }
+}
+
+.box-div {
+  background-color: #fff;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  width: calc(25% - 15px);
+
+  .box-icon {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    top: -20px;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    margin-left: -20px;
+    border-radius: 25px;
+  }
+
+  .box-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: get-color(main-color-buttons);
+  }
+
+  .box-number {
+    margin-top: 15px;
+    font-size: 28px;
+    color: get-color(kpi);
+    font-weight: bold;
+  }
+
+  .last-days-div {
+    color: get-color(kpi);
+    font-size: 18px;
+    margin-top: 15px;
+  }
+
+  .last-days-value {
+    font-weight: bold;
+  }
+
+  .last-days-percentage {
+    font-weight: bold;
+    font-size: 20px;
+    color: #256532;
+  }
+}
+
+.form-parent {
+  text-align: right;
+  padding-right: 15px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+
+  .filter-div {
+    margin-left: 55px;
+  }
+
+  .filter-div-calendar {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.table-title-div {
+  font-weight: bold;
+  font-size: 28px;
+  color: get-color(kpi);
+  margin-top: 10px;
+}
+
+.flex-div-kpi {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-flex {
+  display: flex;
+  align-items: center;
+}
+
+.title-space {
+  margin-right: 15px;
+}
+
+.table-parent-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .table-div {
+    text-align: center;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: calc(50% - 15px);
+  }
+
+  .table-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: get-color(main-color-buttons);
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .profile-div {
+    display: flex;
+    align-items: center;
+  }
+
+  .div-image-display {
+    cursor: pointer;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+  }
+
+  .table-image-display-background {
+    background-color: grey;
+  }
+
+  .image-display {
+    max-width: 100%;
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.actions-parent {
+  display: flex;
+  cursor: pointer;
+}
+
+.primary-colored {
+  color: get-color(main-color-buttons);
+}
+
+.primary-colored-background {
+  background-color: get-color(main-color-buttons);
+}
+
+@media screen and (max-width: 1024px) {
+  .table-parent-div .table-div {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .box-div {
+    width: calc(50% - 15px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flex-div {
+    margin-bottom: 15px;
+  }
+  .float-right, .float-left {
+    float: none !important;
+  }
+  .box-div {
+    width: calc(100% - 15px);
+  }
+  .form-parent {
+    display: block;
+
+    .filter-div {
+      margin-left: 0;
+    }
+  }
+  .flex-div-kpi {
+    flex-direction: column;
+    align-items: unset;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .filter-space {
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+}
+.filter-space {
+  margin-left: 40px
+}
+
+.dates-calendar {
+  display: inline-block;
+}
+

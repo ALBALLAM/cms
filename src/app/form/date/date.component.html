@@ -1,0 +1,29 @@
+<div [formGroup]="element.group" class="clear-parent">
+  <div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+  <mat-form-field class="full-width" dividerColor="accent">
+    <input matInput readonly="readonly"
+           [required]="element.required"
+           [id]="element.identifier"
+           [formControlName]="element.identifier"
+           [matDatepicker]="picker"
+           [(ngModel)]="originalValue"
+           [placeholder]="floatLabel === true ? '' : element.label"
+           [min]="minDate"
+           (dateChange)="change()">
+    <mat-datepicker-toggle matSuffix [for]="picker" *ngIf="!element.readonly" [disabled]="element.readonly"></mat-datepicker-toggle>
+    <mat-datepicker #picker [disabled]="false"></mat-datepicker>
+  </mat-form-field>
+  <div class="clear disabled-clear-{{element.readonly}}" *ngIf="!element.readonly" (click)="clearDate()"></div>
+
+  <div *ngIf="element.error && element.error!='' && !element.group.get(element.identifier).hasError('required') "
+       style="position: absolute" class="error-msg">{{element.error}}
+  </div>
+
+  <div *ngIf="!element.group.get(element.identifier).valid" style="position: absolute" class="error-msg">
+    <div
+      *ngIf="element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">
+      Field is required
+    </div>
+  </div>
+</div>
+

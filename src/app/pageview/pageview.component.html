@@ -1,0 +1,47 @@
+<app-table *ngIf="showTable && !showDashboard && !showWidgetCards" [validation]="validation" [dataLists]="dataLists"
+    [privilege_types]="privilege_types" [sortBy]="sortBy" [groupBy]="groupBy" [groupingFields]="groupingFields"
+    [fieldsOrder]="fieldsOrder" [fields]="fields" [deleteSentence]="deleteSentence" [fields_add]="fields_add"
+    [columns]="columns" [data]="data" [firstTablePage]="previousSessionPage" [tableTitle]="tableTitle"
+    [formTitle]="formTitle" [permissions]="permissions" [actions]="actions" [manageFields]="manageFields"
+    [showManageFields]="showManageFields" [showBackIcon]="showBackIcon" [backUrl]="backUrl" [backSection]="backSection"
+    [previousSessionRow]="previousSessionRow" (saveItem)="onSave($event)" (deleteItem)="onDelete($event)"
+    (customActionEmitter)="onCustomAction($event)" (columnActionEmitter)="onColumnAction($event)"
+    (privileges)="getPrivileges($event)" (getExtraTablee)="getExtraTablee($event)"
+    (getUsersByGroup)="getUsersByGroup($event)" [showPrivilegesTable]="showPrivilegesTable"
+    [showExtraTable]="showExtraTable" [rolesPrivileges]="rolesPrivileges" [extraTable]="extraTableArray"
+    [usePagination]="allowPagination" [totalRecords]="totalRecords" [totalCount]="totalCount"
+    (loadMorePages)="loadMorePages($event)" [maxPageLimit]="limitMaxPage" [useSearch]="allowSearch"
+    [allowDateSearch]="allowDateSearch" [allowCustomFilter]="allowCustomFilter" [removeDateMax]="removeDateMax"
+    [filterSearch]="filterSearch" [dateSearch]="dateSearch" [showNotification]="showNotification"
+    [showDashboard]="showDashboard" [selectedId]="id" [pageUrl]="routing_params.url" [hasExtraTable]="hasExtraTable"
+    [hideControlButtons]="hideControlButtons" [tableRowHeight]="attributesObject.tableRowHeight"
+    [showWidgetForm]="attributesObject.showWidgetForm" [showWidgetOnUpdate]="attributesObject.showWidgetOnUpdate"
+    [widgetConfiguration]="attributesObject.widgetConfiguration" [headers]="headers"
+    [tableHeaders]="attributesObject.tableHeaders" [allowOneAdd]="attributesObject.allowOneAdd"
+    [saveWidgetFormAlert]="attributesObject.widgetAlertOnSave" [dependencies]="dependencies">
+</app-table>
+
+<div *ngIf="showMatrix && responseData">
+    <app-matrix [data]="responseData" [attributesObject]="attributesObject" [backSection]="backSection"
+        [selectedId]="id"></app-matrix>
+</div>
+
+
+<div *ngIf="showDashboard && responseData">
+    <app-dashboard [data]="responseData" [attributesObject]="attributesObject"></app-dashboard>
+</div>
+
+<div *ngIf="showKPI">
+    <app-kpi [attributesObject]="attributesObject" (customActionEmitter)="onCustomAction($event)"></app-kpi>
+</div>
+
+<div *ngIf="showBookTicketDashboard">
+    <app-book-ticket [attributesObject]="attributesObject" (customActionEmitter)="onCustomAction($event)">
+    </app-book-ticket>
+</div>
+
+
+<div *ngIf="showWidgetCards && responseData">
+    <app-widget-cards (eventEmitter)="loadMorePages($event)" [fields]="fields" [blocks]="blocks"
+        [pageUrl]="attributesObject.get_details_url" [tableTitle]="tableTitle" [data]="responseData"></app-widget-cards>
+</div>

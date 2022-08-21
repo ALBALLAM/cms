@@ -1,0 +1,99 @@
+@import "../../style/variables.scss";
+
+.form-btn-submit{
+  background: get-color('main-color-buttons');
+  color: white;
+  font-size: 16px;
+  border: none;
+  width: 250px;
+  height: 45px;
+  border-radius: 25px;
+  margin-left: 4%;
+  margin-top: 4%;
+}
+
+.login.form-btn-submit{
+  background: get-color('main-color') !important;
+}
+
+.grp-elements-container {
+  border: 1px dotted #e9e5e5;
+  display: inline-block;
+  width: 90%;
+  margin: 0 3%;
+  position: relative;
+  padding-top: 20px;
+}
+
+.grp-elements-container .form-group {
+  margin: 10px 10px;
+  width: calc(50% - 20px);
+}
+
+@media only screen and (min-width: 767px) {
+  .block-tooltip {
+    right: -30px;
+    top: 15px;
+    position: relative;
+    height: 0px;
+  }
+  .block-tooltip.tax_residence_tin_field {
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .block-tooltip {
+    right: -30px;
+    top: 18px;
+    position: relative;
+    height: 0px;
+  }
+  .grp-elements-container .form-group {
+    width: 100% !important;
+  }
+}
+
+.commitment-button {
+  border: 1px dotted #ddd;
+  min-height: 40px;
+  padding: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: get-color("main-color");
+  background-color: transparent;
+  font-family: Gotham;
+}
+
+::ng-deep .form-group.gallery,
+::ng-deep .form-group.image{
+  width: 100%;
+}
+
+::ng-deep .form-group.video{
+  width: 100%;
+}
+
+
+::ng-deep .mat-chip.mat-standard-chip{
+  background-color: get-color('main-color');
+  color: white;
+  font-size: 14px;
+}
+::ng-deep .mat-standard-chip.mat-chip-with-trailing-icon{
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+::ng-deep .mat-chip-remove{
+  opacity: 1 !important;
+}
+::ng-deep .mat-chip-list-wrapper input.mat-input-element{
+  margin: 6px !important;
+  min-height: 24px;
+}
+::ng-deep .mat-chip-list-wrapper{
+  margin: 0 !important;
+}
+.hidden {
+  display: none;
+}

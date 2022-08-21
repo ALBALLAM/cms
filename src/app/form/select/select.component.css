@@ -1,0 +1,58 @@
+@import "../../../style/variables.scss";
+
+.selected {
+	border: solid #4CAF50 1px;
+	float: left;
+	margin: 2px;
+	padding: 2px 15px;
+}
+
+.selected a {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.select-list-box {
+	display: none;
+	background: get-color(white);
+	border: 1px solid #dedede;
+	max-height: 200px;
+	overflow: auto;
+	position: absolute;
+	background-color: get-color(white);
+	z-index: 1;
+}
+
+.select-list-box li {
+	padding: 2px;
+	cursor: pointer;
+}
+
+.select-list-box.show {
+	display: block
+}
+
+.select-container {
+	position: relative;
+	padding-top: 20px;
+}
+
+.input-search {
+	padding: 10px 16px;
+	border-bottom: 1px solid #acacac;
+}
+.clear{
+	position: absolute;
+	top: 3px;
+	width: 12px;
+	height: 47%;
+	right: 0;
+	cursor: pointer;
+	background-image: url("../../../assets/images/close.svg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.hide-search{
+	display: none;
+}

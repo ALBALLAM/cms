@@ -1,0 +1,84 @@
+@import "../../../style/variables.scss";
+
+.component-container {
+  text-align: center;
+  max-width: 100%;
+}
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  min-height: 53px;
+  //box-shadow: 1px 1px 1px 1px rgba(215, 215, 215, 0.5);
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.close-image {
+  cursor: pointer;
+  margin-top: -15px;
+  background-color: white;
+  border-radius: 50%;
+  width: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.preview-uploaded-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.preview-uploaded-image-poster{
+  width: 340px;
+  border-radius: 0;
+}
+
+.preview-default-image {
+  //width: 120px;
+  height: 100px;
+  background-image: url("../../../assets/images/upload.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%
+}
+
+.preview-text {
+  color: get-color("main-color");
+}
+
+.preview-default-image-small {
+  width: 40px;
+}
+.preview-uploaded-image-small {
+  max-width: 100%;
+}
+.image-div-small{
+  cursor: pointer;
+}
+.preview-image-div{
+  position: relative;
+  max-width: 100%;
+}
+
+.header-uploaded-image{
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.background-color{
+  background-color: grey;
+}
+.image-close{
+  width: 30px;
+  border-radius: 50%;
+}
+
+.isreadonly-true{
+  pointer-events: none;
+}

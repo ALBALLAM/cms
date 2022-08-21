@@ -1,0 +1,62 @@
+<section class="app-header clearfix">
+    <div class="app-header-inner">
+        <div class="top-nav-left">
+            <ul class="list-unstyled list-inline" *ngIf="showToggle">
+                <li class="list-inline-item">
+                    <button md-button class=" header-btn menu-img-wrapper" (click)="openSideBar()">
+                        <img src="../../assets/images/topbar/ic_menu.png"></button>
+                </li>
+            </ul>
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                    <div class="logo-menu-img-wrapper"></div>
+            </ul>
+        </div>
+        <div class="top-nav-right">
+
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                    <!--<button md-button class="header-btn menu-img-wrapper"-->
+                            <!--[matMenuTriggerFor]="movies">-->
+                        <!--<img src="../../assets/images/topbar/ic_pendingUploads.png">-->
+                    <!--</button>-->
+                    <div class="profile" style="float: left;">
+                        <p class="name">{{fullname}}</p>
+                        <p class="email">{{email}}</p>
+                    </div>
+                    <button md-button class="header-btn menu-img-wrapper" [matMenuTriggerFor]="settings">
+                        <img src="../../assets/images/topbar/ic_profile.png">
+                    </button>
+                    <mat-menu #settings="matMenu">
+                        <button mat-menu-item (click)="changePassword()">
+                            <mat-icon>https</mat-icon>
+                            <span>Change Password</span>
+                        </button>
+                        <button mat-menu-item (click)="logout()">
+                            <mat-icon>exit_to_app</mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                    <mat-menu #movies="matMenu" yPosition="below" class="movies-parent">
+                        <div class="movie-panel-title">
+                            Pending Uploads
+                        </div>
+                        <div *ngFor="let movie of moviesArray">
+                            <div class="movie-name">
+                                {{movie.name}}
+                                <span *ngIf="movie.state==='error'" class="error-status"> (Error)</span>
+                                <span *ngIf="movie.state==='completed'" class="completed-status"> (Completed)</span>
+                                <span *ngIf="movie.state==='pending'" class="pending-status"> (In Progress)</span>
+                            </div>
+                            <mat-progress-bar *ngIf="movie.state==='pending'" mode="indeterminate"></mat-progress-bar>
+                        </div>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+

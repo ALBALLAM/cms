@@ -1,0 +1,35 @@
+<div [formGroup]="element.group" class="togray {{additionalClass}}">
+	<div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+    <mat-form-field class="simpleText" [floatLabel]="floatLabel === true ? 'always': 'never'">
+		<input
+      matInput
+			[formControlName]="element.identifier"
+			[type]="element.type"
+			[placeholder]="floatLabel === true ? '' : element.label"
+			[required]="element.required"
+			[id]="element.identifier"
+			[(ngModel)]="element.value"
+			(keyup)="change()"
+			[attr.subGroup]="element.field_sub_group"
+			[autocapitalize]="'off'"
+      [readonly]="element.readonly"
+	  [ngClass]="element.isArabic ? 'arabic-rtl' : ''"
+		>
+      </mat-form-field>
+	<div *ngIf="!element.group.get(element.identifier).valid" style="position: absolute" class="error-msg">
+		<div
+			*ngIf="element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">
+			Field is required
+		</div>
+		<div
+			*ngIf="element.group.get(element.identifier).hasError('pattern') && element.group.get(element.identifier).dirty">
+				{{element.validationText}}
+		</div>
+	</div>
+	<!--<div *ngIf="element.group.get(element.identifier).hasError('pattern') && element.group.get(element.identifier).dirty" class="error-msg desktop-position">{{element.validationText}}</div>-->
+	<div class="error-msg" style="position: absolute; width: 30%; min-width: 200px;"
+		 [id]="element.identifier+'_custom_error'"
+		 *ngIf="element['error']">
+		{{element['error']}}
+	</div>
+</div>

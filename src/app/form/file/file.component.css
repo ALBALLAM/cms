@@ -1,0 +1,49 @@
+@import "../../../style/variables.scss";
+
+.component-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.file-container {
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  min-height: 53px;
+  box-shadow: 1px 1px 1px 1px rgba(215, 215, 215, 0.5);
+}
+
+.close-image {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 13px;
+  height: 13px;
+  background-image: url("../../../assets/images/close.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.preview-uploaded-image {
+  width: 150px;
+  height: 150px;
+}
+
+/*.preview-default-image {*/
+  /*width: 120px;*/
+  /*height: 100px;*/
+/*}*/
+.preview-default-image {
+  height: 100px;
+  background-image: url("../../../assets/images/upload.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.preview-text {
+  color: get-color("main-color");
+}

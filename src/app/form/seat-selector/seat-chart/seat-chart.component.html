@@ -1,0 +1,84 @@
+<div style="text-align: center" [dir]="direction">
+    <div class="stage-div">THEATER</div>
+    <div class="col-lg-12 seat-container">
+        <div *ngFor="let seatrow of seatmap" class="row-container">
+            <div class="col-12 pricing-label"
+                *ngIf="seatChartConfig?.showRowWisePricing && seatrow.seatPricingInformation != ''">
+                {{seatrow.seatPricingInformation}}
+            </div>
+            <div class="seatrow">
+                <div *ngIf="seatChartConfig?.showRowsLabel">
+                    <div class="row-label margin-{{currentLang}}"> {{seatrow.seatRowLabel}}</div>
+                </div>
+                <div class="seatrow" [dir]="seatrow.direction==='left'?'ltr':'rtl'">
+                    <ng-container *ngFor="let seatobj of seatrow.seats">
+                        <div class="seat-item seat-space white-div" *ngIf="seatobj.seatLabel == ''">
+                            &nbsp;
+                        </div>
+                        <div [style.border-color]="seatobj.zone_color"
+                            [ngClass]="{ 'seat-item' : true , 'seat-available' : seatobj.status == 'available' ,'seat-booked' : seatobj.status == 'booked' ,'seat-reserved' : seatobj.status == 'reserved', 'seat-reservedCMS' : seatobj.status == 'reservedCMS', 'seat-invited' : seatobj.status == 'invited' }"
+                            (click)="selectSeat(seatobj, seatrow)"
+                            *ngIf="(seatobj.status == 'available' || seatobj.status == 'booked' )&& seatobj.seatLabel != ''">
+                            {{seatobj.seatNo}}
+                        </div>
+                        <div [style.border-color]="seatobj.zone_color"
+                            [ngClass]="{ 'seat-item' : true , 'seat-reserved' : seatobj.status == 'reserved', 'seat-reservedCMS' : seatobj.status == 'reservedCMS', 'seat-invited' : seatobj.status == 'invited' }"
+                            *ngIf="(seatobj.status == 'reserved' || seatobj.status == 'reservedCMS' || seatobj.status == 'invited') && seatobj.seatLabel != ''">
+                            {{seatobj.seatNo}}
+                        </div>
+                        <div [ngClass]="{ 'seat-item' : true , 'seat-blocked' : true }"
+                            *ngIf="seatobj.status == 'blocked' && seatobj.seatLabel != ''">
+                            X
+                        </div>
+                    </ng-container>
+                </div>
+                <div *ngIf="seatChartConfig?.showRowsLabel">
+                    <div class="row-label margin-reverse-{{currentLang}}"> {{seatrow.seatRowLabel}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="legend-div">
+        <div class="legend" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="5px">
+                <div fxFlex="noshrink" class="legend-color available-legend-color"></div>
+                <div class="legend-text">Available Seats</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="5px">
+                <div fxFlex="noshrink" class="legend-color your-seats-legend-color"></div>
+                <div class="legend-text">Your Seats</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="5px">
+                <div fxFlex="noshrink" class="legend-color blocked-legend-color"></div>
+                <div class="legend-text">Unavailable Seats</div>
+            </div>
+            <!--<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="5px">-->
+            <!--<div fxFlex="noshrink" class="legend-color reserved-legend-color"></div>-->
+            <!--<div class="legend-text">Reserved Seats</div>-->
+            <!--</div>-->
+            <!--<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="5px">-->
+            <!--<div fxFlex="noshrink" class="legend-color invited-legend-color"></div>-->
+            <!--<div class="legend-text">Invited Seats</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<!--<div class="container">-->
+<!--<div class="col-lg-12 summary-bar">-->
+<!--<div class="col-lg-4">-->
+<!--<div>-->
+<!--<h5>Total Selected : {{ cart?.selectedSeats?.length }}</h5>-->
+<!--<h5>Total Amount :&nbsp;&nbsp; {{cart.totalamount}} Rs</h5>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-lg-8 selected-seats">-->
+<!--<h5 class="col-lg-12 no-padding">Selected Seats : </h5>-->
+<!--<span *ngFor="let seatLabel of cart.selectedSeats" class="badge badge-primary">{{seatLabel}}</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-lg-12 book-area">-->
+<!--<button [disabled]="cart?.selectedSeats?.length == 0" type="button"-->
+<!--class="btn btn-primary" mdbWavesEffect>Book Now-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->

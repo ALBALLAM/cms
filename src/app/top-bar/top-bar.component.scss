@@ -1,0 +1,286 @@
+@import "../../style/variables.scss";
+
+.app-header .app-header-inner {
+  box-shadow: none !important;
+  //border-bottom: 1px solid #c6cdd6;
+  height: 70px;
+  background-color: #f0f4f9;
+}
+
+.eurisko-panel {
+  height: 70px;
+  background-color: get-color(secondary-color);
+}
+
+//.header-logo {
+//	text-align: center;
+//	margin: 0px auto;
+//	height: 100%;
+//	max-width: 500px;
+//	background-repeat: no-repeat;
+//	background-size: 40%;
+//	background-position: center;
+//	background-image: url('../../assets/images/logo-grey.png');
+//}
+
+md-list-item {
+  cursor: pointer;
+}
+
+.app-header {
+  background-color: get-color(secondary-color);
+  height: 50px;
+}
+
+.app-header button:hover {
+  background-color: transparent !important;
+  color: const(color-primary);
+}
+
+.nav-logo {
+  position: absolute;
+  top: 0px;
+  left: 25%;
+  width: 50%;
+}
+
+.nav-logo img {
+  margin-top: 15px;
+  width: 180px;
+  height: 30px;
+}
+
+.nav-menu-text {
+  font-family: const(main-font-family-light);
+  font-size: 10px;
+  text-align: center;
+}
+
+.list-inline-item {
+  color: #7a7a7a;
+  line-height: 0;
+  height: 100%;
+}
+
+.mat-list-item-content {
+  color: #7a7a7a;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-menu-text {
+    display: none;
+  }
+
+  .signal-dot {
+    top: 42px !important;
+    left: 34px !important;
+  }
+
+  .applications-bubble {
+    left: 36px !important;
+    top: 35px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav-logo {
+    left: 20px;
+    right: auto;
+  }
+
+  .nav-logo img {
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 14px !important;
+  }
+
+  .user-true {
+    margin-right: 75% !important;
+  }
+
+  .user-false {
+    margin-right: 36% !important;
+  }
+
+  .isMobile {
+    display: block;
+  }
+
+  .isDesktop {
+    display: none !important;
+  }
+}
+
+button:active {
+  background-color: transparent !important;
+}
+
+section button:focus {
+  background-color: get-color(secondary-color);
+}
+
+.top-bar-btn {
+  background-position: 50% 0px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+.top-nav-left {
+  float: left;
+  height: 100%;
+  display: flex;
+}
+
+.nav-logo:nth-child(2) {
+  position: relative;
+  float: left;
+  left: 21%;
+}
+
+.top-nav-left:first-child li:first-child button {
+  min-width: 55px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.top-nav-right button {
+  min-width: 55px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.status-div {
+  background-color: orange;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.unclickable {
+  pointer-events: none;
+}
+
+.signal-dot {
+  height: 7px;
+  background-color: const(color-primary);
+  border-radius: 50%;
+  width: 7px;
+  position: absolute;
+  top: 22px;
+  left: 60px;
+}
+
+.settings-icon {
+  width: 23px;
+  height: 21px;
+  position: absolute;
+  left: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .isMobile {
+    display: none;
+  }
+
+  .isDesktop {
+    display: block;
+  }
+}
+
+.applications-bubble {
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  background-color: #ffdf00;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.top-nav-right {
+  float: right;
+  //margin-top: 10px;
+  height: 100%;
+}
+
+.menu-img-wrapper {
+  height: 100%;
+  width: 40px;
+  background-color: transparent;
+  //border: solid 1px get-color('main-color');
+  background-position-y: center;
+  border: none;
+  img {
+    width: 40px !important;
+    //height: 28px !important;
+    //margin-top: 7px;
+  }
+}
+
+.logo-menu-img-wrapper {
+  width: 245px;
+  height: 80%;
+  margin-top: 7px;
+  background-image: url("../../assets/images/sidenav/logo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 75px; /*20px;*/
+}
+
+.color-img {
+  background-color: get-color("main-color");
+}
+
+@media only screen and (max-width: 817px) {
+  .logo-menu-img-wrapper {
+    margin-left: 20px !important;
+  }
+}
+
+::ng-deep .mat-menu-panel.movies-parent {
+  padding: 10px;
+  min-height: 200px;
+  min-width: 270px !important;
+}
+
+.movie-name {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.movie-panel-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.error-status {
+  color: get-color("error-color");
+}
+
+.completed-status {
+  color: get-color("good");
+}
+
+.pending-status {
+  color: get-color("yellow");
+}
+.profile {
+  margin-top: 28px;
+  margin-right: 8px;
+  text-align: right;
+  .name {
+    font-size: 15px;
+    font-weight: bold;
+    color: get-color("name");
+  }
+  .email {
+    color: #8a8a8a;
+    font-size: 12px;
+    text-transform: capitalize;
+  }
+}

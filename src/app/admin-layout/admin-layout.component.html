@@ -1,0 +1,61 @@
+<nav class="menu" align='center'>
+    <div align="center">
+        <!--<div class="logo-img"></div>-->
+        <ul class="navigation">
+            <ng-container *ngFor="let menuitem of menuItems; let i = index">
+                <div>
+                    <li class="navigation-item" [ngClass]="menuitem['selected']=='selected' ? 'list-selected': ''">
+                        <a class="navigation-link sidenav-no-underline" title="{{menuitem.name}}"
+                           [routerLink]="['/', menuitem.state]" [ngClass]="menuitem['selected']!='' ? 'selected-link standalone-link' : ''"
+                           *ngIf="menuitem.type === 'link' && !menuitem.hidden" (click)="select(i);setSessionValues(menuitem.state,'',i);removeSessions(i)">
+                            <div class="img-bg-div">
+                                <div *ngIf="menuitem['selected']==''" class="menu-img" [style.background-image]="'url(' + 'assets/images/sidenav/' + menuitem.icon + '.svg' + ')'"></div>
+                                <div *ngIf="menuitem['selected']=='selected'"
+                                     class="menu-img" [style.background-image]="'url(' + 'assets/images/sidenav/' + menuitem.icon + '-selected.svg' + ')'"></div>
+                            </div>
+                            <span><div class="menu-label">{{menuitem.name}}</div></span>
+                        </a>
+                        <a class="navigation-link" title="{{menuitem.name}}" *ngIf="menuitem.type === 'sub'" [ngClass]="menuitem['selected']=='selected' ? 'a-link-selected': ''"
+                           (click)="openSub=true;select(i)">
+                            <div class="img-bg-div">
+                                <div *ngIf="menuitem['selected']==''" class="menu-img" [style.background-image]="'url(' + 'assets/images/sidenav/' + menuitem.icon + '.svg' + ')'"></div>
+                                <div *ngIf="menuitem['selected']=='selected'"
+                                     class="menu-img" [style.background-image]="'url(' + 'assets/images/sidenav/' + menuitem.icon + '-selected.svg' + ')'"></div>
+                            </div>
+                            <span
+                                    [ngClass]="menuitem['selected']==''?'sidenav-library-source-font':'sidenav-library-source-font-selected'">{{menuitem.name}}</span>
+                            <div class="menu-caret"
+                                 [ngClass]="openSub && menuitem['selected']=='selected'?'tilt':''"></div>
+                        </a>
+                        <ul class="navigation-submenu" [ngClass]="openSub && menuitem['selected']=='selected'?'open':''"
+                            *ngIf="menuitem.type === 'sub' && openSub">
+                            <li class="navigation-item sidenav-no-underline"
+                                *ngFor="let childitem of menuitem['children']; let j = index;" routerLinkActive="open">
+                                <a *ngIf="menuitem.state!=''" title="{{childitem.tooltip}}"
+                                   [routerLink]="['/', menuitem.state, childitem.state]"
+                                   [ngClass]="childitem['selected']!='' ? 'selected-link' : ''"
+                                   (click)="setSessionValues(menuitem.state, childitem.state,i,j);removeSessions(i)"
+                                   class="navigation-link underline">
+                <span
+                        [ngClass]="childitem['selected']==''?'sidenav-library-source-font-docked':'sidenav-library-source-font-docked-selected'">{{childitem.name}}</span>
+                                </a>
+                                <a *ngIf="menuitem.state=='' && !childitem.hidden" title="{{childitem.tooltip}}"
+                                   [routerLink]="['/',childitem.state]"
+                                   [ngClass]="childitem['selected']!='' ? 'selected-link' : ''"
+                                   (click)="setSessionValues(menuitem.state, childitem.state,i,j);removeSessions(i)"
+                                   class="navigation-link underline">
+                <span
+                        [ngClass]="childitem['selected']==''?'sidenav-library-source-font-docked':'sidenav-library-source-font-docked-selected'">{{childitem.name}}</span>
+                                    <!--<div *ngIf="childitem['selected']!==''" class="selected-dots"></div>-->
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <div *ngIf="!menuitem.hidden" class="div-underline"></div>
+            </ng-container>
+        </ul>
+        <!--<div class="version-div">Version: {{appVersion}}</div>-->
+    </div>
+</nav>
+

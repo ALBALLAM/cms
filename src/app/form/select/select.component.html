@@ -1,0 +1,51 @@
+<div [formGroup]="element.group" *ngIf="element.type=='dropdown'" [ngClass]="allowClear && !element.readonly?'clear-parent':''">
+    <div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span
+            *ngIf="element.required === true && !element.readonly">*</span></div>
+    <mat-form-field>
+        <mat-select [placeholder]="floatLabel === true ? '' : element.label" [id]="element.identifier"
+                    [formControlName]="element.identifier"
+                    [required]="element.required" [(ngModel)]="element.value" (change)="changeValue()" (selectionChange)="changeValue()"
+                    (openedChange)="myInput.focus()">
+            <input [ngClass]="allowSearch?'input-search':'hide-search'" #myInput matInput focused="'true'" type="text"
+                   (keyup)="search($event.target.value)" autocomplete="off" placeholder="Search">
+            <mat-option *ngFor="let option of selectedOptions; let i = index;"
+                        [value]="option.value"
+                        [ngClass]="is!=element.options.length-1 ? 'options-border-bottom':''">
+                {{option.text}}
+            </mat-option>
+        </mat-select>
+        <div *ngIf="allowClear && !element.readonly" class="clearSelect" (click)="clearData();$event.stopPropagation();"></div>
+    </mat-form-field>
+    <div style="position: absolute" class="error-msg" *ngIf="element.group.get(element.identifier).hasError('required') &&
+   element.group.get(element.identifier).touched">
+        Field is required
+    </div>
+</div>
+<div [formGroup]="element.group" *ngIf="element.type=='multi-select'" [ngClass]="allowClear && !element.readonly?'clear-parent':''">
+    <div class="field-label" *ngIf="floatLabel === true">{{element.label}}</div>
+    <mat-form-field>
+        <mat-select [placeholder]="floatLabel === true ? '' : element.label" [id]="element.identifier"
+                    [formControlName]="element.identifier" multiple
+                    [required]="element.required" [(ngModel)]="element.value" (change)="changeValue()"
+                    (selectionChange)="onSelectionChange($event)" (openedChange)="myInput.focus()">
+            <input class="input-search" #myInput matInput focused="'true'" type="text"
+                   (keyup)="search($event.target.value)" autocomplete="off" placeholder="Search">
+            <mat-option *ngFor="let option of selectedOptions; let i = index;"
+                        [value]="option.value"
+                        [ngClass]="is!=element.options.length-1 ? 'options-border-bottom':''">
+                {{option.text}}
+            </mat-option>
+            <mat-option *ngFor="let option of selection; let i = index;"
+                        [value]="option.value"
+                        style="display: none;">
+                {{option.text}}
+            </mat-option>
+        </mat-select>
+        <div *ngIf="allowClear && !element.readonly" class="clearSelect" (click)="clearData(true);$event.stopPropagation();"></div>
+    </mat-form-field>
+    <div class="error-msg dropdown"
+         *ngIf="element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">
+        Field is required
+    </div>
+</div>
+

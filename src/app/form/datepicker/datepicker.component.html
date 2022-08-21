@@ -1,0 +1,12 @@
+<div class="col-xs-12 date-picker-div read-only-{{element.readonly}}" [formGroup]="element.group">
+  <!--<div class="col-xs-12 label-date">{{element.label}}{{element.required? '*': ''}}</div>-->
+  <div class="col-xs-12 field-label" *ngIf="floatLabel === true">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+  <div class="col-xs-12">
+    <ng2-flatpickr [config]="options"
+                   [formControlName]="element.identifier"
+    ></ng2-flatpickr>
+  </div>
+  <div class="error-msg custom-error" *ngIf="element.required && !element.value && element.changed">
+    Field is required
+  </div>
+</div>

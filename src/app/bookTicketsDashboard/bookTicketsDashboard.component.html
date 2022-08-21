@@ -1,0 +1,74 @@
+<div class="parent-div">
+    <div class="flex-div-kpi book-tickets-parent">
+
+        <div class="float-right">
+            <form *ngIf="showFilters" [formGroup]="filterForm">
+                <div class="form-parent">
+                    <div *ngFor="let filter of attributesObject.filters" class="filter-div">
+                        <app-dropdown *ngIf="filter.type==='dropdown' && !filter.hidden" [element]="filter"
+                            [allowSearch]="true" [allowClear]="false"
+                            (eventEmitter)="filter.identifier==='show'?getPlaysAPI(true):getStatisticsAPI(true)">
+                        </app-dropdown>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <ng-container>
+        <div *ngIf="showHeaders && headers && headers.data.length>0" class="header-container">
+            <div class="title-back-div header-back" fxLayout="row" fxLayoutAlign="start start">
+                <div class="title-div">{{headers.title}}</div>
+                <div class="table-title-div float-left title-flex mt-4 ml-4">
+                    <ng-container *ngIf="actions">
+                        <ng-container *ngFor="let action of actions">
+                            <div *ngIf="permissions['customActions'] && permissions['customActions'][action.permission]"
+                                (click)="customAction(action)" class="actions-parent">
+                                <div class="colored-action primary-colored-background"></div>
+                                <span class="span-action primary-colored">{{action.name}}</span>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="header-parent">
+                <div *ngFor="let header of headers.data" class="header-div">
+                    <ng-container>
+                        <div class="header-item">
+                            <div class="bullet"></div>
+                            <span class="header-text">{{header.text}}</span>
+                            <span class="header-value">{{header.type==='number'?(header.value|number:'1.0-2')+ ' ' +
+                                (header.fieldToConcat?header.fieldToConcat:''):header.value + ' ' +
+                                (header.fieldToConcat?header.fieldToConcat:'')}}</span>
+                        </div>
+                    </ng-container>
+
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container>
+        <div *ngIf="showHeaders && manageFields && manageFields.length>0" class="manage-field-container">
+            <div *ngFor="let record of manageFields" class="manage-field-parent" (click)="handleManage(record)">
+                {{record.label}}
+            </div>
+        </div>
+    </ng-container>
+    <ng-container>
+        <div *ngIf="showHeaders" class="appForm">
+            <div class="col-12 simple-form single-col-form table-padding book-tickets-form"
+                style="display: inline-grid;">
+                <app-form #myappfrm [FormFields]="fields" [FormFieldValues]="clickedRow" [FormFieldsOrder]="orderObj"
+                    [dependencies]="dependencies" [validation]="Validation" class="app-form">
+                </app-form>
+            </div>
+            <div style="text-align: right">
+                <button class="btn btn-save buttonForm1" (click)="saveTicket()">
+                    Book with payment
+                </button>
+                <button class="btn btn-save buttonForm1" (click)="addDirectTicket()">
+                    Book without payment
+                </button>
+            </div>
+        </div>
+    </ng-container>
+</div>

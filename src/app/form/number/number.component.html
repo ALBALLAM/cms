@@ -1,0 +1,21 @@
+<div [formGroup]="element.group">
+	<div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span
+			*ngIf="element.required === true && !element.readonly">*</span></div>
+	<mat-form-field class="full-width" dividerColor="accent" [floatLabel]="floatLabel === true ? 'always': 'never'">
+		<input matInput [formControlName]="element.identifier" [placeholder]="floatLabel === true ? '' : element.label"
+			[required]="element.required" [id]="element.identifier" [(ngModel)]="element.value" (keyup)="change(true)"
+			(blur)="blur()">
+	</mat-form-field>
+	<div *ngIf="element.error && element.error!='' && !element.group.get(element.identifier).hasError('required')"
+		class="error-msg desktop-position">{{element.error}}</div>
+	<div style="position: absolute" class="error-msg">
+		<div
+			*ngIf="element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">
+			Field is required
+		</div>
+		<div
+			*ngIf="element.group.get(element.identifier).hasError('pattern') && element.group.get(element.identifier).dirty">
+			{{element.validationText}}
+		</div>
+	</div>
+</div>

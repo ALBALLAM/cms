@@ -1,0 +1,28 @@
+<div [formGroup]="element.group" class="time-div">
+	<div class="field-label" *ngIf="floatLabel === true">{{element.label}}<span *ngIf="element.required === true && !element.readonly">*</span></div>
+	<mat-form-field class="full-width" dividerColor="accent">
+		<input
+			matInput
+			[formControlName]="element.identifier"
+			type="text"
+			[placeholder]="floatLabel === true ? '' : element.label"
+			[required]="element.required"
+			[id]="element.identifier"
+			[(ngModel)]="element.value"
+			readonly
+			[ngxTimepicker]="toggleTimepicker"
+		>
+			<mat-icon  matSuffix><ngx-material-timepicker-toggle  [for]="toggleTimepicker"></ngx-material-timepicker-toggle></mat-icon>
+	</mat-form-field>
+		<ngx-material-timepicker #toggleTimepicker [ngxMaterialTimepickerTheme]="darkTheme" (timeSet)="timeSet($event)"></ngx-material-timepicker>
+
+	<div *ngIf="!element.group.get(element.identifier).valid" style="position: absolute" class="error-msg">
+		<div *ngIf="element.group.get(element.identifier).hasError('required') && element.group.get(element.identifier).touched">
+			Field is required
+		</div>
+	</div>
+	<div  style="position: absolute" class="error-msg"
+		*ngIf="element.change && element.group.get(element.identifier).valid && !valid">
+		Invalid time format
+	</div>
+</div>
