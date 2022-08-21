@@ -24,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {FormModule} from './form/form.module';
 import {ErrorInterceptor} from "./shared/httpInterceptor/error-interceptor.service";
 import {VideoDialogComponent} from "./video-dialog/video-dialog.component";
+import { CompatibilityModule, NoConflictStyleCompatibilityMode } from "md2/core/compatibility/compatibility";
 
 
 @NgModule({
@@ -34,14 +35,14 @@ import {VideoDialogComponent} from "./video-dialog/video-dialog.component";
     imports: [
         BrowserModule,
         SidebarModule.forRoot(),
-        // FormsModule,
-        // HttpModule,
+        FormsModule,
+        HttpModule,
         AppRoutingModule,
-        // ReactiveFormsModule,
-        // CompatibilityModule,
+        ReactiveFormsModule,
+        CompatibilityModule,
         AdminLayoutModule,
-        // BrowserAnimationsModule,
-        // NoConflictStyleCompatibilityMode,
+        BrowserAnimationsModule,
+        NoConflictStyleCompatibilityMode,
         LoadingModule,
         SignInModule,
         TopBarModule,
