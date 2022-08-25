@@ -19,7 +19,9 @@ export class CheckboxComponent implements OnInit {
 
 	constructor() {}
 
-		ngOnInit() {}
+		ngOnInit() {
+			console.log(this.element,'element checkbox')
+		}
 
 	change(index: number, e): void {
 	  this.changed = true;

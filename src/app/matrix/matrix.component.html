@@ -13,9 +13,7 @@
     </div>
     <div *ngIf="!showTableMatrix" class="appForm">
         <div class="col-12 simple-form single-col-form table-padding" style="display: inline-grid;">
-            <app-form #myappfrm [FormFields]="fields" [FormFieldValues]="clickedRow" [FormFieldsOrder]="orderObj"
-                      [validation]="Validation" class="app-form" (notifyParent)="checkRowsColumns($event)">
-            </app-form>
+        
         </div>
         <div *ngIf="showNextButton" class="matrix-button">
             <button class="btn btn-save buttonForm1" style="margin: 0 !important;"

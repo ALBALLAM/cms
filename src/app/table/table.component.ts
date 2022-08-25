@@ -388,6 +388,7 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     setFieldValues(putAllReadOnly = false): void {
+        console.log(this.fields,'this.fields table component')
         for (let field in this.fields) {
             if (putAllReadOnly) {
                 this.fields[field].readonly = true;
@@ -402,6 +403,7 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
             }
         }
         if (!this.showNotification) {
+            console.log(this.fields_add,'this.fields_add')
             for (let field in this.fields_add) {
                 if (this.fields_add[field].resetFields) {
                     this.fields_add[field].hidden = true;

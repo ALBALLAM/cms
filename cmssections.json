@@ -4051,6 +4051,12 @@
         "value": ["overloadBooking"],
         "changeField": ["ticketNumber"],
         "changeType": "show"
+      },
+      {
+        "field": "type",
+        "value":[false],
+        "changeField": ["seatsio"],
+        "changeType": "hide"
       }
     ],
     "tableName": "Admin's Tickets",

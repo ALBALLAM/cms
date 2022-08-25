@@ -15,6 +15,11 @@ export class ToggleComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(this.element.identifier==='createSeatsioEventForShow')
+        {
+            this.element.hidden=true;
+        }
+
         if (!this.element.value) {
             this.element.value = false;
 

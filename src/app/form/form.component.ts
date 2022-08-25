@@ -39,19 +39,22 @@ export class FormComponent implements OnInit, AfterViewInit {
     @Input() buttons: any[];
     @Output() submitBtns: EventEmitter<any> = new EventEmitter<any>();
     @Output() notifyParent: EventEmitter<any> = new EventEmitter<any>();
-
+     public ShowEvent:boolean=false;
     constructor(private _formBuilder: FormBuilder, private formUtils: FormUtilsService) {
     }
 
     ngOnInit() {
         this.callback();
+       
         for (var j = 0; j < this.fields.length; j++) {
             this.onNotify({ 'id': this.fields[j]['identifier'], 'grp': this.fields[j]['field_group'] });
             this.fields[j]['validationText'] = this.validation && this.validation[this.fields[j].validation] ? this.validation[this.fields[j].validation]['text'] : '';
+           
         }
     }
 
     ngAfterViewInit() {
+        console.log(this.fields[6],'this.fields in form component')
         this.eventEmitter.emit('init');
     }
 
@@ -64,6 +67,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
 
     callback(): void {
+       
         let identifiersOrder = [];
         this.fieldsTemp = this.FormFields;
 
@@ -80,6 +84,7 @@ export class FormComponent implements OnInit, AfterViewInit {
                 }
             }
         }
+        console.log(this.fieldsTemp,'this.fieldsTemp')
         this.addValidation();
     }
 
@@ -131,6 +136,7 @@ export class FormComponent implements OnInit, AfterViewInit {
         }
 
         if (group != undefined) {
+            console.log(group,'group in form component')
             this.validationForm = this._formBuilder.group(group);
         } else {
             this.validationForm = new FormGroup({});
@@ -185,20 +191,36 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
 
     onNotify(fieldObj): void {
+
+        // fieldObj.id ==='createSeatsioEventForShow' && fieldObj.value==false  ?fieldObj.hidden=true :fieldObj.hidden=false
+   
+        console.log(this.dependencies,'this.dependencies')
         if (fieldObj && fieldObj.value) {
+            console.log(fieldObj.value)
             if (this.dependencies && this.dependencies.length > 0) {
                 for (const dependency of this.dependencies) {
+                    console.log(dependency.field === fieldObj.id)
+                    console.log(!fieldObj.hidden)
+                    console.log( dependency.value.indexOf(fieldObj.value) > -1)
                     if (dependency.field === fieldObj.id && !fieldObj.hidden && dependency.value.indexOf(fieldObj.value) > -1) {
+                        
                         for (const field of this.fields) {
-                            if (dependency.changeField.indexOf(field.identifier) > -1) {
+
+                            
+                          
+                            if (dependency.changeField.indexOf(field.identifier)> -1) {
+                                console.log(field)
                                 if (dependency.changeType === 'maxLength') {
                                     field[dependency.changeType] = dependency.newValue;
                                     if (field && field.value && field.value !== '') {
                                         field.value = field.value.substring(0, dependency.newValue);
                                     }
                                 } else if (dependency.changeType === 'show') {
+                                    
+                                    console.log('amira')
                                     field.hidden = false;
-                                } else if (dependency.changeType === 'hide') {
+                                }
+                                 else if (dependency.changeType === 'hide') {
                                     field.hidden = true;
                                     if (field.type !== 'table-input') {
                                         if (!field.initialValue) {
@@ -215,12 +237,14 @@ export class FormComponent implements OnInit, AfterViewInit {
                                         }
                                     }
                                 }
+                                
                             }
                         }
                     }
                 }
             }
         }
+        //
         if (fieldObj.type === 'multi-select') {
             for (let field of this.fields) {
                 if (field.identifier === fieldObj.id) {
