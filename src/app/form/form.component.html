@@ -39,7 +39,7 @@
                       (eventEmitter)='onNotify($event)'
                       (customEventEmitter)='onCustomNotify($event)'></app-text>
             <app-toggle [element]="element" *ngIf="element.type=='toggle'"
-                        (eventEmitter)='onNotify($event)' [floatLabel]="floatLabel"
+                        (eventEmitter)='onNotify($event); SeatsioDependances($event)'   [floatLabel]="floatLabel"
                         (customEventEmitter)='onCustomNotify($event)'></app-toggle>
             <app-checkbox [element]="element" *ngIf="element.type=='checkbox'"
                           (eventEmitter)='onNotify($event)'></app-checkbox>
